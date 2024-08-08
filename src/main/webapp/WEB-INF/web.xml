@@ -6,7 +6,6 @@
 
         <display-name>UniVerse</display-name>
 
-        <!-- Servlets -->
         <servlet>
             <servlet-name>LoginServlet</servlet-name>
             <servlet-class>com.cms.servlet.LoginServlet</servlet-class>
@@ -16,7 +15,6 @@
             <servlet-class>com.cms.servlet.RegisterServlet</servlet-class>
         </servlet>
 
-        <!-- Servlet Mappings -->
         <servlet-mapping>
             <servlet-name>LoginServlet</servlet-name>
             <url-pattern>/login</url-pattern>
@@ -26,7 +24,6 @@
             <url-pattern>/register</url-pattern>
         </servlet-mapping>
 
-        <!-- Welcome file list -->
         <welcome-file-list>
             <welcome-file>jsp/login.jsp</welcome-file>
         </welcome-file-list>
