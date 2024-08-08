@@ -15,29 +15,49 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     registrationForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
         let email = document.getElementById('email').value;
         let passwordValue = password.value;
         let confirmPasswordValue = confirmPassword.value;
 
         if (passwordValue !== confirmPasswordValue) {
-            event.preventDefault();
             message.style.color = 'red';
             message.textContent = 'Passwords do not match!';
             return;
         }
 
-        // Assuming server-side validation passes
-        event.preventDefault();
-        showSuccessModal();
+        // Prepare form data
+        const formData = new FormData(registrationForm);
+
+        // Send the form data using fetch API
+        fetch('register', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.text())
+            .then(data => {
+                if (data === 'success') {
+                    showSuccessModal();
+                    registrationForm.reset();
+                } else {
+                    message.style.color = 'red';
+                    message.textContent = 'Registration failed. Please try again.';
+                }
+            })
+            .catch(error => {
+                message.style.color = 'red';
+                message.textContent = 'An error occurred. Please try again.';
+            });
     });
 });
 
 function showSuccessModal() {
     const modal = document.getElementById('successModal');
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
 }
 
 function closeSuccessModal() {
     const modal = document.getElementById('successModal');
-    modal.style.display='none';
+    modal.style.display = 'none';
 }
