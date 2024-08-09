@@ -27,9 +27,15 @@ public class RegisterServlet extends HttpServlet {
         String dob = request.getParameter("dob");
         Part photoPart = request.getPart("photo");
 
+        System.out.println("Received name: " + name);
+        System.out.println("Received email: " + email);
+        System.out.println("Received password: " + password);
+        System.out.println("Received dob: " + dob);
+
         InputStream photoInputStream = null;
         if (photoPart != null) {
             photoInputStream = photoPart.getInputStream();
+            System.out.println("Received file: " + photoPart.getSubmittedFileName());
         }
 
         try (Connection connection = DBConnection.getConnection()) {
@@ -42,7 +48,9 @@ public class RegisterServlet extends HttpServlet {
             if (photoInputStream != null) {
                 ps.setBlob(5, photoInputStream);
             }
+
             int result = ps.executeUpdate();
+            System.out.println("SQL Update Result: " + result);
 
             HttpSession session = request.getSession();
             if (result > 0) {
