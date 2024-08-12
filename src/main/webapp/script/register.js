@@ -6,11 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const message = document.getElementById('message');
 
     togglePassword.addEventListener('click', function (e) {
-        // toggle the type attribute
         const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
         password.setAttribute('type', type);
         confirmPassword.setAttribute('type', type);
-        // toggle the eye icon
         this.classList.toggle('bx-show');
     });
 
@@ -20,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let email = document.getElementById('email').value;
         let passwordValue = password.value;
         let confirmPasswordValue = confirmPassword.value;
+        let role = document.getElementById('role').value;
 
         if (passwordValue !== confirmPasswordValue) {
             message.style.color = 'red';
@@ -27,10 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Prepare form data
+        if (!role) {
+            message.style.color = 'red';
+            message.textContent = 'Please select a role.';
+            return;
+        }
+
         const formData = new FormData(registrationForm);
 
-        // Send the form data using fetch API
         fetch('register', {
             method: 'POST',
             body: formData

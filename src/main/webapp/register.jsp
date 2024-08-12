@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="styles/register.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
 <div class="wrapper">
     <form id="registrationForm" action="register" method="post" enctype="multipart/form-data">
@@ -33,9 +35,17 @@
             <input type="date" id="dob" name="dob" placeholder="Date of Birth" required>
             <i class='bx bxs-calendar'></i>
         </div>
+        <div class="input-box">
+            <select id="role" name="role" required>
+                <option value="role" disabled selected>Select Role</option>
+                <option value="student" class="st">Student</option>
+                <option value="teacher" class="st">Teacher</option>
+                <i class='bx bxs-user'></i>
+            </select>
+
+        </div>
         <div class="input-box-file">
             <input type="file" id="photo" name="photo" required>
-            <i class='bx bxs-file'></i>
         </div>
         <button type="submit" class="btn">Register</button>
         <div id="message"></div>
@@ -45,7 +55,6 @@
     </form>
 </div>
 
-<!-- Success Modal -->
 <div id="successModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeSuccessModal()">&times;</span>
@@ -56,4 +65,5 @@
 
 <script src="script/register.js"></script>
 </body>
+
 </html>
