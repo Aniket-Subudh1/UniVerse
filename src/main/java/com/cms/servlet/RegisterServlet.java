@@ -16,7 +16,7 @@ import jakarta.servlet.http.Part;
 import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/register")
-@MultipartConfig(maxFileSize = 16177215)
+@MultipartConfig(maxFileSize = 16177215) // Upload file's size up to 16MB
 public class RegisterServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String dob = request.getParameter("dob");
-        String role = request.getParameter("role"); // Added role
+        String role = request.getParameter("role");
         Part photoPart = request.getPart("photo");
 
         System.out.println("Received name: " + name);
@@ -41,17 +41,25 @@ public class RegisterServlet extends HttpServlet {
         }
 
         try (Connection connection = DBConnection.getConnection()) {
-            String query = "INSERT INTO users (name, email, password, dob, role, photo) VALUES (?, ?, ?, ?, ?, ?)";
+            String query;
+            if ("student".equalsIgnoreCase(role)) {
+                query = "INSERT INTO students (name, email, password, dob, photo) VALUES (?, ?, ?, ?, ?)";
+            } else if ("teacher".equalsIgnoreCase(role)) {
+                query = "INSERT INTO teachers (name, email, password, dob, photo) VALUES (?, ?, ?, ?, ?)";
+            } else {
+                response.sendRedirect("register.jsp?error=Invalid role");
+                return;
+            }
+
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, name);
             ps.setString(2, email);
             ps.setString(3, password);
             ps.setDate(4, java.sql.Date.valueOf(dob));
-            ps.setString(5, role); // Set role in the database
             if (photoInputStream != null) {
-                ps.setBlob(6, photoInputStream);
+                ps.setBlob(5, photoInputStream);
             } else {
-                ps.setNull(6, java.sql.Types.BLOB); // Handle null case for photo
+                ps.setNull(5, java.sql.Types.BLOB);
             }
 
             int result = ps.executeUpdate();
@@ -61,7 +69,7 @@ public class RegisterServlet extends HttpServlet {
             if (result > 0) {
                 session.setAttribute("name", name);
                 session.setAttribute("email", email);
-                session.setAttribute("role", role); // Add role to the session
+                session.setAttribute("role", role);
                 response.setStatus(HttpServletResponse.SC_OK);
                 response.getWriter().write("success");
             } else {

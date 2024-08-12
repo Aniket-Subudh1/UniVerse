@@ -21,29 +21,57 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         try (Connection connection = DBConnection.getConnection()) {
-            String query = "SELECT * FROM users WHERE email = ? AND password = ?";
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, email);
-            ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
+            String query;
+            String role = null;
+            PreparedStatement ps = null;
+            ResultSet rs = null;
 
-            if (rs.next()) {
-                HttpSession session = request.getSession();
-                String role = rs.getString("role");
-                session.setAttribute("name", rs.getString("name"));
-                session.setAttribute("email", email);
-                session.setAttribute("role", role);
+            try {
+                // Check if the user is a student
+                query = "SELECT * FROM students WHERE email = ? AND password = ?";
+                ps = connection.prepareStatement(query);
+                ps.setString(1, email);
+                ps.setString(2, password);
+                rs = ps.executeQuery();
 
-                // Redirect based on role
-                if ("student".equalsIgnoreCase(role)) {
-                    response.sendRedirect("student-dashboard.jsp");
-                } else if ("teacher".equalsIgnoreCase(role)) {
-                    response.sendRedirect("teacher-dashboard.jsp");
+                if (rs.next()) {
+                    role = "student";
                 } else {
-                    response.sendRedirect("index.jsp?error=Unknown user role");
+                    // Check if the user is a teacher
+                    query = "SELECT * FROM teachers WHERE email = ? AND password = ?";
+                    ps = connection.prepareStatement(query);
+                    ps.setString(1, email);
+                    ps.setString(2, password);
+                    rs = ps.executeQuery();
+
+                    if (rs.next()) {
+                        role = "teacher";
+                    }
                 }
-            } else {
-                response.sendRedirect("index.jsp?error=Invalid email or password");
+
+                if (role != null) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("name", rs.getString("name"));
+                    session.setAttribute("email", email);
+                    session.setAttribute("role", role);
+
+                    // Retrieve and store the photo in session
+                    byte[] photo = rs.getBytes("photo");
+                    session.setAttribute("photo", photo);
+
+                    // Redirect based on role
+                    if ("student".equalsIgnoreCase(role)) {
+                        response.sendRedirect("student-dashboard.jsp");
+                    } else if ("teacher".equalsIgnoreCase(role)) {
+                        response.sendRedirect("teacher-dashboard.jsp");
+                    }
+                } else {
+                    response.sendRedirect("index.jsp?error=Invalid email or password");
+                }
+            } finally {
+                // Close ResultSet and PreparedStatement
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
