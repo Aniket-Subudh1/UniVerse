@@ -18,7 +18,7 @@
             <li><a href="#">Student Grades</a></li>
             <li><a href="#">Attendance</a></li>
             <li><a href="#">Profile</a></li>
-            <li><a href="logout.jsp">Logout</a></li>
+            <li><a href="index.jsp">Logout</a></li>
         </ul>
     </nav>
 
