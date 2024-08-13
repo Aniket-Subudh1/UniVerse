@@ -146,7 +146,7 @@
                     }
                 %>
             </ul>
-            <a href="edit-profile.jsp" class="edit-profile-btn">Edit Profile</a>
+            <a href="EditProfile.jsp" class="edit-profile-btn">Edit Profile</a>
         </div>
     </div>
 </div>

@@ -118,7 +118,7 @@
             <p><strong>Name:</strong> <%= session.getAttribute("name") %></p>
             <p><strong>ID:</strong> <%= session.getAttribute("id") %></p>
             <p><strong>Email:</strong> <%= session.getAttribute("email") %></p>
-            <a href="edit-profile.jsp" class="edit-profile-btn">Edit Profile</a>
+            <a href="EditProfile.jsp" class="edit-profile-btn">Edit Profile</a>
         </div>
     </div>
 </div>
