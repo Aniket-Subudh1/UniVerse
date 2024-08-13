@@ -1,3 +1,4 @@
+<%@ page import="java.util.Base64" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Dashboard</title>
-    <link rel="stylesheet" href="styles/teacher-dashboard.css">
+    <link rel="stylesheet" href="styles/teacher-dashboard.css?v=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -17,7 +18,21 @@
             <li><a href="#">Manage Courses</a></li>
             <li><a href="#">Student Grades</a></li>
             <li><a href="#">Attendance</a></li>
-            <li><a href="#">Profile</a></li>
+
+            <!-- Display Teacher's Photo or Default Image -->
+            <li>
+                <%
+                    byte[] photo = (byte[]) session.getAttribute("photo");
+                    String photoData = "";
+                    if (photo != null) {
+                        photoData = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(photo);
+                    } else {
+                        photoData = "img/default-profile.png"; // Path to a default profile image
+                    }
+                %>
+                <img src="<%= photoData %>" alt="Profile" class="profile-pic" onclick="showProfileModal()">
+            </li>
+
             <li><a href="index.jsp">Logout</a></li>
         </ul>
     </nav>
@@ -47,6 +62,21 @@
             <a href="#">Track Attendance</a>
         </div>
     </div>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProfileModal()">&times;</span>
+            <h2>Profile Information</h2>
+            <img src="<%= photoData %>" alt="Profile" class="profile-pic-modal">
+            <p><strong>Name:</strong> <%= session.getAttribute("name") %></p>
+            <p><strong>ID:</strong> <%= session.getAttribute("id") %></p>
+            <p><strong>Email:</strong> <%= session.getAttribute("email") %></p>
+            <a href="edit-profile.jsp" class="edit-profile-btn">Edit Profile</a>
+        </div>
+    </div>
 </div>
+
+<script src="script/teacher-dashboard.js"></script>
 </body>
 </html>

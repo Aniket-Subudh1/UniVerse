@@ -1,3 +1,4 @@
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,28 +7,41 @@
 }
 
 body {
-    background-color: #f5f7fa;
-    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: url('img/bg.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #444; /* Softer dark color for text */
 }
 
+/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
+/* Navbar styles */
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    background-color: #2a2d3e; /* Dark slate blue for navbar */
+    padding: 15px 20px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #28a745;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .logo {
-    color: #fff;
+    color: #f7d794; /* Warm yellow for logo */
     font-size: 24px;
     font-weight: bold;
 }
@@ -36,36 +50,56 @@ body {
     list-style: none;
     display: flex;
     gap: 15px;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .navbar .nav-links li a {
-    color: #fff;
+    color: #f7d794; /* Matching warm yellow for links */
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar .nav-links li a:hover {
-    background-color: #218838;
+    background-color: #f7d794;
+    color: #2a2d3e; /* Reversed colors on hover */
 }
 
+/* Profile Picture */
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: cover;
+    border: 2px solid #f7d794; /* Matching border with theme */
+    transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
+}
+
+/* Welcome Section */
 .welcome-section {
     text-align: center;
-    margin: 40px 0;
+    margin: 100px 0 40px; /* Adjusted for fixed navbar */
 }
 
 .welcome-section h1 {
     font-size: 36px;
     margin-bottom: 10px;
-    color: #28a745;
+    color: #8e8e8e; /* Grey color for the heading */
 }
 
 .welcome-section p {
     font-size: 18px;
-    color: #555;
+    color: #636e72; /* Soft grey for the text */
 }
 
+/* Dashboard Cards */
 .dashboard-sections {
     display: flex;
     justify-content: space-between;
@@ -85,14 +119,14 @@ body {
 
 .card i {
     font-size: 50px;
-    color: #28a745;
+    color: #8e8e8e; /* Grey for icons */
     margin-bottom: 20px;
 }
 
 .card h3 {
     font-size: 24px;
     margin-bottom: 10px;
-    color: #28a745;
+    color: #8e8e8e; /* Grey color for card headings */
 }
 
 .card p {
@@ -103,7 +137,7 @@ body {
 
 .card a {
     text-decoration: none;
-    background-color: #28a745;
+    background-color: #8e8e8e; /* Grey for buttons */
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -111,7 +145,7 @@ body {
 }
 
 .card a:hover {
-    background-color: #218838;
+    background-color: #a4a4a4; /* Lighter grey on hover */
 }
 
 .card:hover {
@@ -119,6 +153,7 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Responsive Design */
 @media (max-width: 900px) {
     .card {
         width: calc(50% - 20px);
@@ -129,4 +164,112 @@ body {
     .card {
         width: 100%;
     }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #f7f7f7; /* Light grey for modal background */
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    text-align: center; /* Center-align content */
+}
+
+.modal-content h2 {
+    text-align: center;
+    color: #8e8e8e; /* Grey color for the modal heading */
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.modal-content ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.modal-content ul li {
+    list-style-type: disc;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* Profile Picture in Modal */
+.modal-content .profile-pic-modal {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid #8e8e8e; /* Grey color for the modal profile pic border */
+}
+
+.edit-profile-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #8e8e8e;
+    color: #fff;
+    padding: 10px 0;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+    background-color: #a4a4a4; /* Lighter grey on hover */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Custom scroll bar for modal content */
+.modal-content {
+    overflow-y: auto;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
 }

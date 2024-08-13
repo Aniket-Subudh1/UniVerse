@@ -28,13 +28,13 @@
                     if (photo != null && photo.length > 0) {
                         photoData = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(photo);
                     } else {
-                        photoData = "img/default-profile.png"; // Path to a default profile image
+                        photoData = "img/pRO.jpg"; // Path to a default profile image
                     }
                 %>
                 <img src="<%= photoData %>" alt="Profile" class="profile-pic" onclick="showProfileModal()">
             </li>
 
-            <li><a href="logout.jsp">Logout</a></li>
+            <li><a href="index.jsp">Logout</a></li>
         </ul>
     </nav>
 
