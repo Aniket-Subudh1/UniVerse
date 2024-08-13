@@ -34,7 +34,7 @@
                 <img src="<%= photoData %>" alt="Profile" class="profile-pic" onclick="showProfileModal()">
             </li>
 
-            <li><a href="logout.jsp">Logout</a></li>
+            <li><a href="index.jsp">Logout</a></li>
         </ul>
     </nav>
 
