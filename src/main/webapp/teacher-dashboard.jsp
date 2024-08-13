@@ -5,8 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Teacher Dashboard</title>
     <link rel="stylesheet" href="styles/teacher-dashboard.css?v=1.0">
+=======
+    <title>Teacher-Dashboard</title>
+    <link rel="stylesheet" href="styles/teacher-dashboard.css">
+>>>>>>> 27469c7b538d058279f6e79aa71046b264a24c2f
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
