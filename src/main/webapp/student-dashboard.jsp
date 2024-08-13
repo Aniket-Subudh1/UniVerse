@@ -9,8 +9,48 @@
     <title>Student Dashboard</title>
     <link rel="stylesheet" href="styles/student-dashboard.css?v=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* CSS for full-page background video */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Ensure video is behind all content */
+        }
+
+        /* Styling to ensure content visibility on the video background */
+        .container {
+            position: relative;
+            z-index: 1; /* Ensure the container content is above the video */
+            color: white; /* Adjust text color for better visibility on video background */
+        }
+
+        .welcome-section h1,
+        .welcome-section p,
+        .dashboard-sections .card {
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Full-page height to ensure proper display */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
+        }
+    </style>
 </head>
 <body>
+<!-- Background Video -->
+<video autoplay loop muted class="video-bg">
+    <source src="styles/university2%20.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 <div class="container">
     <nav class="navbar">
         <h2 class="logo">UniVerse</h2>
