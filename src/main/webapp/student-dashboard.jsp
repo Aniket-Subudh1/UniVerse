@@ -62,6 +62,27 @@
             <p>Track your attendance record.</p>
             <a href="#">View Attendance</a>
         </div>
+        <div class="card">
+            <i class='bx bx-wallet'></i>
+            <h3>Fee Payment & Status</h3>
+            <p>Check your fee details and payment status.</p>
+            <a href="#">View Fee Status</a>
+        </div>
+
+        <div class="card">
+            <i class='bx bx-time'></i>
+            <h3>Timetable</h3>
+            <p>View your class schedule.</p>
+            <a href="#">View Timetable</a>
+        </div>
+
+        <div class="card">
+            <i class='bx bx-comment-dots'></i>
+            <h3>Student Feedback</h3>
+            <p>Give feedback on your courses.</p>
+            <a href="#">Provide Feedback</a>
+        </div>
+
     </div>
 
     <!-- Profile Modal -->
