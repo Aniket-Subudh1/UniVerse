@@ -50,7 +50,7 @@
 <video autoplay loop muted class="video-bg">
     <source src="styles/university2%20.mp4" type="video/mp4">
     Your browser does not support the video tag.
-</video>
+</video>P
 <div class="container">
     <nav class="navbar">
         <h2 class="logo">UniVerse</h2>
