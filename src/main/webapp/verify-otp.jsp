@@ -15,13 +15,13 @@
         <input type="hidden" name="email" value="<%= request.getParameter("email") %>">
 
         <label for="otp">OTP:</label>
-        <input type="text" id="otp" name="otp" required>
+        <input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
 
         <button type="submit">Verify OTP</button>
     </form>
 
     <% if (request.getParameter("error") != null) { %>
-    <p style="color:red;"><%= request.getParameter("error") %></p>
+    <p class="error"><%= request.getParameter("error") %></p>
     <% } %>
 </div>
 </body>
