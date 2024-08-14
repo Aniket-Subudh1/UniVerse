@@ -1,32 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
-    <link rel="stylesheet" href="styles/forgot-password.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        form {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <h2>Forgot Password</h2>
-    <p>Enter your email address and select your role to reset your password.</p>
-    <form action="forgotpassword" method="post">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+<h1>Forgot Password</h1>
 
-        <label for="role">Role:</label>
-        <select id="role" name="role" required>
-            <option value="student">Student</option>
-            <option value="teacher">Teacher</option>
-        </select>
+<!-- Display error or success messages -->
+<%
+    String error = request.getParameter("error");
+    String success = request.getParameter("success");
+    if (error != null) {
+        out.println("<p class='error'>" + error + "</p>");
+    } else if (success != null) {
+        out.println("<p class='success'>" + success + "</p>");
+    }
+%>
 
-        <button type="submit">Send OTP</button>
-    </form>
+<!-- Forgot Password Form -->
+<form method="post" action="forgotpassword">
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required>
 
-    <% if (request.getParameter("error") != null) { %>
-    <p style="color:red;"><%= request.getParameter("error") %></p>
-    <% } %>
-</div>
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>

@@ -18,26 +18,43 @@ public class ForgotPasswordServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String role = request.getParameter("role"); // Either "student" or "teacher"
+        String email = request.getParameter("email").trim();
+        boolean emailFound = false; // Flag to track if the email was found
+
+        System.out.println("Received reset password request for email: " + email);
 
         try (Connection connection = DBConnection.getConnection()) {
-            String query = "SELECT email FROM " + (role.equals("student") ? "students" : "teachers") + " WHERE email=?";
+            // Check if the email exists in the students table
+            String query = "SELECT email FROM students WHERE LOWER(email) = LOWER(?)";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+                emailFound = true; // Email found in students table
+            } else {
+                // If not found in students, check the teachers table
+                query = "SELECT email FROM teachers WHERE LOWER(email) = LOWER(?)";
+                ps = connection.prepareStatement(query);
+                ps.setString(1, email);
+                rs = ps.executeQuery();
+
+                if (rs.next()) {
+                    emailFound = true; // Email found in teachers table
+                }
+            }
+
+            if (emailFound) {
                 // Generate OTP
                 Random rand = new Random();
                 int otp = 100000 + rand.nextInt(900000);
 
                 // Save OTP to the database
-                query = "INSERT INTO otp_verification (email, otpCode, expirationTime) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 5 MINUTE))";
-                ps = connection.prepareStatement(query);
-                ps.setString(1, email);
-                ps.setString(2, String.valueOf(otp));
-                ps.executeUpdate();
+                String insertQuery = "INSERT INTO otp_verification (email, otpCode, expirationTime) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 5 MINUTE))";
+                PreparedStatement insertPs = connection.prepareStatement(insertQuery);
+                insertPs.setString(1, email);
+                insertPs.setString(2, String.valueOf(otp));
+                insertPs.executeUpdate();
 
                 // Send OTP to the email
                 GEmailSender emailSender = new GEmailSender();

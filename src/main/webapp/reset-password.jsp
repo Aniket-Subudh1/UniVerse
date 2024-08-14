@@ -1,29 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reset Password</title>
-  <link rel="stylesheet" href="styles/reset-password.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 50px;
+    }
+    .error {
+      color: red;
+    }
+    .success {
+      color: green;
+    }
+    form {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-  <h2>Reset Password</h2>
-  <p>Enter your new password below.</p>
-  <form action="resetpassword" method="post">
-    <input type="hidden" name="email" value="<%= request.getParameter("email") %>">
-    <input type="hidden" name="role" value="<%= request.getParameter("role") %>">
+<h1>Reset Password</h1>
 
-    <label for="password">New Password:</label>
-    <input type="password" id="password" name="password" required>
+<p>Enter your new password below.</p>
 
-    <button type="submit">Reset Password</button>
-  </form>
+<!-- Display error or success messages -->
+<%
+  String error = request.getParameter("error");
+  String success = request.getParameter("success");
+  if (error != null) {
+    out.println("<p class='error'>" + error + "</p>");
+  } else if (success != null) {
+    out.println("<p class='success'>" + success + "</p>");
+  }
+%>
 
-  <% if (request.getParameter("error") != null) { %>
-  <p style="color:red;"><%= request.getParameter("error") %></p>
-  <% } %>
-</div>
+<!-- Reset Password Form -->
+<form method="post" action="resetpassword">
+  <!-- These hidden fields store the email and role that were passed to this page -->
+  <input type="hidden" name="email" value="<%= request.getParameter("email") %>">
+  <input type="hidden" name="role" value="<%= request.getParameter("role") %>">
+
+  <label for="password">New Password:</label>
+  <input type="password" name="password" id="password" required>
+
+  <button type="submit">Reset Password</button>
+</form>
 </body>
 </html>
