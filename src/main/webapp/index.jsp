@@ -22,7 +22,7 @@
         </div>
         <div class="remember-forgot">
             <label><input type="checkbox">Remember Me</label>
-            <a href="#">Forgot Password</a>
+            <a href="forgot-password.jsp">Forgot Password</a>
         </div>
         <button type="submit" class="btn">Login</button>
         <div class="register-link">

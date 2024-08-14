@@ -27,7 +27,7 @@ public class EditProfileServlet extends HttpServlet {
             return;
         }
 
-        String email = (String) session.getAttribute("email"); // Assuming email is already set and cannot be changed
+        String email = (String) session.getAttribute("email");
         String name = request.getParameter("name");
         String dob = request.getParameter("dob");
         Part photoPart = request.getPart("photo");
