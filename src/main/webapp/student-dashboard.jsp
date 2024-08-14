@@ -13,7 +13,7 @@
 <body>
 <!-- Background Video -->
 <video autoplay loop muted class="video-bg">
-    <source src="styles/university2%20.mp4" type="video/mp4">
+    <source src="styles/videos/university2%20.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 

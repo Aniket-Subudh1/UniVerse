@@ -90,12 +90,12 @@ body {
 .welcome-section h1 {
     font-size: 36px;
     margin-bottom: 10px;
-    color: #8e8e8e; /* Grey color for the heading */
+    color: #f1efef; /* Grey color for the heading */
 }
 
 .welcome-section p {
     font-size: 18px;
-    color: #636e72; /* Soft grey for the text */
+    color: #eff0f3; /* Soft grey for the text */
 }
 
 /* Dashboard Cards */
@@ -118,25 +118,25 @@ body {
 
 .card i {
     font-size: 50px;
-    color: #8e8e8e; /* Grey for icons */
+    color: #f6f2f2; /* Grey for icons */
     margin-bottom: 20px;
 }
 
 .card h3 {
     font-size: 24px;
     margin-bottom: 10px;
-    color: #8e8e8e; /* Grey color for card headings */
+    color: #f6f2f2; /* Grey color for card headings */
 }
 
 .card p {
     font-size: 16px;
     margin-bottom: 20px;
-    color: #777;
+    color: #f1eeee;
 }
 
 .card a {
     text-decoration: none;
-    background-color: #8e8e8e; /* Grey for buttons */
+    background-color: #5a5454; /* Grey for buttons */
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -181,10 +181,10 @@ body {
 }
 
 .modal-content {
-    background-color: #f7f7f7; /* Light grey for modal background */
+    background-color: #ffffff; /* Light grey for modal background */
     margin: auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #f4f2f2;
     width: 80%;
     max-width: 400px;
     border-radius: 10px;
@@ -193,7 +193,7 @@ body {
 
 .modal-content h2 {
     text-align: center;
-    color: #8e8e8e; /* Grey color for the modal heading */
+    color: #f1ecec; /* Grey color for the modal heading */
     margin-bottom: 20px;
 }
 
@@ -221,7 +221,7 @@ body {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
-    border: 2px solid #8e8e8e; /* Grey color for the modal profile pic border */
+    border: 2px solid #dcd4d4; /* Grey color for the modal profile pic border */
 }
 
 .edit-profile-btn {

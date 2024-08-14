@@ -42,7 +42,7 @@ body, html {
     padding: 20px;
     position: relative;
     z-index: 1; /* Ensure the container content is above the video */
-    color: white; /* Adjust text color for better visibility on video background */
+    color: #A7967E; /* Adjust text color for better visibility on video background */
 }
 
 /* Navbar styles */
@@ -52,7 +52,7 @@ body, html {
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
-    background-color: #007bff;
+    background-color: #142E54;
     padding: 15px 20px;
     border-radius: 0 0 8px 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -63,7 +63,7 @@ body, html {
 }
 
 .navbar .logo {
-    color: #fff;
+    color: #A7967E;
     font-size: 24px;
     font-weight: bold;
 }
@@ -77,7 +77,7 @@ body, html {
 }
 
 .navbar .nav-links li a {
-    color: #fff;
+    color: #A7967E;
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 5px;
@@ -85,7 +85,7 @@ body, html {
 }
 
 .navbar .nav-links li a:hover {
-    background-color: #0056b3;
+    background-color: #142E54;
 }
 
 /* Profile Picture */
@@ -95,7 +95,7 @@ body, html {
     border-radius: 50%;
     cursor: pointer;
     object-fit: cover;
-    border: 2px solid #fff;
+    border: 2px solid #A7967E;
     transition: transform 0.3s ease;
 }
 
@@ -120,12 +120,12 @@ body, html {
 .welcome-section h1 {
     font-size: 36px;
     margin-bottom: 10px;
-    color: #007bff;
+    color: #EAE6DF;
 }
 
 .welcome-section p {
     font-size: 18px;
-    color: #555;
+    color: #EAE6DF;
 }
 
 /* Dashboard Cards */
@@ -137,7 +137,7 @@ body, html {
 }
 
 .card {
-    background-color: #fff;
+    background-color: #EAE6DF;
     width: calc(33.333% - 20px);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -148,26 +148,26 @@ body, html {
 
 .card i {
     font-size: 50px;
-    color: #007bff;
+    color: #EAE6DF;
     margin-bottom: 20px;
 }
 
 .card h3 {
     font-size: 24px;
     margin-bottom: 10px;
-    color: #007bff;
+    color:#EAE6DF;
 }
 
 .card p {
     font-size: 16px;
     margin-bottom: 20px;
-    color: #777;
+    color:#EAE6DF;
 }
 
 .card a {
     text-decoration: none;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #142E54;
+    color: #A7967E;
     padding: 10px 20px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -223,7 +223,7 @@ body, html {
 
 .modal-content h2 {
     text-align: center;
-    color: #007bff;
+    color: #142E54;
     margin-bottom: 20px;
 }
 
@@ -251,14 +251,14 @@ body, html {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
-    border: 2px solid #007bff;
+    border: 2px solid #142E54;
 }
 
 .edit-profile-btn {
     display: block;
     width: 100%;
     text-align: center;
-    background-color: #007bff;
+    background-color: #142E54;
     color: #fff;
     padding: 10px 0;
     border-radius: 5px;
@@ -267,7 +267,7 @@ body, html {
 }
 
 .edit-profile-btn:hover {
-    background-color: #0056b3;
+    background-color: #142E54;
 }
 
 .close {
