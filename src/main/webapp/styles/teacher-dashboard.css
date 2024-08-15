@@ -1,18 +1,17 @@
+/* Base styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif; /* Using Poppins font */
 }
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: url('img/bg.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-    color: #444; /* Softer dark color for text */
+    background-color: #f9f9f9;
+    color: #e8c888; /* Warm beige/gold for text */
 }
 
 /* Container */
@@ -29,10 +28,10 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
-    background-color: #2a2d3e; /* Dark slate blue for navbar */
+    background-color: #2a2d3e; /* Dark navy color */
     padding: 15px 20px;
     border-radius: 0 0 8px 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Added shadow */
     z-index: 1000;
     display: flex;
     justify-content: space-between;
@@ -40,7 +39,7 @@ body {
 }
 
 .navbar .logo {
-    color: #f7d794; /* Warm yellow for logo */
+    color: #e8c888; /* Warm beige/gold for logo text */
     font-size: 24px;
     font-weight: bold;
 }
@@ -54,7 +53,7 @@ body {
 }
 
 .navbar .nav-links li a {
-    color: #f7d794; /* Matching warm yellow for links */
+    color: #e8c888; /* Warm beige/gold for links */
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 5px;
@@ -62,8 +61,8 @@ body {
 }
 
 .navbar .nav-links li a:hover {
-    background-color: #f7d794;
-    color: #2a2d3e; /* Reversed colors on hover */
+    background-color: #1a225b;
+    color: #ffffff; /* White on hover */
 }
 
 /* Profile Picture */
@@ -73,7 +72,7 @@ body {
     border-radius: 50%;
     cursor: pointer;
     object-fit: cover;
-    border: 2px solid #f7d794; /* Matching border with theme */
+    border: 2px solid #e8c888; /* Warm beige/gold border for profile picture */
     transition: transform 0.3s ease;
 }
 
@@ -84,85 +83,74 @@ body {
 /* Welcome Section */
 .welcome-section {
     text-align: center;
-    margin: 100px 0 40px; /* Adjusted for fixed navbar */
+    margin-top: 120px; /* Adjusted to provide space for the fixed navbar */
+    margin-bottom: 40px;
 }
 
 .welcome-section h1 {
     font-size: 36px;
     margin-bottom: 10px;
-    color: #f1efef; /* Grey color for the heading */
+    color: #2a2d3e; /* Dark navy for the heading */
 }
 
 .welcome-section p {
     font-size: 18px;
-    color: #eff0f3; /* Soft grey for the text */
+    color: #2a2d3e; /* Dark navy for subheading */
 }
 
 /* Dashboard Cards */
 .dashboard-sections {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    padding: 20px;
 }
 
 .card {
-    background-color: #fff;
-    width: calc(33.333% - 20px);
+    background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Added shadow */
+    border: 1px solid #e0e0e0; /* Light border */
 }
 
 .card i {
     font-size: 50px;
-    color: #f6f2f2; /* Grey for icons */
+    color: #2a2d3e; /* Dark navy for icons */
     margin-bottom: 20px;
 }
 
 .card h3 {
     font-size: 24px;
     margin-bottom: 10px;
-    color: #f6f2f2; /* Grey color for card headings */
+    color: #2a2d3e; /* Dark navy for card headings */
 }
 
 .card p {
     font-size: 16px;
     margin-bottom: 20px;
-    color: #f1eeee;
+    color: #2a2d3e; /* Dark navy for card text */
 }
 
 .card a {
     text-decoration: none;
-    background-color: #5a5454; /* Grey for buttons */
-    color: #fff;
+    background-color: #2a2d3e; /* Dark navy for buttons */
+    color: #e8c888; /* Warm beige/gold for button text */
     padding: 10px 20px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 .card a:hover {
-    background-color: #a4a4a4; /* Lighter grey on hover */
+    background-color: #1a225b; /* Darker navy on hover */
+    color: #ffffff; /* White text on hover */
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsive Design */
-@media (max-width: 900px) {
-    .card {
-        width: calc(50% - 20px);
-    }
-}
-
-@media (max-width: 600px) {
-    .card {
-        width: 100%;
-    }
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); /* Added shadow on hover */
 }
 
 /* Modal Styles */
@@ -181,19 +169,20 @@ body {
 }
 
 .modal-content {
-    background-color: #ffffff; /* Light grey for modal background */
+    background-color: #ffffff; /* White for modal background */
     margin: auto;
     padding: 20px;
-    border: 1px solid #f4f2f2;
+    border: 1px solid #e0e0e0;
     width: 80%;
     max-width: 400px;
     border-radius: 10px;
-    text-align: center; /* Center-align content */
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Added shadow */
 }
 
 .modal-content h2 {
     text-align: center;
-    color: #f1ecec; /* Grey color for the modal heading */
+    color: #2a2d3e; /* Dark navy for modal heading */
     margin-bottom: 20px;
 }
 
@@ -221,15 +210,15 @@ body {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
-    border: 2px solid #dcd4d4; /* Grey color for the modal profile pic border */
+    border: 2px solid #2a2d3e; /* Dark navy for modal profile pic border */
 }
 
 .edit-profile-btn {
     display: block;
     width: 100%;
     text-align: center;
-    background-color: #8e8e8e;
-    color: #fff;
+    background-color: #2a2d3e; /* Dark navy for button */
+    color: #e8c888; /* Warm beige/gold for button text */
     padding: 10px 0;
     border-radius: 5px;
     text-decoration: none;
@@ -237,7 +226,8 @@ body {
 }
 
 .edit-profile-btn:hover {
-    background-color: #a4a4a4; /* Lighter grey on hover */
+    background-color: #1a225b; /* Darker navy on hover */
+    color: #ffffff; /* White text on hover */
 }
 
 .close {
@@ -272,35 +262,16 @@ body {
 .modal-content::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.3);
 }
-.video-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1; /* Ensure video is behind all content */
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .dashboard-sections {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-/* Styling to ensure content visibility on the video background */
-.container {
-    position: relative;
-    z-index: 1; /* Ensure the container content is above the video */
-    color: white; /* Adjust text color for better visibility on video background */
-}
-
-.welcome-section h1,
-.welcome-section p,
-.dashboard-sections .card {
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
-    padding: 10px;
-    border-radius: 5px;
-}
-
-/* Full-page height to ensure proper display */
-body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* Prevent scrolling */
+@media (max-width: 600px) {
+    .dashboard-sections {
+        grid-template-columns: 1fr;
+    }
 }

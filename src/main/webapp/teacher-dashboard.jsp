@@ -5,28 +5,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Teacher Dashboard</title>
     <link rel="stylesheet" href="styles/teacher-dashboard.css?v=1.0">
-
-    <title>Teacher-Dashboard</title>
-    <link rel="stylesheet" href="styles/teacher-dashboard.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-<video autoplay loop muted class="video-bg">
-    <source src="styles/videos/University%20.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+<!-- Removed the video background -->
+
 <div class="container">
     <nav class="navbar">
         <h2 class="logo">UniVerse</h2>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Manage Courses</a></li>
-            <li><a href="#">Student Grades</a></li>
-            <li><a href="#">Attendance</a></li>
+            <li><a href="home.jsp">Home</a></li> <!-- Updated href -->
+            <li><a href="manage-courses.jsp">Manage Courses</a></li> <!-- Updated href -->
+            <li><a href="student-grades.jsp">Student Grades</a></li> <!-- Updated href -->
+            <li><a href="attendance.jsp">Attendance</a></li> <!-- Updated href -->
 
             <!-- Display Teacher's Photo or Default Image -->
             <li>
@@ -47,7 +41,7 @@
     </nav>
 
     <div class="welcome-section">
-        <h1>Welcome, <%= session.getAttribute("name") %>!</h1>
+        <h1>Welcome, <%= session.getAttribute("name") != null ? session.getAttribute("name") : "Teacher" %>!</h1> <!-- Null-safe session attribute -->
         <p>Your teacher dashboard is here to help you manage your courses, view student grades, and track attendance.</p>
     </div>
 
@@ -56,19 +50,19 @@
             <i class='bx bx-chalkboard'></i>
             <h3>Manage Courses</h3>
             <p>Create, update, and delete courses you are teaching.</p>
-            <a href="#">Manage Courses</a>
+            <a href="manage-courses.jsp">Manage Courses</a> <!-- Updated href -->
         </div>
         <div class="card">
             <i class='bx bx-list-check'></i>
             <h3>Student Grades</h3>
             <p>View and manage grades for students enrolled in your courses.</p>
-            <a href="#">View Grades</a>
+            <a href="student-grades.jsp">View Grades</a> <!-- Updated href -->
         </div>
         <div class="card">
             <i class='bx bx-calendar'></i>
             <h3>Attendance</h3>
             <p>Track and update attendance records for your classes.</p>
-            <a href="#">Track Attendance</a>
+            <a href="attendance.jsp">Track Attendance</a> <!-- Updated href -->
         </div>
     </div>
 
@@ -78,9 +72,9 @@
             <span class="close" onclick="closeProfileModal()">&times;</span>
             <h2>Profile Information</h2>
             <img src="<%= photoData %>" alt="Profile" class="profile-pic-modal">
-            <p><strong>Name:</strong> <%= session.getAttribute("name") %></p>
-            <p><strong>ID:</strong> <%= session.getAttribute("id") %></p>
-            <p><strong>Email:</strong> <%= session.getAttribute("email") %></p>
+            <p><strong>Name:</strong> <%= session.getAttribute("name") != null ? session.getAttribute("name") : "N/A" %></p> <!-- Null-safe session attribute -->
+            <p><strong>ID:</strong> <%= session.getAttribute("id") != null ? session.getAttribute("id") : "N/A" %></p> <!-- Null-safe session attribute -->
+            <p><strong>Email:</strong> <%= session.getAttribute("email") != null ? session.getAttribute("email") : "N/A" %></p> <!-- Null-safe session attribute -->
             <a href="edit-profile.jsp" class="edit-profile-btn">Edit Profile</a>
         </div>
     </div>

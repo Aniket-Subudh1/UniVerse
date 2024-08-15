@@ -8,8 +8,8 @@
 }
 
 body {
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    background-color: #f9f9f9; /* Updated background color */
+    background: linear-gradient(to right, #e2e2e2, #f9f9f9); /* Matching light color gradient */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,14 +40,14 @@ body {
 }
 
 .container a {
-    color: #333;
+    color: #142E54; /* Updated link color */
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
 }
 
 .container button {
-    background-color: #512da8;
+    background-color: #142E54; /* Updated button background color */
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -158,9 +158,9 @@ body {
 }
 
 .toggle {
-    background-color: #512da8;
+    background-color: #142E54; /* Updated toggle background color */
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
+    background: linear-gradient(to right, #1d3a73, #142E54); /* Updated gradient */
     color: #fff;
     position: relative;
     left: -100%;
@@ -219,11 +219,12 @@ body {
     overflow: auto;
 
 }
+
 .remember-forgot {
     display: inline-block;
     flex-direction: column; /* Stack elements vertically */
     align-items: center; /* Center elements horizontally */
-   font-size: 12px;
+    font-size: 12px;
 }
 
 .remember-forgot label {
@@ -238,7 +239,7 @@ body {
 .remember-forgot a {
     margin-top: 10px; /* Space between checkbox and "Forgot Password" link */
     text-decoration: none;
-    color: #007bff; /* Link color */
+    color: #142E54; /* Updated link color */
     display: block;
     text-align: center; /* Center the text */
 }
@@ -260,8 +261,10 @@ body {
 
 .modal-content h2 {
     margin-bottom: 20px;
+    color: #142E54; /* Updated text color */
 }
 
 .modal-content p {
     margin-bottom: 20px;
+    color: #333;
 }

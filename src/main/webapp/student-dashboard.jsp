@@ -11,12 +11,6 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-<!-- Background Video -->
-<video autoplay loop muted class="video-bg">
-    <source src="styles/videos/university2%20.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-
 <div class="container">
     <nav class="navbar">
         <h2 class="logo">UniVerse</h2>
