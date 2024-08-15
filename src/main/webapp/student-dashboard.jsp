@@ -73,7 +73,7 @@
             <i class='bx bx-time'></i>
             <h3>Timetable</h3>
             <p>View your class schedule.</p>
-            <a href="#">View Timetable</a>
+            <a href="Time-table.jsp">View Timetable</a>
         </div>
 
         <div class="card">
