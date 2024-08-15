@@ -1,0 +1,69 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('img/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.75); /* Black background with transparency */
+    padding: 20px;
+    margin: 50px auto;
+    width: 85%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+header h1, header h2 {
+    text-align: center;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #fff;
+}
+
+header h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+header h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.fee-structure table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.fee-structure th, .fee-structure td {
+    border: 1px solid #fff;
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.fee-structure th {
+    background-color: #444;
+    color: #fff;
+    font-size: 20px;
+}
+
+.fee-structure tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.fee-structure tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #111;
+    border-top: 1px solid #444;
+    border-radius: 0 0 10px 10px;
+}
