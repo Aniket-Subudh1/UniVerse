@@ -11,6 +11,7 @@
     <header>
         <h1>B.Tech Fee Structure</h1>
         <h2>Engineering College</h2>
+        <h3><a href="student-dashboard.jsp">Home </a></h3>
     </header>
 
     <section class="fee-structure">
