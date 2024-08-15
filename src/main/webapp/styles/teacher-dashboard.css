@@ -11,7 +11,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #f9f9f9;
-    color: #e8c888; /* Warm beige/gold for text */
+    color: #2a2d3e; /* Dark navy for body text */
 }
 
 /* Container */
@@ -61,7 +61,7 @@ body {
 }
 
 .navbar .nav-links li a:hover {
-    background-color: #1a225b;
+    background-color: #1a225b; /* Darker navy on hover */
     color: #ffffff; /* White on hover */
 }
 
@@ -83,7 +83,7 @@ body {
 /* Welcome Section */
 .welcome-section {
     text-align: center;
-    margin-top: 120px; /* Adjusted to provide space for the fixed navbar */
+    margin-top: 100px; /* Adjusted to provide space for the fixed navbar */
     margin-bottom: 40px;
 }
 

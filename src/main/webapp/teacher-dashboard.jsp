@@ -64,6 +64,20 @@
             <p>Track and update attendance records for your classes.</p>
             <a href="attendance.jsp">Track Attendance</a> <!-- Updated href -->
         </div>
+        <!-- New Timetable Card -->
+        <div class="card">
+            <i class='bx bx-calendar-event'></i>
+            <h3>Timetable</h3>
+            <p>View and manage your teaching timetable.</p>
+            <a href="timetable.jsp">View Timetable</a> <!-- New href -->
+        </div>
+        <!-- New Notes Card -->
+        <div class="card">
+            <i class='bx bx-note'></i>
+            <h3>Notes</h3>
+            <p>Access and upload teaching notes and materials.</p>
+            <a href="notes.jsp">Manage Notes</a> <!-- New href -->
+        </div>
     </div>
 
     <!-- Profile Modal -->

@@ -103,26 +103,26 @@ body {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Updated shadow */
-    padding: 20px;
+    padding: 20px; /* Matching padding with teacher dashboard */
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card i {
-    font-size: 50px;
+    font-size: 50px; /* Matching icon size with teacher dashboard */
     color: #142E54; /* Updated color */
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Matching margin with teacher dashboard */
 }
 
 .card h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 24px; /* Matching heading size with teacher dashboard */
+    margin-bottom: 10px; /* Matching margin with teacher dashboard */
     color: #142E54; /* Updated color */
 }
 
 .card p {
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 16px; /* Matching text size with teacher dashboard */
+    margin-bottom: 20px; /* Matching margin with teacher dashboard */
     color: #555;
 }
 
@@ -130,7 +130,7 @@ body {
     text-decoration: none;
     background-color: #142E54; /* Updated color */
     color: #fff;
-    padding: 10px 20px;
+    padding: 10px 20px; /* Matching button size with teacher dashboard */
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }

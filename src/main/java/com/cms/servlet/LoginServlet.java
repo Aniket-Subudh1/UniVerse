@@ -27,25 +27,36 @@ public class LoginServlet extends HttpServlet {
             ResultSet rs = null;
 
             try {
-                // Check if the user is a student
-                query = "SELECT * FROM students WHERE email = ? AND password = ?";
+                // Check if the user is an admin
+                query = "SELECT * FROM admins WHERE email = ? AND password = ?";
                 ps = connection.prepareStatement(query);
                 ps.setString(1, email);
                 ps.setString(2, password);
                 rs = ps.executeQuery();
 
                 if (rs.next()) {
-                    role = "student";
+                    role = "admin";
                 } else {
-                    // Check if the user is a teacher
-                    query = "SELECT * FROM teachers WHERE email = ? AND password = ?";
+                    // Check if the user is a student
+                    query = "SELECT * FROM students WHERE email = ? AND password = ?";
                     ps = connection.prepareStatement(query);
                     ps.setString(1, email);
                     ps.setString(2, password);
                     rs = ps.executeQuery();
 
                     if (rs.next()) {
-                        role = "teacher";
+                        role = "student";
+                    } else {
+                        // Check if the user is a teacher
+                        query = "SELECT * FROM teachers WHERE email = ? AND password = ?";
+                        ps = connection.prepareStatement(query);
+                        ps.setString(1, email);
+                        ps.setString(2, password);
+                        rs = ps.executeQuery();
+
+                        if (rs.next()) {
+                            role = "teacher";
+                        }
                     }
                 }
 
@@ -55,15 +66,19 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("email", email);
                     session.setAttribute("role", role);
 
-                    // Retrieve and store the photo in session
-                    byte[] photo = rs.getBytes("photo");
-                    session.setAttribute("photo", photo);
+                    // Only retrieve and store the photo if the user is a student or teacher
+                    if (!"admin".equalsIgnoreCase(role)) {
+                        byte[] photo = rs.getBytes("photo");
+                        session.setAttribute("photo", photo);
+                    }
 
                     // Redirect based on role
                     if ("student".equalsIgnoreCase(role)) {
                         response.sendRedirect("student-dashboard.jsp");
                     } else if ("teacher".equalsIgnoreCase(role)) {
                         response.sendRedirect("teacher-dashboard.jsp");
+                    } else if ("admin".equalsIgnoreCase(role)) {
+                        response.sendRedirect("admin-dashboard.jsp");
                     }
                 } else {
                     response.sendRedirect("index.jsp?error=Invalid email or password");
