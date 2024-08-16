@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.io.*, jakarta.servlet.*, jakarta.servlet.http.*, jakarta.servlet.annotation.MultipartConfig"%>
-<%@ page import="java.nio.file.*" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +13,9 @@
 <body>
 
 <div class="container" id="container">
+    <!-- Sign Up Form -->
     <div class="form-container sign-up">
-        <form id="registrationForm" action="register.jsp" method="post" enctype="multipart/form-data">
+        <form id="registrationForm" action="reg" method="post" enctype="multipart/form-data">
             <h1>Sign Up</h1>
             <div class="input-box">
                 <input type="text" id="name" name="name" placeholder="Name" required>
@@ -41,19 +40,26 @@
             </div>
             <div class="input-box">
                 <select id="role" name="role" required>
-                    <option value="role" disabled selected>Select Role</option>
-                    <option value="student" class="st">Student</option>
-                    <option value="teacher" class="st">Teacher</option>
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
                 </select>
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box-file">
-                <input type="file" id="photo" name="photo" >
+                <input type="file" id="photo" name="photo">
             </div>
             <button type="submit" class="btn">Sign Up</button>
-            <div id="message"></div>
+            <div id="message">
+                <% String message = (String) request.getAttribute("message"); %>
+                <% if (message != null) { %>
+                <p><%= message %></p>
+                <% } %>
+            </div>
         </form>
     </div>
+
+    <!-- Sign In Form -->
     <div class="form-container sign-in">
         <form action="login" method="post">
             <h1>Sign In</h1>
@@ -68,12 +74,13 @@
             </div>
             <div class="remember-forgot">
                 <label><input type="checkbox">Remember Me</label>
-
                 <a href="forgot-password.jsp">Forgot Password</a>
             </div>
             <button type="submit" class="btn">Sign In</button>
         </form>
     </div>
+
+    <!-- Toggle Container -->
     <div class="toggle-container">
         <div class="toggle">
             <div class="toggle-panel toggle-left">
@@ -82,7 +89,7 @@
                 <button class="hidden" id="login">Sign In</button>
             </div>
             <div class="toggle-panel toggle-right">
-                <h1>Hello !</h1>
+                <h1>Hello!</h1>
                 <p>Register with your personal details to use all site features</p>
                 <button class="hidden" id="register">Sign Up</button>
             </div>
@@ -98,46 +105,6 @@
         <button id="closeModalBtn" class="btn">OK</button>
     </div>
 </div>
-
-<!-- Add JSP logic for handling form submission -->
-<%
-    if(request.getMethod().equalsIgnoreCase("POST")) {
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String dob = request.getParameter("dob");
-        String role = request.getParameter("role");
-
-        Part photoPart = request.getPart("photo");
-        String photoFileName = null;
-        String uploadPath = application.getRealPath("") + File.separator + "uploads";
-
-        if (photoPart != null) {
-            photoFileName = Paths.get(photoPart.getSubmittedFileName()).getFileName().toString();
-        }
-
-        // Check if no photo was uploaded and set the default photo name
-        if (photoFileName == null || photoFileName.isEmpty()) {
-            photoFileName = "pRO.jpg"; // Set default photo
-        } else {
-            // Save the uploaded photo
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-            String photoFilePath = uploadPath + File.separator + photoFileName;
-            photoPart.write(photoFilePath);
-        }
-
-        // Now you can save the photoFileName and other user data into the database
-        // Database logic goes here
-
-        // Set success message
-        out.println("<script type='text/javascript'>");
-        out.println("document.getElementById('message').innerText = 'Registration successful!';");
-        out.println("</script>");
-    }
-%>
 
 <script src="script/script.js"></script>
 

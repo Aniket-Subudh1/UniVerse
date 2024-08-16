@@ -29,16 +29,33 @@ togglePasswordLogin.addEventListener('click', function () {
     this.classList.toggle('bx-show');
 });
 
-// Simulate successful registration
 registrationForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
-    // Show the modal
-    successModal.style.display = 'block';
+    event.preventDefault(); // Prevent the default form submission
+
+    const formData = new FormData(registrationForm);
+
+    fetch('reg', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.text())
+        .then(text => {
+            if (text === 'success') {
+                // Show the modal
+                successModal.style.display = 'block';
+            } else {
+                // Handle the error (this could be enhanced)
+                alert('Registration failed. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        });
 });
 
-// Close modal and reset form
 closeModalBtn.addEventListener('click', function() {
     successModal.style.display = 'none';
-    registrationForm.reset(); // Reset form fields
-    container.classList.remove("active"); // Switch to login form
+    registrationForm.reset(); // Reset the form fields
+    window.location.href = 'index.jsp'; // Redirect to the index page
 });
