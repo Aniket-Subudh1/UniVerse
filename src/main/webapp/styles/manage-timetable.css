@@ -1,0 +1,86 @@
+/* Timetable Page Container */
+.timetable-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 20px 40px; /* Adjusted padding for fixed navbar */
+}
+
+/* Timetable Management Sections */
+.timetable-sections {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 cards layout */
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Timetable Management Cards */
+.timetable-card {
+    background-color: #ffffff; /* White background for cards */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.timetable-card.dark-mode {
+    background-color: #202328; /* Dark background in dark mode */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow in dark mode */
+    border: 2px solid #444; /* Slight border in dark mode */
+}
+
+.timetable-card i {
+    font-size: 50px;
+    color: #2980b9; /* Bright blue icon color */
+    margin-bottom: 20px;
+}
+
+.timetable-card h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #2c3e50; /* Deep blue-grey for card titles */
+}
+
+.timetable-card p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555; /* Medium grey for card text */
+}
+
+.timetable-card a {
+    text-decoration: none;
+    background-color: #2980b9; /* Bright blue button */
+    color: #ffffff; /* White text */
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.timetable-card a:hover {
+    background-color: #1a5276; /* Darker blue on hover */
+}
+
+.timetable-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+    border: 2px solid #fff; /* White border on hover */
+}
+
+.timetable-card.dark-mode:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Stronger shadow in dark mode on hover */
+    border: 2px solid #555; /* Slightly brighter border on hover in dark mode */
+}
+
+.timetable-card.dark-mode i,
+.timetable-card.dark-mode h3,
+.timetable-card.dark-mode p {
+    color: #f1f1f1; /* Light text in dark mode */
+}
+
+/* Responsive Design for Timetable Page */
+@media (max-width: 900px) {
+    .timetable-sections {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}
