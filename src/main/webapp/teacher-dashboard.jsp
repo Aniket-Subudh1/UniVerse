@@ -16,7 +16,7 @@
         <h2 class="logo">UniVerse</h2>
         <ul class="nav-links">
             <li><a href="home.jsp">Home</a></li>
-            <li><a href="attendance.jsp">Attendance</a></li>
+            <li><a href="updateAttendance..jsp.jsp">Attendance</a></li>
             <li><a href="timetable.jsp">Timetable</a></li>
             <li><a href="notes.jsp">Notes</a></li>
 
@@ -68,7 +68,7 @@
             <i class='bx bx-calendar'></i>
             <h3>Attendance</h3>
             <p>Track and update attendance records for your classes.</p>
-            <a href="attendance.jsp">Track Attendance</a>
+            <a href="updateAttendance..jsp">Track Attendance</a>
         </div>
         <!-- New Timetable Card -->
         <div class="card">
