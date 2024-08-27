@@ -1,57 +1,56 @@
-// Function to toggle dark mode
-function toggleDarkMode() {
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleButton = document.getElementById('dark-mode-toggle');
     const body = document.body;
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const navbar = document.querySelector('.navbar');
+    const profileInfo = document.querySelector('.profile-info');
+    const cards = document.querySelectorAll('.timetable-card');
 
-    // Toggle dark mode class on body
-    body.classList.toggle('dark-mode');
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+        body.classList.toggle('dark-mode');
+        navbar.classList.toggle('dark-mode');
+        profileInfo.classList.toggle('dark-mode');
+        toggleButton.classList.toggle('dark-mode');
 
-    // Toggle dark mode class on the dark mode toggle button
-    darkModeToggle.classList.toggle('dark-mode');
-
-    // Save the dark mode preference to local storage
-    if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('darkMode', 'enabled');
-    } else {
-        localStorage.setItem('darkMode', 'disabled');
-    }
-}
-
-// Function to load dark mode preference from local storage
-function loadDarkModePreference() {
-    const body = document.body;
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const darkMode = localStorage.getItem('darkMode');
-
-    if (darkMode === 'enabled') {
-        body.classList.add('dark-mode');
-        darkModeToggle.classList.add('dark-mode');
-    } else {
-        body.classList.remove('dark-mode');
-        darkModeToggle.classList.remove('dark-mode');
-    }
-}
-
-// Function to add hover effect on cards
-function addCardHoverEffect() {
-    const cards = document.querySelectorAll('.card');
-
-    cards.forEach(card => {
-        card.addEventListener('mouseover', () => {
-            card.classList.add('hovered');
+        // Toggle dark mode class on each card
+        cards.forEach(card => {
+            card.classList.toggle('dark-mode');
         });
 
-        card.addEventListener('mouseout', () => {
-            card.classList.remove('hovered');
-        });
-    });
-}
+        // Save the dark mode preference to local storage
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    }
 
-// Function to initialize the dashboard functionalities
-function initializeDashboard() {
-    loadDarkModePreference();  // Load dark mode setting from local storage
-    addCardHoverEffect();      // Add hover effects to the cards
-}
+    // Function to load dark mode preference from local storage
+    function loadDarkModePreference() {
+        const darkMode = localStorage.getItem('darkMode');
 
-// Run the initialize function once the page content is loaded
-document.addEventListener('DOMContentLoaded', initializeDashboard);
+        if (darkMode === 'enabled') {
+            body.classList.add('dark-mode');
+            navbar.classList.add('dark-mode');
+            profileInfo.classList.add('dark-mode');
+            toggleButton.classList.add('dark-mode');
+            cards.forEach(card => {
+                card.classList.add('dark-mode');
+            });
+        } else {
+            body.classList.remove('dark-mode');
+            navbar.classList.remove('dark-mode');
+            profileInfo.classList.remove('dark-mode');
+            toggleButton.classList.remove('dark-mode');
+            cards.forEach(card => {
+                card.classList.remove('dark-mode');
+            });
+        }
+    }
+
+    // Load dark mode setting from local storage on page load
+    loadDarkModePreference();
+
+    // Event listener for toggle button click
+    toggleButton.addEventListener('click', toggleDarkMode);
+});

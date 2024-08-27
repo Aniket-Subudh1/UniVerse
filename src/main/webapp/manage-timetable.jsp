@@ -13,8 +13,8 @@
     <nav class="navbar">
         <h2 class="logo">UniVerse Admin</h2>
         <ul class="nav-links">
+            <li><a href="admin-dashboard.jsp">Home</a></li>
             <li><a href="manage-attendance.jsp">Attendance</a></li>
-            <li><a href="manage-timetable.jsp">Timetable</a></li>
             <li><a href="manage-courses.jsp">Courses</a></li>
             <li><a href="manage-grades.jsp">Grades</a></li>
         </ul>
@@ -28,14 +28,14 @@
         </div>
     </nav>
 
-    <div class="dashboard-sections">
-        <div class="card">
+    <div class="timetable-sections">
+        <div class="timetable-card">
             <i class='bx bx-calendar'></i>
             <h3>Manage Student Timetable</h3>
             <p>Upload and manage the student timetable.</p>
             <a href="upload-student-timetable.jsp">Manage Student Timetable</a>
         </div>
-        <div class="card">
+        <div class="timetable-card">
             <i class='bx bx-time'></i>
             <h3>Manage Teacher Timetable</h3>
             <p>Upload and manage the teacher timetable.</p>
