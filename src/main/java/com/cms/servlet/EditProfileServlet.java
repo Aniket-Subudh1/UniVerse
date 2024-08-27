@@ -28,6 +28,7 @@ public class EditProfileServlet extends HttpServlet {
         }
 
         String email = (String) session.getAttribute("email");
+        String role = (String) session.getAttribute("role");
         String name = request.getParameter("name");
         String dob = request.getParameter("dob");
         Part photoPart = request.getPart("photo");
@@ -45,7 +46,16 @@ public class EditProfileServlet extends HttpServlet {
         }
 
         try (Connection connection = DBConnection.getConnection()) {
-            String query = "UPDATE teachers SET name = ?, dob = ?, photo = ? WHERE email = ?";
+            String query;
+            if ("teacher".equalsIgnoreCase(role)) {
+                query = "UPDATE teachers SET name = ?, dob = ?, photo = ? WHERE email = ?";
+            } else if ("student".equalsIgnoreCase(role)) {
+                query = "UPDATE students SET name = ?, dob = ?, photo = ? WHERE email = ?";
+            } else {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.getWriter().write("Invalid role");
+                return;
+            }
 
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, name);

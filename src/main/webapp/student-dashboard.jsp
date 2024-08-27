@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="styles/student-dashboard.css?v=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -19,29 +19,36 @@
             <li><a href="#">Courses</a></li>
             <li><a href="#">Grades</a></li>
             <li><a href="#">Attendance</a></li>
-
-            <!-- Display Student's Photo or Default Image -->
             <li>
-                <%
-                    byte[] photo = (byte[]) session.getAttribute("photo");
-                    String photoData = "";
-                    if (photo != null && photo.length > 0) {
-                        photoData = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(photo);
-                    } else {
-                        photoData = "img/pRO.jpg"; // Path to a default profile image
-                    }
-                %>
-                <img src="<%= photoData %>" alt="Profile" class="profile-pic" onclick="showProfileModal()">
+                <div class="dark-mode-toggle" id="dark-mode-toggle" onclick="toggleDarkMode()">
+                    <span class="sun"><i class='bx bx-sun'></i></span>
+                    <span class="moon"><i class='bx bx-moon'></i></span>
+                </div>
             </li>
 
+
+            <!-- Profile Section -->
+            <li>
+                <div class="profile-info">
+                    <div>
+                        <p class="profile-name"><%= session.getAttribute("name") %></p>
+                        <p class="profile-role"><%= session.getAttribute("role") %></p>
+                    </div>
+                    <%
+                        byte[] photo = (byte[]) session.getAttribute("photo");
+                        String photoData = "";
+                        if (photo != null && photo.length > 0) {
+                            photoData = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(photo);
+                        } else {
+                            photoData = "img/default-profile.jpg"; // Path to a default profile image
+                        }
+                    %>
+                    <img src="<%= photoData %>" alt="Profile" class="profile-pic" onclick="showProfileModal()">
+                </div>
+            </li>
             <li><a href="index.jsp">Logout</a></li>
         </ul>
     </nav>
-
-    <div class="welcome-section">
-        <h1>Welcome, <%= session.getAttribute("name") %>!</h1>
-        <p>Your student dashboard is here to help you navigate your courses, check your grades, and track your attendance.</p>
-    </div>
 
     <div class="dashboard-sections">
         <div class="card">
@@ -82,7 +89,6 @@
             <p>Give feedback on your courses.</p>
             <a href="#">Provide Feedback</a>
         </div>
-
     </div>
 
     <!-- Profile Modal -->
@@ -90,9 +96,9 @@
         <div class="modal-content">
             <span class="close" onclick="closeProfileModal()">&times;</span>
             <h2>Profile Information</h2>
-            <img src="<%= photoData %>" alt="Profile Picture" class="profile-pic-modal"> <!-- Display the profile picture -->
+            <img src="<%= photoData %>" alt="Profile Picture" class="profile-pic-modal">
             <p><strong>Name:</strong> <%= session.getAttribute("name") %></p>
-            <p><strong>ID:</strong> <%= session.getAttribute("id") %></p>
+            <p><strong>Role:</strong> <%= session.getAttribute("role") %></p>
             <p><strong>Enrolled Courses:</strong></p>
             <ul>
                 <%

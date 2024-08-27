@@ -1,38 +1,59 @@
-/* Reset and base styles */
+/* Base styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Montserrat", sans-serif; /* Updated font-family */
+    font-family: "Poppins", sans-serif;
 }
 
 body {
-    background-color: #f9f9f9;
-    color: #333;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
+    background-color: #f9f9f9;
+    color: #2a2d3e;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #181a1e;
+    color: #f1f1f1;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 /* Navbar */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    background-color: #142E54; /* Updated color */
+    background-color: #fff;
     padding: 15px 20px;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Updated shadow */
-    z-index: 1000;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #fff;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar.dark-mode {
+    background-color: #202328;
 }
 
 .navbar .logo {
     font-size: 24px;
     font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.navbar.dark-mode .logo {
+    color: #f1f1f1;
 }
 
 .navbar .nav-links {
@@ -46,16 +67,48 @@ body {
 }
 
 .navbar .nav-links li a {
-    color: #fff;
+    color: #333;
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     display: block;
 }
 
 .navbar .nav-links li a:hover {
-    background-color: #1d3a73; /* Updated hover color */
+    background-color: #e0e4eb;
+}
+
+.navbar.dark-mode .nav-links li a {
+    color: #f1f1f1;
+}
+
+.navbar.dark-mode .nav-links li a:hover {
+    background-color: #333;
+}
+
+/* Profile UI */
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.profile-info .profile-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.profile-info .profile-role {
+    font-size: 12px;
+    color: #888;
+}
+
+.profile-info.dark-mode .profile-name,
+.profile-info.dark-mode .profile-role {
+    color: #f1f1f1;
 }
 
 /* Profile Picture */
@@ -73,22 +126,71 @@ body {
     transform: scale(1.1);
 }
 
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    background-color: #e0e4eb;
+    border-radius: 20px;
+    padding: 4px 8px;
+    cursor: pointer;
+    gap: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-toggle.dark-mode {
+    background-color: #333;
+}
+
+.dark-mode-toggle span {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.dark-mode-toggle span.sun i {
+    color: #ffd700;
+}
+
+.dark-mode-toggle span.moon i {
+    color: #4b4b4b;
+}
+
+.dark-mode-toggle.dark-mode span.sun i {
+    color: #f1f1f1;
+}
+
+.dark-mode-toggle.dark-mode span.moon i {
+    color: #ffd700;
+}
+
 /* Welcome Section */
 .welcome-section {
     text-align: center;
-    margin-top: 120px; /* Adjusted to provide space for the fixed navbar */
+    margin-top: 100px; /* Adjusted to provide space for the fixed navbar */
     margin-bottom: 40px;
 }
 
 .welcome-section h1 {
     font-size: 36px;
     margin-bottom: 10px;
-    color: #142E54; /* Updated color */
+    color: #2a2d3e; /* Dark navy for the heading */
+}
+
+.welcome-section.dark-mode h1 {
+    color: #f1f1f1;
 }
 
 .welcome-section p {
     font-size: 18px;
     color: #555;
+}
+
+.welcome-section.dark-mode p {
+    color: #ccc;
 }
 
 /* Dashboard Sections */
@@ -100,48 +202,84 @@ body {
 }
 
 .card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Updated shadow */
-    padding: 20px; /* Matching padding with teacher dashboard */
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 25px; /* Adjusted padding for consistent size */
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    border: 1px solid #e0e0e0; /* Light border */
+    max-width: 100%; /* Ensures cards stay within container */
+    height: 180px; /* Set consistent height */
+}
+
+.card.dark-mode {
+    background-color: #202328;
+    border: 1px solid #333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .card i {
-    font-size: 50px; /* Matching icon size with teacher dashboard */
-    color: #142E54; /* Updated color */
-    margin-bottom: 20px; /* Matching margin with teacher dashboard */
+    font-size: 48px;
+    color: #2a2d3e; /* Dark navy for icons */
+    margin-bottom: 15px; /* Slightly reduced margin */
+}
+
+.card.dark-mode i {
+    color: #f1f1f1;
 }
 
 .card h3 {
-    font-size: 24px; /* Matching heading size with teacher dashboard */
-    margin-bottom: 10px; /* Matching margin with teacher dashboard */
-    color: #142E54; /* Updated color */
+    font-size: 22px;
+    margin-bottom: 8px; /* Slightly reduced margin */
+    color: #333;
+}
+
+.card.dark-mode h3 {
+    color: #f1f1f1;
 }
 
 .card p {
-    font-size: 16px; /* Matching text size with teacher dashboard */
-    margin-bottom: 20px; /* Matching margin with teacher dashboard */
+    font-size: 16px;
+    margin-bottom: 15px; /* Slightly reduced margin */
     color: #555;
+}
+
+.card.dark-mode p {
+    color: #ccc;
 }
 
 .card a {
     text-decoration: none;
-    background-color: #142E54; /* Updated color */
-    color: #fff;
-    padding: 10px 20px; /* Matching button size with teacher dashboard */
+    background-color: #2a2d3e; /* Dark navy for buttons */
+    color: #e8c888; /* Warm beige/gold for button text */
+    padding: 8px 16px; /* Adjusted padding for button */
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 .card a:hover {
-    background-color: #1d3a73; /* Updated hover color */
+    background-color: #1a225b; /* Darker navy on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+.card.dark-mode a {
+    background-color: #333;
+    color: #ffd700; /* Gold text in dark mode */
+}
+
+.card.dark-mode a:hover {
+    background-color: #555;
+    color: #ffffff;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); /* Updated shadow */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card.dark-mode:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
 /* Modal Styles */
@@ -160,27 +298,41 @@ body {
 }
 
 .modal-content {
-    background-color: #fff;
+    background-color: #ffffff; /* White for modal background */
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid #e0e0e0;
     width: 80%;
     max-width: 400px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Updated shadow */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Added shadow */
+    transition: background-color 0.3s ease;
+}
+
+.modal-content.dark-mode {
+    background-color: #202328;
+    border: 1px solid #333;
 }
 
 .modal-content h2 {
     text-align: center;
-    color: #142E54; /* Updated color */
+    color: #2a2d3e; /* Dark navy for modal heading */
     margin-bottom: 20px;
+}
+
+.modal-content.dark-mode h2 {
+    color: #f1f1f1;
 }
 
 .modal-content p {
     color: #333;
     font-size: 16px;
     margin-bottom: 10px;
+}
+
+.modal-content.dark-mode p {
+    color: #f1f1f1;
 }
 
 .modal-content ul {
@@ -194,6 +346,10 @@ body {
     margin-bottom: 5px;
 }
 
+.modal-content.dark-mode ul li {
+    color: #ccc;
+}
+
 /* Profile Picture in Modal */
 .modal-content .profile-pic-modal {
     width: 100px;
@@ -201,15 +357,19 @@ body {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
-    border: 2px solid #142E54; /* Updated border color */
+    border: 2px solid #2a2d3e; /* Dark navy for modal profile pic border */
+}
+
+.modal-content.dark-mode .profile-pic-modal {
+    border: 2px solid #f1f1f1;
 }
 
 .edit-profile-btn {
     display: block;
     width: 100%;
     text-align: center;
-    background-color: #142E54; /* Updated color */
-    color: #fff;
+    background-color: #2a2d3e; /* Dark navy for button */
+    color: #e8c888; /* Warm beige/gold for button text */
     padding: 10px 0;
     border-radius: 5px;
     text-decoration: none;
@@ -217,7 +377,18 @@ body {
 }
 
 .edit-profile-btn:hover {
-    background-color: #1d3a73; /* Updated hover color */
+    background-color: #1a225b; /* Darker navy on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+.edit-profile-btn.dark-mode {
+    background-color: #333;
+    color: #ffd700; /* Gold text in dark mode */
+}
+
+.edit-profile-btn.dark-mode:hover {
+    background-color: #555;
+    color: #ffffff;
 }
 
 .close {

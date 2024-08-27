@@ -16,32 +16,40 @@
         <h2 class="logo">UniVerse</h2>
         <ul class="nav-links">
             <li><a href="home.jsp">Home</a></li>
-            <li><a href="manage-courses.jsp">Manage Courses</a></li>
-            <li><a href="student-grades.jsp">Student Grades</a></li>
             <li><a href="attendance.jsp">Attendance</a></li>
+            <li><a href="timetable.jsp">Timetable</a></li>
+            <li><a href="notes.jsp">Notes</a></li>
 
-            <!-- Display Teacher's Photo or Default Image -->
+            <!-- Dark Mode Toggle -->
             <li>
-                <%
-                    byte[] photo = (byte[]) session.getAttribute("photo");
-                    String photoData = "";
-                    if (photo != null) {
-                        photoData = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(photo);
-                    } else {
-                        photoData = "img/default-profile.png"; // Path to a default profile image
-                    }
-                %>
-                <img src="<%= photoData %>" alt="Profile" class="profile-pic" onclick="showProfileModal()">
+                <div class="dark-mode-toggle" id="dark-mode-toggle" onclick="toggleDarkMode()">
+                    <span class="sun"><i class='bx bx-sun'></i></span>
+                    <span class="moon"><i class='bx bx-moon'></i></span>
+                </div>
             </li>
 
+            <!-- Profile Section -->
+            <li>
+                <div class="profile-info">
+                    <div>
+                        <p class="profile-name"><%= session.getAttribute("name") %></p>
+                        <p class="profile-role"><%= session.getAttribute("role") %></p>
+                    </div>
+                    <%
+                        byte[] photo = (byte[]) session.getAttribute("photo");
+                        String photoData = "";
+                        if (photo != null && photo.length > 0) {
+                            photoData = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(photo);
+                        } else {
+                            photoData = "img/default-profile.png"; // Path to a default profile image
+                        }
+                    %>
+                    <img src="<%= photoData %>" alt="Profile" class="profile-pic" onclick="showProfileModal()">
+                </div>
+            </li>
             <li><a href="index.jsp">Logout</a></li>
         </ul>
     </nav>
-
-    <div class="welcome-section">
-        <h1>Welcome, <%= session.getAttribute("name") != null ? session.getAttribute("name") : "Teacher" %>!</h1>
-        <p>Your teacher dashboard is here to help you manage your courses, view student grades, and track attendance.</p>
-    </div>
 
     <div class="dashboard-sections">
         <div class="card">
