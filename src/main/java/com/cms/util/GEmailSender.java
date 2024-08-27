@@ -17,8 +17,9 @@ public class GEmailSender {
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.host", "smtp.gmail.com");
 
-        String username = "lvdasarkar";
-        String password = "xteidlzidlcaribj"; // Use an app-specific password
+        // Directly set the email credentials (for testing purposes)
+        String username = "aniketsubudhi00";  // Replace with your email address
+        String password = "trvnixplhgasnbne";    // Replace with your app-specific password
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
@@ -37,8 +38,9 @@ public class GEmailSender {
             // Send the email
             Transport.send(message);
             flag = true;
+            System.out.println("Email sent successfully.");
         } catch (MessagingException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Consider using a logging framework for better logging
         }
 
         return flag;

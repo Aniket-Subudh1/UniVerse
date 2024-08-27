@@ -1,4 +1,5 @@
 package com.cms.dao;
 
-public class GradeDAO {
+public class UserDAO {
+
 }

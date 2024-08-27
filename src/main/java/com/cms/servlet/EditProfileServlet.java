@@ -1,6 +1,6 @@
 package com.cms.servlet;
 
-import com.cms.util.DBConnection;
+import com.cms.dao.DBConnection;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -32,13 +32,16 @@ public class EditProfileServlet extends HttpServlet {
         String dob = request.getParameter("dob");
         Part photoPart = request.getPart("photo");
 
-        System.out.println("Received name: " + name);
-        System.out.println("Received dob: " + dob);
+        // Validate input
+        if (name == null || name.isEmpty() || dob == null || dob.isEmpty()) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("Invalid input");
+            return;
+        }
 
         InputStream photoInputStream = null;
         if (photoPart != null && photoPart.getSize() > 0) {
             photoInputStream = photoPart.getInputStream();
-            System.out.println("Received file: " + photoPart.getSubmittedFileName());
         }
 
         try (Connection connection = DBConnection.getConnection()) {

@@ -1,6 +1,7 @@
 package com.cms.servlet;
 
-import com.cms.util.DBConnection;
+import com.cms.dao.DBConnection;
+import org.mindrot.jbcrypt.BCrypt;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -44,10 +45,13 @@ public class RegisterServlet extends HttpServlet {
                 return;
             }
 
+            // Hash the password before storing it
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
             try (PreparedStatement ps = connection.prepareStatement(query)) {
                 ps.setString(1, name);
                 ps.setString(2, email);
-                ps.setString(3, password);
+                ps.setString(3, hashedPassword);
                 ps.setDate(4, java.sql.Date.valueOf(dob));
                 if (photoInputStream != null) {
                     ps.setBlob(5, photoInputStream);

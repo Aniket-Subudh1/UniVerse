@@ -1,6 +1,7 @@
 package com.cms.servlet;
 
-import com.cms.util.DBConnection;
+import com.cms.dao.DBConnection;
+import org.mindrot.jbcrypt.BCrypt;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,10 +33,13 @@ public class ResetPasswordServlet extends HttpServlet {
             if (rs.next()) {
                 emailFound = true; // Email found in students table
 
+                // Hash the new password
+                String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
                 // Update the password in the students table
                 String updateQuery = "UPDATE students SET password=? WHERE LOWER(email)=LOWER(?)";
                 PreparedStatement updatePs = connection.prepareStatement(updateQuery);
-                updatePs.setString(1, password);
+                updatePs.setString(1, hashedPassword);
                 updatePs.setString(2, email);
                 updatePs.executeUpdate();
 
@@ -51,10 +55,13 @@ public class ResetPasswordServlet extends HttpServlet {
                 if (rs.next()) {
                     emailFound = true; // Email found in teachers table
 
+                    // Hash the new password
+                    String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
                     // Update the password in the teachers table
                     String updateQuery = "UPDATE teachers SET password=? WHERE LOWER(email)=LOWER(?)";
                     PreparedStatement updatePs = connection.prepareStatement(updateQuery);
-                    updatePs.setString(1, password);
+                    updatePs.setString(1, hashedPassword);
                     updatePs.setString(2, email);
                     updatePs.executeUpdate();
 

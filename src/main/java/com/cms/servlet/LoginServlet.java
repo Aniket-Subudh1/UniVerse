@@ -1,6 +1,7 @@
 package com.cms.servlet;
 
-import com.cms.util.DBConnection;
+import com.cms.dao.DBConnection;
+import org.mindrot.jbcrypt.BCrypt;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,33 +29,30 @@ public class LoginServlet extends HttpServlet {
 
             try {
                 // Check if the user is an admin
-                query = "SELECT * FROM admins WHERE email = ? AND password = ?";
+                query = "SELECT * FROM admins WHERE email = ?";
                 ps = connection.prepareStatement(query);
                 ps.setString(1, email);
-                ps.setString(2, password);
                 rs = ps.executeQuery();
 
-                if (rs.next()) {
+                if (rs.next() && BCrypt.checkpw(password, rs.getString("password"))) {
                     role = "admin";
                 } else {
                     // Check if the user is a student
-                    query = "SELECT * FROM students WHERE email = ? AND password = ?";
+                    query = "SELECT * FROM students WHERE email = ?";
                     ps = connection.prepareStatement(query);
                     ps.setString(1, email);
-                    ps.setString(2, password);
                     rs = ps.executeQuery();
 
-                    if (rs.next()) {
+                    if (rs.next() && BCrypt.checkpw(password, rs.getString("password"))) {
                         role = "student";
                     } else {
                         // Check if the user is a teacher
-                        query = "SELECT * FROM teachers WHERE email = ? AND password = ?";
+                        query = "SELECT * FROM teachers WHERE email = ?";
                         ps = connection.prepareStatement(query);
                         ps.setString(1, email);
-                        ps.setString(2, password);
                         rs = ps.executeQuery();
 
-                        if (rs.next()) {
+                        if (rs.next() && BCrypt.checkpw(password, rs.getString("password"))) {
                             role = "teacher";
                         }
                     }

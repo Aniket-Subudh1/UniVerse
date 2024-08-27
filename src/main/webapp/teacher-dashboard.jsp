@@ -11,16 +11,14 @@
 </head>
 
 <body>
-<!-- Removed the video background -->
-
 <div class="container">
     <nav class="navbar">
         <h2 class="logo">UniVerse</h2>
         <ul class="nav-links">
-            <li><a href="home.jsp">Home</a></li> <!-- Updated href -->
-            <li><a href="manage-courses.jsp">Manage Courses</a></li> <!-- Updated href -->
-            <li><a href="student-grades.jsp">Student Grades</a></li> <!-- Updated href -->
-            <li><a href="attendance.jsp">Attendance</a></li> <!-- Updated href -->
+            <li><a href="home.jsp">Home</a></li>
+            <li><a href="manage-courses.jsp">Manage Courses</a></li>
+            <li><a href="student-grades.jsp">Student Grades</a></li>
+            <li><a href="attendance.jsp">Attendance</a></li>
 
             <!-- Display Teacher's Photo or Default Image -->
             <li>
@@ -41,7 +39,7 @@
     </nav>
 
     <div class="welcome-section">
-        <h1>Welcome, <%= session.getAttribute("name") != null ? session.getAttribute("name") : "Teacher" %>!</h1> <!-- Null-safe session attribute -->
+        <h1>Welcome, <%= session.getAttribute("name") != null ? session.getAttribute("name") : "Teacher" %>!</h1>
         <p>Your teacher dashboard is here to help you manage your courses, view student grades, and track attendance.</p>
     </div>
 
@@ -50,33 +48,40 @@
             <i class='bx bx-chalkboard'></i>
             <h3>Manage Courses</h3>
             <p>Create, update, and delete courses you are teaching.</p>
-            <a href="manage-courses.jsp">Manage Courses</a> <!-- Updated href -->
+            <a href="manage-courses.jsp">Manage Courses</a>
         </div>
         <div class="card">
             <i class='bx bx-list-check'></i>
             <h3>Student Grades</h3>
             <p>View and manage grades for students enrolled in your courses.</p>
-            <a href="student-grades.jsp">View Grades</a> <!-- Updated href -->
+            <a href="student-grades.jsp">View Grades</a>
         </div>
         <div class="card">
             <i class='bx bx-calendar'></i>
             <h3>Attendance</h3>
             <p>Track and update attendance records for your classes.</p>
-            <a href="attendance.jsp">Track Attendance</a> <!-- Updated href -->
+            <a href="attendance.jsp">Track Attendance</a>
         </div>
         <!-- New Timetable Card -->
         <div class="card">
             <i class='bx bx-calendar-event'></i>
             <h3>Timetable</h3>
             <p>View and manage your teaching timetable.</p>
-            <a href="timetable.jsp">View Timetable</a> <!-- New href -->
+            <a href="timetable.jsp">View Timetable</a>
         </div>
         <!-- New Notes Card -->
         <div class="card">
             <i class='bx bx-note'></i>
             <h3>Notes</h3>
             <p>Access and upload teaching notes and materials.</p>
-            <a href="notes.jsp">Manage Notes</a> <!-- New href -->
+            <a href="notes.jsp">Manage Notes</a>
+        </div>
+        <!-- New Assigned Subjects Card -->
+        <div class="card">
+            <i class='bx bx-book-content'></i>
+            <h3>Assigned Subjects</h3>
+            <p>View the subjects assigned to you.</p>
+            <a href="assigned-subjects.jsp">View Assigned Subjects</a>
         </div>
     </div>
 
@@ -86,9 +91,9 @@
             <span class="close" onclick="closeProfileModal()">&times;</span>
             <h2>Profile Information</h2>
             <img src="<%= photoData %>" alt="Profile" class="profile-pic-modal">
-            <p><strong>Name:</strong> <%= session.getAttribute("name") != null ? session.getAttribute("name") : "N/A" %></p> <!-- Null-safe session attribute -->
-            <p><strong>ID:</strong> <%= session.getAttribute("id") != null ? session.getAttribute("id") : "N/A" %></p> <!-- Null-safe session attribute -->
-            <p><strong>Email:</strong> <%= session.getAttribute("email") != null ? session.getAttribute("email") : "N/A" %></p> <!-- Null-safe session attribute -->
+            <p><strong>Name:</strong> <%= session.getAttribute("name") != null ? session.getAttribute("name") : "N/A" %></p>
+            <p><strong>ID:</strong> <%= session.getAttribute("id") != null ? session.getAttribute("id") : "N/A" %></p>
+            <p><strong>Email:</strong> <%= session.getAttribute("email") != null ? session.getAttribute("email") : "N/A" %></p>
             <a href="edit-profile.jsp" class="edit-profile-btn">Edit Profile</a>
         </div>
     </div>

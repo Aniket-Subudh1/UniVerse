@@ -1,8 +1,8 @@
 package com.cms.dao;
 
-import com.cms.model.Student;
+import com.cms.model.Teacher;
 import com.cms.dao.DBConnection;
-import org.mindrot.jbcrypt.BCrypt; // Import BCrypt for password hashing
+import org.mindrot.jbcrypt.BCrypt; // Ensure BCrypt is imported
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -10,26 +10,27 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StudentDAO {
+public class TeacherDAO {
 
-    public boolean registerStudent(Student student) {
-        String query = "INSERT INTO students (name, email, password, dob, photo) VALUES (?, ?, ?, ?, ?)";
+    public boolean registerTeacher(Teacher teacher) {
+        String query = "INSERT INTO teachers (name, email, password, dob, photo) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             // Hash the password before storing it
-            String hashedPassword = BCrypt.hashpw(student.getPassword(), BCrypt.gensalt());
+            String hashedPassword = BCrypt.hashpw(teacher.getPassword(), BCrypt.gensalt());
 
-            ps.setString(1, student.getName());
-            ps.setString(2, student.getEmail());
-            ps.setString(3, hashedPassword); // Store the hashed password
-            ps.setDate(4, java.sql.Date.valueOf(student.getDob()));
+            ps.setString(1, teacher.getName());
+            ps.setString(2, teacher.getEmail());
+            ps.setString(3, hashedPassword);  // Store the hashed password
+            ps.setDate(4, java.sql.Date.valueOf(teacher.getDob()));
 
-            if (student.getPhoto() != null) {
-                ps.setBlob(5, student.getPhoto());
+            if (teacher.getPhoto() != null) {
+                ps.setBlob(5, teacher.getPhoto());
             } else {
                 ps.setNull(5, java.sql.Types.BLOB);
             }
+
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,8 +38,8 @@ public class StudentDAO {
         }
     }
 
-    public Student getStudentByEmailAndPassword(String email, String password) {
-        String query = "SELECT * FROM students WHERE email = ?";
+    public Teacher getTeacherByEmailAndPassword(String email, String password) {
+        String query = "SELECT * FROM teachers WHERE email = ?";
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
 
@@ -50,21 +51,22 @@ public class StudentDAO {
 
                 // Verify the password
                 if (BCrypt.checkpw(password, storedPasswordHash)) {
-                    Student student = new Student();
-                    student.setId(rs.getInt("studentId"));
-                    student.setName(rs.getString("name"));
-                    student.setEmail(rs.getString("email"));
-                    student.setPassword(storedPasswordHash); // Store the hashed password
-                    student.setDob(rs.getDate("dob").toLocalDate());
+                    Teacher teacher = new Teacher();
+                    teacher.setId(rs.getInt("teacherId"));
+                    teacher.setName(rs.getString("name"));
+                    teacher.setEmail(rs.getString("email"));
+                    teacher.setPassword(storedPasswordHash);  // Store the hashed password
+                    teacher.setDob(rs.getDate("dob").toLocalDate());
 
                     // Convert Blob to InputStream or byte array
                     if (rs.getBlob("photo") != null) {
                         InputStream photoStream = rs.getBlob("photo").getBinaryStream();
-                        student.setPhoto(photoStream);
+                        teacher.setPhoto(photoStream);
                     } else {
-                        student.setPhoto(null); // Handle case where photo is null
+                        teacher.setPhoto(null); // Handle case where photo is null
                     }
-                    return student;
+
+                    return teacher;
                 } else {
                     // Password didn't match
                     System.out.println("Password mismatch for email: " + email);

@@ -59,6 +59,12 @@
             <h3>View Feedback</h3>
             <a href="view-feedback.jsp">View Feedback</a>
         </div>
+        <!-- New card for assigning subjects to teachers -->
+        <div class="card">
+            <i class='bx bx-user-pin'></i>
+            <h3>Assign Subjects</h3>
+            <a href="assign-subjects.jsp">Assign Subjects to Teachers</a>
+        </div>
     </div>
 </div>
 </body>
