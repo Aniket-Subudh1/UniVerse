@@ -16,13 +16,13 @@
         <h2 class="logo">UniVerse</h2>
         <ul class="nav-links">
             <li><a href="home.jsp">Home</a></li>
-            <li><a href="updateAttendance..jsp.jsp">Attendance</a></li>
+            <li><a href="updateAttendance.jsp">Attendance</a></li>
             <li><a href="timetable.jsp">Timetable</a></li>
             <li><a href="notes.jsp">Notes</a></li>
 
             <!-- Dark Mode Toggle -->
             <li>
-                <div class="dark-mode-toggle" id="dark-mode-toggle" onclick="toggleDarkMode()">
+                <div class="dark-mode-toggle" id="dark-mode-toggle">
                     <span class="sun"><i class='bx bx-sun'></i></span>
                     <span class="moon"><i class='bx bx-moon'></i></span>
                 </div>
@@ -68,7 +68,7 @@
             <i class='bx bx-calendar'></i>
             <h3>Attendance</h3>
             <p>Track and update attendance records for your classes.</p>
-            <a href="updateAttendance..jsp">Track Attendance</a>
+            <a href="updateAttendance.jsp">Track Attendance</a>
         </div>
         <!-- New Timetable Card -->
         <div class="card">
@@ -107,6 +107,7 @@
     </div>
 </div>
 
-<script src="script/teacher-dashboard.js"></script>
+<script src="script/dark-mode.js"></script> <!-- Universal dark mode script -->
+<script src="script/teacher-dashboard.js"></script> <!-- Page-specific script -->
 </body>
 </html>

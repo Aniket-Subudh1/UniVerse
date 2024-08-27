@@ -19,14 +19,13 @@
             <li><a href="#">Courses</a></li>
             <li><a href="#">Grades</a></li>
             <li><a href="#">Attendance</a></li>
+            <!-- Dark Mode Toggle -->
             <li>
-                <div class="dark-mode-toggle" id="dark-mode-toggle" onclick="toggleDarkMode()">
+                <div class="dark-mode-toggle" id="dark-mode-toggle">
                     <span class="sun"><i class='bx bx-sun'></i></span>
                     <span class="moon"><i class='bx bx-moon'></i></span>
                 </div>
             </li>
-
-
             <!-- Profile Section -->
             <li>
                 <div class="profile-info">
@@ -75,14 +74,12 @@
             <p>Check your fee details and payment status.</p>
             <a href="fee-structure.jsp">View Fee Status</a>
         </div>
-
         <div class="card">
             <i class='bx bx-time'></i>
             <h3>Timetable</h3>
             <p>View your class schedule.</p>
             <a href="Time-table.jsp">View Timetable</a>
         </div>
-
         <div class="card">
             <i class='bx bx-comment-dots'></i>
             <h3>Student Feedback</h3>
@@ -117,6 +114,7 @@
     </div>
 </div>
 
-<script src="script/student-dashboard.js"></script>
+<script src="script/dark-mode.js"></script> <!-- Universal dark mode script -->
+<script src="script/student-dashboard.js"></script> <!-- Page-specific script -->
 </body>
 </html>

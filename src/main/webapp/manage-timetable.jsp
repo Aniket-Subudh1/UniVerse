@@ -22,7 +22,7 @@
             <p class="profile-name"><%= session.getAttribute("name") %></p>
             <p class="profile-role"><%= session.getAttribute("role") %></p>
         </div>
-        <div class="dark-mode-toggle" id="dark-mode-toggle" onclick="toggleDarkMode()">
+        <div class="dark-mode-toggle" id="dark-mode-toggle">
             <span class="sun"><i class='bx bx-sun'></i></span>
             <span class="moon"><i class='bx bx-moon'></i></span>
         </div>
@@ -44,6 +44,7 @@
     </div>
 </div>
 
-<script src="script/manage-timetable.js"></script>
+<script src="script/dark-mode.js"></script> <!-- Universal dark mode script -->
+<script src="script/manage-timetable.js"></script> <!-- Page-specific script -->
 </body>
 </html>
