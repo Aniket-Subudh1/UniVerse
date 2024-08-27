@@ -29,12 +29,13 @@ public class LoginServlet extends HttpServlet {
 
             try {
                 // Check if the user is an admin
-                query = "SELECT * FROM admins WHERE email = ?";
+                query = "SELECT * FROM admins WHERE email = ? AND password = ?";
                 ps = connection.prepareStatement(query);
                 ps.setString(1, email);
+                ps.setString(2, password); // Admin passwords are stored in plain text
                 rs = ps.executeQuery();
 
-                if (rs.next() && BCrypt.checkpw(password, rs.getString("password"))) {
+                if (rs.next()) {
                     role = "admin";
                 } else {
                     // Check if the user is a student
