@@ -1,4 +1,4 @@
-/* Base styles */
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +11,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #f9f9f9;
-    color: #2a2d3e;
+    color: #2a2d3e; /* Dark navy for text */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -39,6 +39,7 @@ body.dark-mode {
     align-items: center;
     margin-bottom: 20px;
     transition: background-color 0.3s ease;
+    position: relative; /* Ensures it's not affected by content changes below */
 }
 
 .navbar.dark-mode {
@@ -79,36 +80,13 @@ body.dark-mode {
     background-color: #e0e4eb;
 }
 
+/* Text color change in dark mode */
 .navbar.dark-mode .nav-links li a {
     color: #f1f1f1;
 }
 
 .navbar.dark-mode .nav-links li a:hover {
     background-color: #333;
-}
-
-/* Profile UI */
-.profile-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-}
-
-.profile-info .profile-name {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-}
-
-.profile-info .profile-role {
-    font-size: 12px;
-    color: #888;
-}
-
-.profile-info.dark-mode .profile-name,
-.profile-info.dark-mode .profile-role {
-    color: #f1f1f1;
 }
 
 /* Profile Picture */
@@ -126,7 +104,30 @@ body.dark-mode {
     transform: scale(1.1);
 }
 
-/* Dark Mode Toggle */
+/* Profile UI */
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.profile-info .profile-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.profile-info .profile-role {
+    font-size: 12px;
+    color: #888;
+}
+
+.profile-info.dark-mode .profile-name,
+.profile-info.dark-mode .profile-role {
+    color: #f1f1f1;
+}
+
+/* Toggle Button */
 .dark-mode-toggle {
     display: flex;
     align-items: center;
@@ -167,32 +168,6 @@ body.dark-mode {
     color: #ffd700;
 }
 
-/* Welcome Section */
-.welcome-section {
-    text-align: center;
-    margin-top: 100px; /* Adjusted to provide space for the fixed navbar */
-    margin-bottom: 40px;
-}
-
-.welcome-section h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-    color: #2a2d3e; /* Dark navy for the heading */
-}
-
-.welcome-section.dark-mode h1 {
-    color: #f1f1f1;
-}
-
-.welcome-section p {
-    font-size: 18px;
-    color: #555;
-}
-
-.welcome-section.dark-mode p {
-    color: #ccc;
-}
-
 /* Dashboard Sections */
 .dashboard-sections {
     display: grid;
@@ -202,84 +177,71 @@ body.dark-mode {
 }
 
 .card {
-    background-color: #ffffff;
+    background-color: #ffffff; /* White background for cards */
     border-radius: 16px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    padding: 25px; /* Adjusted padding for consistent size */
+    padding: 20px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    border: 1px solid #e0e0e0; /* Light border */
-    max-width: 100%; /* Ensures cards stay within container */
-    height: 180px; /* Set consistent height */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, background-color 0.3s ease;
+    border: 2px solid #e0e0e0; /* Prevents layout shift by keeping border consistent */
 }
 
 .card.dark-mode {
     background-color: #202328;
-    border: 1px solid #333;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border: 2px solid #444; /* Light gray border in dark mode */
 }
 
 .card i {
     font-size: 48px;
-    color: #2a2d3e; /* Dark navy for icons */
-    margin-bottom: 15px; /* Slightly reduced margin */
-}
-
-.card.dark-mode i {
-    color: #f1f1f1;
+    color: #101f6e;
+    margin-bottom: 20px;
 }
 
 .card h3 {
     font-size: 22px;
-    margin-bottom: 8px; /* Slightly reduced margin */
+    margin-bottom: 10px;
     color: #333;
-}
-
-.card.dark-mode h3 {
-    color: #f1f1f1;
 }
 
 .card p {
     font-size: 16px;
-    margin-bottom: 15px; /* Slightly reduced margin */
+    margin-bottom: 20px;
     color: #555;
-}
-
-.card.dark-mode p {
-    color: #ccc;
 }
 
 .card a {
     text-decoration: none;
-    background-color: #2a2d3e; /* Dark navy for buttons */
-    color: #e8c888; /* Warm beige/gold for button text */
-    padding: 8px 16px; /* Adjusted padding for button */
+    background-color: #101f6e;
+    color: #fff;
+    padding: 10px 20px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
 .card a:hover {
-    background-color: #1a225b; /* Darker navy on hover */
-    color: #ffffff; /* White text on hover */
-}
-
-.card.dark-mode a {
-    background-color: #333;
-    color: #ffd700; /* Gold text in dark mode */
-}
-
-.card.dark-mode a:hover {
-    background-color: #555;
+    background-color: #5b6ee3;
     color: #ffffff;
 }
-
+.card.dark-mode a:hover{
+    background-color: #333;
+    color:#5b6ee3;
+}
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    border: 2px solid #fff; /* White border on hover */
 }
 
 .card.dark-mode:hover {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    border: 2px solid #555; /* Maintain slightly brighter gray border on hover in dark mode */
+}
+
+.card.dark-mode i,
+.card.dark-mode h3,
+.card.dark-mode p {
+    color: #f1f1f1;
 }
 
 /* Modal Styles */
@@ -298,31 +260,26 @@ body.dark-mode {
 }
 
 .modal-content {
-    background-color: #ffffff; /* White for modal background */
+    background-color: #fff;
     margin: auto;
     padding: 20px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #888;
     width: 80%;
     max-width: 400px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Added shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
 }
 
 .modal-content.dark-mode {
     background-color: #202328;
-    border: 1px solid #333;
 }
 
 .modal-content h2 {
     text-align: center;
-    color: #2a2d3e; /* Dark navy for modal heading */
+    color:#101f6e;
     margin-bottom: 20px;
-}
-
-.modal-content.dark-mode h2 {
-    color: #f1f1f1;
 }
 
 .modal-content p {
@@ -346,30 +303,21 @@ body.dark-mode {
     margin-bottom: 5px;
 }
 
-.modal-content.dark-mode ul li {
-    color: #ccc;
-}
-
-/* Profile Picture in Modal */
 .modal-content .profile-pic-modal {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
-    border: 2px solid #2a2d3e; /* Dark navy for modal profile pic border */
-}
-
-.modal-content.dark-mode .profile-pic-modal {
-    border: 2px solid #f1f1f1;
+    border: 2px solid #101f6e;
 }
 
 .edit-profile-btn {
     display: block;
     width: 100%;
     text-align: center;
-    background-color: #2a2d3e; /* Dark navy for button */
-    color: #e8c888; /* Warm beige/gold for button text */
+    background-color: #101f6e;
+    color: #fff;
     padding: 10px 0;
     border-radius: 5px;
     text-decoration: none;
@@ -377,18 +325,7 @@ body.dark-mode {
 }
 
 .edit-profile-btn:hover {
-    background-color: #1a225b; /* Darker navy on hover */
-    color: #ffffff; /* White text on hover */
-}
-
-.edit-profile-btn.dark-mode {
-    background-color: #333;
-    color: #ffd700; /* Gold text in dark mode */
-}
-
-.edit-profile-btn.dark-mode:hover {
-    background-color: #555;
-    color: #ffffff;
+    background-color:#101f6e;
 }
 
 .close {

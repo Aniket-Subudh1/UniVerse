@@ -11,14 +11,14 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #f9f9f9;
-    color: #2a2d3e;
+    color: #2a2d3e; /* Dark navy for text */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Dark Mode Styles */
 body.dark-mode {
     background-color: #181a1e;
-    color: #f1f1f1;
+    color: #f1f1f1; /* Light text for dark mode */
 }
 
 /* Container */
@@ -48,7 +48,7 @@ body.dark-mode {
 .navbar .logo {
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: #2a2d3e; /* Dark navy */
     transition: color 0.3s ease;
 }
 
@@ -67,7 +67,7 @@ body.dark-mode {
 }
 
 .navbar .nav-links li a {
-    color: #333;
+    color: #333; /* Standard text color */
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 5px;
@@ -76,15 +76,15 @@ body.dark-mode {
 }
 
 .navbar .nav-links li a:hover {
-    background-color: #e0e4eb;
+    background-color: #e0e4eb; /* Light background on hover */
 }
 
 .navbar.dark-mode .nav-links li a {
-    color: #f1f1f1;
+    color: #f1f1f1; /* Light text for dark mode */
 }
 
 .navbar.dark-mode .nav-links li a:hover {
-    background-color: #333;
+    background-color: #333; /* Dark hover background */
 }
 
 /* Profile UI */
@@ -98,17 +98,17 @@ body.dark-mode {
 .profile-info .profile-name {
     font-size: 16px;
     font-weight: bold;
-    color: #333;
+    color: #2a2d3e; /* Dark navy for text */
 }
 
 .profile-info .profile-role {
     font-size: 12px;
-    color: #888;
+    color: #888; /* Light gray for role text */
 }
 
 .profile-info.dark-mode .profile-name,
 .profile-info.dark-mode .profile-role {
-    color: #f1f1f1;
+    color: #f1f1f1; /* Light text for dark mode */
 }
 
 /* Profile Picture */
@@ -118,19 +118,19 @@ body.dark-mode {
     border-radius: 50%;
     cursor: pointer;
     object-fit: cover;
-    border: 2px solid #fff;
+    border: 2px solid #fff; /* White border */
     transition: transform 0.3s ease;
 }
 
 .profile-pic:hover {
-    transform: scale(1.1);
+    transform: scale(1.1); /* Slight scale on hover */
 }
 
 /* Dark Mode Toggle */
 .dark-mode-toggle {
     display: flex;
     align-items: center;
-    background-color: #e0e4eb;
+    background-color: #e0e4eb; /* Light background */
     border-radius: 20px;
     padding: 4px 8px;
     cursor: pointer;
@@ -139,7 +139,7 @@ body.dark-mode {
 }
 
 .dark-mode-toggle.dark-mode {
-    background-color: #333;
+    background-color: #333; /* Dark background for toggle */
 }
 
 .dark-mode-toggle span {
@@ -152,46 +152,22 @@ body.dark-mode {
 }
 
 .dark-mode-toggle span.sun i {
-    color: #ffd700;
+    color: #ffd700; /* Gold for sun icon */
 }
 
 .dark-mode-toggle span.moon i {
-    color: #4b4b4b;
+    color: #4b4b4b; /* Dark gray for moon icon */
 }
 
 .dark-mode-toggle.dark-mode span.sun i {
-    color: #f1f1f1;
+    color: #f1f1f1; /* Light sun icon in dark mode */
 }
 
 .dark-mode-toggle.dark-mode span.moon i {
-    color: #ffd700;
+    color: #ffd700; /* Gold moon icon in dark mode */
 }
 
-/* Welcome Section */
-.welcome-section {
-    text-align: center;
-    margin-top: 100px; /* Adjusted to provide space for the fixed navbar */
-    margin-bottom: 40px;
-}
 
-.welcome-section h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-    color: #2a2d3e; /* Dark navy for the heading */
-}
-
-.welcome-section.dark-mode h1 {
-    color: #f1f1f1;
-}
-
-.welcome-section p {
-    font-size: 18px;
-    color: #555;
-}
-
-.welcome-section.dark-mode p {
-    color: #ccc;
-}
 
 /* Dashboard Sections */
 .dashboard-sections {
@@ -202,7 +178,7 @@ body.dark-mode {
 }
 
 .card {
-    background-color: #ffffff;
+    background-color: #ffffff; /* White background for cards */
     border-radius: 16px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -213,7 +189,6 @@ body.dark-mode {
 
 .card.dark-mode {
     background-color: #202328;
-    border: 1px solid #333;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -224,27 +199,27 @@ body.dark-mode {
 }
 
 .card.dark-mode i {
-    color: #f1f1f1;
+    color: #f1f1f1; /* Light icon color in dark mode */
 }
 
 .card h3 {
     font-size: 22px;
     margin-bottom: 10px;
-    color: #333;
+    color: #333; /* Standard text color */
 }
 
 .card.dark-mode h3 {
-    color: #f1f1f1;
+    color: #f1f1f1; /* Light text in dark mode */
 }
 
 .card p {
     font-size: 16px;
     margin-bottom: 20px;
-    color: #555;
+    color: #555; /* Medium gray text */
 }
 
 .card.dark-mode p {
-    color: #ccc;
+    color: #ccc; /* Lighter text in dark mode */
 }
 
 .card a {
@@ -257,27 +232,27 @@ body.dark-mode {
 }
 
 .card a:hover {
-    background-color: #1a225b; /* Darker navy on hover */
+    background-color: #ffd700; /* Darker navy on hover */
     color: #ffffff; /* White text on hover */
 }
 
 .card.dark-mode a {
-    background-color: #333;
+    background-color: #333; /* Dark button background */
     color: #ffd700; /* Gold text in dark mode */
 }
 
 .card.dark-mode a:hover {
-    background-color: #555;
-    color: #ffffff;
+    background-color: #555; /* Darker hover background in dark mode */
+    color: #ffd700; /* White text on hover in dark mode */
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); /* Slight lift on hover */
 }
 
 .card.dark-mode:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow in dark mode */
 }
 
 /* Modal Styles */
@@ -296,7 +271,7 @@ body.dark-mode {
 }
 
 .modal-content {
-    background-color: #ffffff; /* White for modal background */
+    background-color: #ffffff; /* White background */
     margin: auto;
     padding: 20px;
     border: 1px solid #e0e0e0;
@@ -304,23 +279,23 @@ body.dark-mode {
     max-width: 400px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Added shadow */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Slight shadow */
     transition: background-color 0.3s ease;
 }
 
 .modal-content.dark-mode {
-    background-color: #202328;
+    background-color: #202328; /* Dark background for dark mode */
     border: 1px solid #333;
 }
 
 .modal-content h2 {
     text-align: center;
-    color: #2a2d3e; /* Dark navy for modal heading */
+    color: #2a2d3e; /* Dark navy for heading */
     margin-bottom: 20px;
 }
 
 .modal-content.dark-mode h2 {
-    color: #f1f1f1;
+    color: #f1f1f1; /* Light text for dark mode */
 }
 
 .modal-content p {
@@ -330,7 +305,7 @@ body.dark-mode {
 }
 
 .modal-content.dark-mode p {
-    color: #f1f1f1;
+    color: #f1f1f1; /* Light text for dark mode */
 }
 
 .modal-content ul {
@@ -340,12 +315,12 @@ body.dark-mode {
 
 .modal-content ul li {
     list-style-type: disc;
-    color: #555;
+    color: #555; /* Medium gray text */
     margin-bottom: 5px;
 }
 
 .modal-content.dark-mode ul li {
-    color: #ccc;
+    color: #ccc; /* Lighter text in dark mode */
 }
 
 /* Profile Picture in Modal */
@@ -355,11 +330,11 @@ body.dark-mode {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
-    border: 2px solid #2a2d3e; /* Dark navy for modal profile pic border */
+    border: 2px solid #2a2d3e; /* Dark navy for profile pic border */
 }
 
 .modal-content.dark-mode .profile-pic-modal {
-    border: 2px solid #f1f1f1;
+    border: 2px solid #f1f1f1; /* Light border in dark mode */
 }
 
 .edit-profile-btn {
@@ -380,17 +355,17 @@ body.dark-mode {
 }
 
 .edit-profile-btn.dark-mode {
-    background-color: #333;
+    background-color: #333; /* Dark button background */
     color: #ffd700; /* Gold text in dark mode */
 }
 
 .edit-profile-btn.dark-mode:hover {
-    background-color: #555;
-    color: #ffffff;
+    background-color: #555; /* Darker background on hover in dark mode */
+    color: #ffffff; /* White text on hover in dark mode */
 }
 
 .close {
-    color: #aaa;
+    color: #aaa; /* Light gray for close button */
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -399,7 +374,7 @@ body.dark-mode {
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: black; /* Black on hover */
     text-decoration: none;
     cursor: pointer;
 }
