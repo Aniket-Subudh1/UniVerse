@@ -45,7 +45,12 @@
                     <img src="<%= photoData %>" alt="Profile" class="profile-pic" onclick="showProfileModal()">
                 </div>
             </li>
-            <li><a href="index.jsp">Logout</a></li>
+            <!-- Logout with Icon -->
+            <li>
+                <a href="index.jsp" class="logout-link">
+                    <i class='bx bx-exit'></i> Logout
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -84,7 +89,7 @@
             <i class='bx bx-comment-dots'></i>
             <h3>Student Feedback</h3>
             <p>Give feedback on your courses.</p>
-            <a href="#">Provide Feedback</a>
+            <a href="feedback.jsp">Provide Feedback</a>
         </div>
     </div>
 

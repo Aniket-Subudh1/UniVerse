@@ -17,7 +17,7 @@
             <li><a href="manage-timetable.jsp">Timetable</a></li>
             <li><a href="manage-courses.jsp">Courses</a></li>
             <li><a href="manage-grades.jsp">Grades</a></li>
-        </ul>
+
         <div class="profile-info">
             <p class="profile-name"><%= session.getAttribute("name") %></p>
             <p class="profile-role"><%= session.getAttribute("role") %></p>
@@ -26,6 +26,13 @@
             <span class="sun"><i class='bx bx-sun'></i></span>
             <span class="moon"><i class='bx bx-moon'></i></span>
         </div>
+        <!-- Logout with Icon -->
+        <li>
+            <a href="index.jsp" class="logout-link">
+                <i class='bx bx-exit'></i> Logout
+            </a>
+        </li>
+        </ul>
     </nav>
 
     <div class="dashboard-sections">
@@ -63,7 +70,7 @@
             <i class='bx bx-comment-dots'></i>
             <h3>View Feedback</h3>
             <p>Review feedback provided by students.</p>
-            <a href="view-feedback.jsp">View Feedback</a>
+            <a href="admin-feedback.jsp">View Feedback</a>
         </div>
         <div class="card">
             <i class='bx bx-user-pin'></i>
