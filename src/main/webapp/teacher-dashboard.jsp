@@ -1,5 +1,5 @@
-<%@ page import="java.util.Base64" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.Base64" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +47,12 @@
                     <img src="<%= photoData %>" alt="Profile" class="profile-pic" onclick="showProfileModal()">
                 </div>
             </li>
-            <li><a href="index.jsp">Logout</a></li>
+            <!-- Logout with Icon -->
+            <li>
+                <a href="index.jsp" class="logout-link">
+                    <i class='bx bx-exit'></i> Logout
+                </a>
+            </li>
         </ul>
     </nav>
 

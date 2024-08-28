@@ -25,19 +25,19 @@
             <version>5.0.0</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Log4j Core -->
+
+        <!-- Log4j Core & API -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>3.0.0-beta2</version>
         </dependency>
-
-        <!-- Log4j API -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>3.0.0-beta2</version>
         </dependency>
+
         <!-- MySQL Connector -->
         <dependency>
             <groupId>mysql</groupId>
@@ -52,11 +52,7 @@
             <version>3.0.0</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>jakarta.mail</groupId>
-            <artifactId>jakarta.mail-api</artifactId>
-            <version>2.1.1</version>
-        </dependency>
+
         <!-- JSTL -->
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
@@ -64,26 +60,15 @@
             <version>2.0.0</version>
         </dependency>
 
+
+        <!-- Jakarta Mail API -->
         <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-            <version>2.0.0</version>
+            <groupId>jakarta.mail</groupId>
+            <artifactId>jakarta.mail-api</artifactId>
+            <version>2.1.1</version>
         </dependency>
 
-        <!-- JUnit (optional, for testing) -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.8.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>jakarta.mail</artifactId>
-            <version>2.0.1</version>
-        </dependency>
-
+        <!-- BCrypt for password hashing -->
         <dependency>
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
@@ -97,6 +82,7 @@
             <version>1.6.2</version>
         </dependency>
 
+
         <!-- JavaBeans Activation Framework (if required) -->
         <dependency>
             <groupId>javax.activation</groupId>
@@ -104,7 +90,13 @@
             <version>1.2.0</version>
         </dependency>
 
-
+        <!-- JUnit for testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
