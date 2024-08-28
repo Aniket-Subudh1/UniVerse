@@ -9,6 +9,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="styles/login.css">
+
 </head>
 <body>
 
@@ -31,8 +32,8 @@
                 <i class='bx bx-show' id="togglePassword"></i>
             </div>
             <div class="input-box">
-                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
-                <i class='bx bxs-lock-alt'></i>
+                <input type="text" id="registrationId" name="registrationId" placeholder="Registration ID" required>
+                <i class='bx bx-id-card'></i>
             </div>
             <div class="input-box">
                 <input type="date" id="dob" name="dob" placeholder="Date of Birth" required>
@@ -51,8 +52,10 @@
             </div>
             <button type="submit" class="btn">Sign Up</button>
             <div id="message">
-                <% String message = (String) request.getAttribute("message"); %>
-                <% if (message != null) { %>
+                <%
+                    String message = (String) request.getAttribute("message");
+                    if (message != null) {
+                %>
                 <p><%= message %></p>
                 <% } %>
             </div>
@@ -73,7 +76,7 @@
                 <i class='bx bx-show' id="togglePasswordLogin"></i>
             </div>
             <div class="remember-forgot">
-                <label><input type="checkbox">Remember Me</label>
+                <label><input type="checkbox"> Remember Me</label>
                 <a href="forgot-password.jsp">Forgot Password</a>
             </div>
             <button type="submit" class="btn">Sign In</button>

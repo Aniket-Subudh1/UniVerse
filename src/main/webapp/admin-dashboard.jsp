@@ -18,20 +18,20 @@
             <li><a href="manage-courses.jsp">Courses</a></li>
             <li><a href="manage-grades.jsp">Grades</a></li>
 
-        <div class="profile-info">
-            <p class="profile-name"><%= session.getAttribute("name") %></p>
-            <p class="profile-role"><%= session.getAttribute("role") %></p>
-        </div>
-        <div class="dark-mode-toggle" id="dark-mode-toggle">
-            <span class="sun"><i class='bx bx-sun'></i></span>
-            <span class="moon"><i class='bx bx-moon'></i></span>
-        </div>
-        <!-- Logout with Icon -->
-        <li>
-            <a href="index.jsp" class="logout-link">
-                <i class='bx bx-exit'></i> Logout
-            </a>
-        </li>
+            <div class="profile-info">
+                <p class="profile-name"><%= session.getAttribute("name") %></p>
+                <p class="profile-role"><%= session.getAttribute("role") %></p>
+            </div>
+            <div class="dark-mode-toggle" id="dark-mode-toggle">
+                <span class="sun"><i class='bx bx-sun'></i></span>
+                <span class="moon"><i class='bx bx-moon'></i></span>
+            </div>
+            <!-- Logout with Icon -->
+            <li>
+                <a href="index.jsp" class="logout-link">
+                    <i class='bx bx-exit'></i> Logout
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -77,6 +77,13 @@
             <h3>Assign Subjects</h3>
             <p>Assign subjects to teachers.</p>
             <a href="assign-subjects.jsp">Assign Subjects</a>
+        </div>
+        <!-- New Card for Adding Teacher and Student Registration ID -->
+        <div class="card">
+            <i class='bx bx-id-card'></i>
+            <h3>Assign Registration IDs</h3>
+            <p>Add registration IDs for teachers and students, and assign courses to students.</p>
+            <a href="assign-registration.jsp">Assign Registration</a>
         </div>
     </div>
 </div>

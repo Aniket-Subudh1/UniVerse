@@ -2,11 +2,14 @@ package com.cms.servlet;
 
 import com.cms.dao.DBConnection;
 import org.mindrot.jbcrypt.BCrypt;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -27,6 +30,7 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String dob = request.getParameter("dob");
         String role = request.getParameter("role");
+        String registrationId = request.getParameter("registrationId");
         Part photoPart = request.getPart("photo");
 
         InputStream photoInputStream = null;
@@ -35,45 +39,66 @@ public class RegisterServlet extends HttpServlet {
         }
 
         try (Connection connection = DBConnection.getConnection()) {
-            String query;
+            System.out.println("Database connection established.");
+
+            String checkQuery;
+            String updateQuery;
+
             if ("student".equalsIgnoreCase(role)) {
-                query = "INSERT INTO students (name, email, password, dob, photo) VALUES (?, ?, ?, ?, ?)";
+                checkQuery = "SELECT * FROM students WHERE registrationId = ?";
+                updateQuery = "UPDATE students SET name = ?, email = ?, password = ?, dob = ?, photo = ? WHERE registrationId = ?";
             } else if ("teacher".equalsIgnoreCase(role)) {
-                query = "INSERT INTO teachers (name, email, password, dob, photo) VALUES (?, ?, ?, ?, ?)";
+                checkQuery = "SELECT * FROM teachers WHERE registrationId = ?";
+                updateQuery = "UPDATE teachers SET name = ?, email = ?, password = ?, dob = ?, photo = ? WHERE registrationId = ?";
             } else {
                 response.sendRedirect("index.jsp?error=Invalid role");
                 return;
             }
 
-            // Hash the password before storing it
-            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+            try (PreparedStatement checkPs = connection.prepareStatement(checkQuery)) {
+                checkPs.setString(1, registrationId);
+                ResultSet rs = checkPs.executeQuery();
 
-            try (PreparedStatement ps = connection.prepareStatement(query)) {
-                ps.setString(1, name);
-                ps.setString(2, email);
-                ps.setString(3, hashedPassword);
-                ps.setDate(4, java.sql.Date.valueOf(dob));
-                if (photoInputStream != null) {
-                    ps.setBlob(5, photoInputStream);
+                if (rs.next()) {
+                    System.out.println("Registration ID found, proceeding with update.");
+
+                    String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+                    try (PreparedStatement updatePs = connection.prepareStatement(updateQuery)) {
+                        updatePs.setString(1, name);
+                        updatePs.setString(2, email);
+                        updatePs.setString(3, hashedPassword);
+                        updatePs.setDate(4, java.sql.Date.valueOf(dob));
+                        if (photoInputStream != null) {
+                            updatePs.setBlob(5, photoInputStream);
+                        } else {
+                            updatePs.setNull(5, java.sql.Types.BLOB);
+                        }
+                        updatePs.setString(6, registrationId);
+
+                        int result = updatePs.executeUpdate();
+
+                        if (result > 0) {
+                            System.out.println("Update successful, registration complete.");
+                            HttpSession session = request.getSession();
+                            session.setAttribute("name", name);
+                            session.setAttribute("email", email);
+                            session.setAttribute("role", role);
+                            response.setStatus(HttpServletResponse.SC_OK);
+                            response.getWriter().write("success");
+                        } else {
+                            System.out.println("Update failed, registration failed.");
+                            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                            response.getWriter().write("failure");
+                        }
+                    }
                 } else {
-                    ps.setNull(5, java.sql.Types.BLOB);
-                }
-
-                int result = ps.executeUpdate();
-
-                HttpSession session = request.getSession();
-                if (result > 0) {
-                    session.setAttribute("name", name);
-                    session.setAttribute("email", email);
-                    session.setAttribute("role", role);
-                    response.setStatus(HttpServletResponse.SC_OK);
-                    response.getWriter().write("success");
-                } else {
-                    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                    response.getWriter().write("failure");
+                    System.out.println("Registration ID not found.");
+                    response.sendRedirect("index.jsp?error=Invalid registration ID");
                 }
             }
         } catch (SQLException e) {
+            System.err.println("SQL Exception: " + e.getMessage());
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("failure");
