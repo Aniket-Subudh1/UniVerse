@@ -100,20 +100,19 @@
             <h2>Profile Information</h2>
             <img src="<%= photoData %>" alt="Profile Picture" class="profile-pic-modal">
             <p><strong>Name:</strong> <%= session.getAttribute("name") %></p>
+            <p><strong>Email:</strong> <%= session.getAttribute("email") %></p>
             <p><strong>Role:</strong> <%= session.getAttribute("role") %></p>
-            <p><strong>Enrolled Courses:</strong></p>
-            <ul>
+            <p><strong>Student ID:</strong> <%= session.getAttribute("registrationId") %></p>
+            <p><strong>Enrolled Courses:</strong><br>
                 <%
-                    List<String> courses = (List<String>) session.getAttribute("enrolledCourses");
-                    if (courses != null) {
-                        for (String course : courses) {
-                            out.println("<li>" + course + "</li>");
-                        }
+                    String enrolledCourse = (String) session.getAttribute("enrolledCourse");
+                    if (enrolledCourse != null && !enrolledCourse.isEmpty()) {
+                        out.println(enrolledCourse);
                     } else {
-                        out.println("<li>No courses enrolled yet.</li>");
+                        out.println("No courses enrolled yet.");
                     }
                 %>
-            </ul>
+            </p>
             <a href="edit-profile.jsp" class="edit-profile-btn">Edit Profile</a>
         </div>
     </div>

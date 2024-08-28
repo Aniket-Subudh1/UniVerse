@@ -33,46 +33,74 @@ public class EditProfileServlet extends HttpServlet {
         String dob = request.getParameter("dob");
         Part photoPart = request.getPart("photo");
 
-        // Validate input
-        if (name == null || name.isEmpty() || dob == null || dob.isEmpty()) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("Invalid input");
-            return;
-        }
-
         InputStream photoInputStream = null;
         if (photoPart != null && photoPart.getSize() > 0) {
             photoInputStream = photoPart.getInputStream();
         }
 
+        // Start building the query based on provided fields
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("UPDATE ");
+        if ("teacher".equalsIgnoreCase(role)) {
+            queryBuilder.append("teachers");
+        } else if ("student".equalsIgnoreCase(role)) {
+            queryBuilder.append("students");
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("Invalid role");
+            return;
+        }
+        queryBuilder.append(" SET ");
+
+        boolean firstField = true;
+
+        if (name != null && !name.isEmpty()) {
+            queryBuilder.append("name = ?");
+            firstField = false;
+        }
+
+        if (dob != null && !dob.isEmpty()) {
+            if (!firstField) queryBuilder.append(", ");
+            queryBuilder.append("dob = ?");
+            firstField = false;
+        }
+
+        if (photoInputStream != null) {
+            if (!firstField) queryBuilder.append(", ");
+            queryBuilder.append("photo = ?");
+        }
+
+        queryBuilder.append(" WHERE email = ?");
+
+        // Prepare the statement
         try (Connection connection = DBConnection.getConnection()) {
-            String query;
-            if ("teacher".equalsIgnoreCase(role)) {
-                query = "UPDATE teachers SET name = ?, dob = ?, photo = ? WHERE email = ?";
-            } else if ("student".equalsIgnoreCase(role)) {
-                query = "UPDATE students SET name = ?, dob = ?, photo = ? WHERE email = ?";
-            } else {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                response.getWriter().write("Invalid role");
-                return;
+            PreparedStatement ps = connection.prepareStatement(queryBuilder.toString());
+            int parameterIndex = 1;
+
+            if (name != null && !name.isEmpty()) {
+                ps.setString(parameterIndex++, name);
             }
 
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, name);
-            ps.setDate(2, java.sql.Date.valueOf(dob));
-            if (photoInputStream != null) {
-                ps.setBlob(3, photoInputStream);
-            } else {
-                ps.setNull(3, java.sql.Types.BLOB);
+            if (dob != null && !dob.isEmpty()) {
+                ps.setDate(parameterIndex++, java.sql.Date.valueOf(dob));
             }
-            ps.setString(4, email);
+
+            if (photoInputStream != null) {
+                ps.setBlob(parameterIndex++, photoInputStream);
+            }
+
+            ps.setString(parameterIndex, email);  // Last parameter is always the email
 
             int result = ps.executeUpdate();
             System.out.println("SQL Update Result: " + result);
 
             if (result > 0) {
-                session.setAttribute("name", name);
-                session.setAttribute("dob", dob);
+                if (name != null && !name.isEmpty()) {
+                    session.setAttribute("name", name);
+                }
+                if (dob != null && !dob.isEmpty()) {
+                    session.setAttribute("dob", dob);
+                }
                 response.setStatus(HttpServletResponse.SC_OK);
                 response.getWriter().write("success");
             } else {

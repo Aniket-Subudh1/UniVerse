@@ -32,8 +32,8 @@
             <li>
                 <div class="profile-info">
                     <div>
-                        <p class="profile-name"><%= session.getAttribute("name") %></p>
-                        <p class="profile-role"><%= session.getAttribute("role") %></p>
+                        <p class="profile-name"><%= session.getAttribute("name") != null ? session.getAttribute("name") : "N/A" %></p>
+                        <p class="profile-role"><%= session.getAttribute("role") != null ? session.getAttribute("role") : "N/A" %></p>
                     </div>
                     <%
                         byte[] photo = (byte[]) session.getAttribute("photo");
@@ -105,7 +105,7 @@
             <h2>Profile Information</h2>
             <img src="<%= photoData %>" alt="Profile" class="profile-pic-modal">
             <p><strong>Name:</strong> <%= session.getAttribute("name") != null ? session.getAttribute("name") : "N/A" %></p>
-            <p><strong>ID:</strong> <%= session.getAttribute("id") != null ? session.getAttribute("id") : "N/A" %></p>
+            <p><strong>ID:</strong> <%= session.getAttribute("registrationId") != null ? session.getAttribute("registrationId") : "N/A" %></p>
             <p><strong>Email:</strong> <%= session.getAttribute("email") != null ? session.getAttribute("email") : "N/A" %></p>
             <a href="edit-profile.jsp" class="edit-profile-btn">Edit Profile</a>
         </div>

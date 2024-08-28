@@ -2,10 +2,12 @@ package com.cms.servlet;
 
 import com.cms.dao.DBConnection;
 import org.mindrot.jbcrypt.BCrypt;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,74 +20,82 @@ public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String email = request.getParameter("email").trim();
+        String password = request.getParameter("password").trim();
 
         try (Connection connection = DBConnection.getConnection()) {
-            String query;
             String role = null;
-            PreparedStatement ps = null;
-            ResultSet rs = null;
+            String name = null;
+            String registrationId = null;  // Change to String
+            String enrolledCourse = null;
+            byte[] photo = null;
 
-            try {
-                // Check if the user is an admin
-                query = "SELECT * FROM admins WHERE email = ? AND password = ?";
-                ps = connection.prepareStatement(query);
+            // Check Admin
+            String query = "SELECT * FROM admins WHERE email = ? AND password = ?";
+            try (PreparedStatement ps = connection.prepareStatement(query)) {
                 ps.setString(1, email);
-                ps.setString(2, password); // Admin passwords are stored in plain text
-                rs = ps.executeQuery();
+                ps.setString(2, password);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        role = "admin";
+                        name = rs.getString("name");
+                    }
+                }
+            }
 
-                if (rs.next()) {
-                    role = "admin";
-                } else {
-                    // Check if the user is a student
-                    query = "SELECT * FROM students WHERE email = ?";
-                    ps = connection.prepareStatement(query);
+            // Check Student
+            if (role == null) {
+                query = "SELECT * FROM students WHERE email = ?";
+                try (PreparedStatement ps = connection.prepareStatement(query)) {
                     ps.setString(1, email);
-                    rs = ps.executeQuery();
-
-                    if (rs.next() && BCrypt.checkpw(password, rs.getString("password"))) {
-                        role = "student";
-                    } else {
-                        // Check if the user is a teacher
-                        query = "SELECT * FROM teachers WHERE email = ?";
-                        ps = connection.prepareStatement(query);
-                        ps.setString(1, email);
-                        rs = ps.executeQuery();
-
+                    try (ResultSet rs = ps.executeQuery()) {
                         if (rs.next() && BCrypt.checkpw(password, rs.getString("password"))) {
-                            role = "teacher";
+                            role = "student";
+                            name = rs.getString("name");
+                            registrationId = rs.getString("registrationId");  // Fetch as String
+                            enrolledCourse = rs.getString("enrolledCourse");
+                            photo = rs.getBytes("photo");
                         }
                     }
                 }
+            }
 
-                if (role != null) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("name", rs.getString("name"));
-                    session.setAttribute("email", email);
-                    session.setAttribute("role", role);
-
-                    // Only retrieve and store the photo if the user is a student or teacher
-                    if (!"admin".equalsIgnoreCase(role)) {
-                        byte[] photo = rs.getBytes("photo");
-                        session.setAttribute("photo", photo);
+            // Check Teacher
+            if (role == null) {
+                query = "SELECT * FROM teachers WHERE email = ?";
+                try (PreparedStatement ps = connection.prepareStatement(query)) {
+                    ps.setString(1, email);
+                    try (ResultSet rs = ps.executeQuery()) {
+                        if (rs.next() && BCrypt.checkpw(password, rs.getString("password"))) {
+                            role = "teacher";
+                            name = rs.getString("name");
+                            registrationId = rs.getString("registrationId");  // Fetch as String
+                            photo = rs.getBytes("photo");
+                        }
                     }
-
-                    // Redirect based on role
-                    if ("student".equalsIgnoreCase(role)) {
-                        response.sendRedirect("student-dashboard.jsp");
-                    } else if ("teacher".equalsIgnoreCase(role)) {
-                        response.sendRedirect("teacher-dashboard.jsp");
-                    } else if ("admin".equalsIgnoreCase(role)) {
-                        response.sendRedirect("admin-dashboard.jsp");
-                    }
-                } else {
-                    response.sendRedirect("index.jsp?error=Invalid email or password");
                 }
-            } finally {
-                // Close ResultSet and PreparedStatement
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
+            }
+
+            if (role != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("name", name);
+                session.setAttribute("email", email);
+                session.setAttribute("role", role);
+
+                if ("student".equalsIgnoreCase(role)) {
+                    session.setAttribute("registrationId", registrationId);
+                    session.setAttribute("enrolledCourse", enrolledCourse);
+                    session.setAttribute("photo", photo);
+                    response.sendRedirect("student-dashboard.jsp");
+                } else if ("teacher".equalsIgnoreCase(role)) {
+                    session.setAttribute("registrationId", registrationId);
+                    session.setAttribute("photo", photo);
+                    response.sendRedirect("teacher-dashboard.jsp");
+                } else if ("admin".equalsIgnoreCase(role)) {
+                    response.sendRedirect("admin-dashboard.jsp");
+                }
+            } else {
+                response.sendRedirect("index.jsp?error=Invalid email or password");
             }
         } catch (Exception e) {
             e.printStackTrace();
