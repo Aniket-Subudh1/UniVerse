@@ -1,0 +1,250 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background-color: #f0f4f8; /* Light grey-blue background */
+    color: #333; /* Dark grey text color */
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #181a1e !important; /* Dark background */
+    color: #f1f1f1 !important; /* Light text */
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    background-color: #2c3e50; /* Deep blue-grey color */
+    padding: 15px 20px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ecf0f1; /* Light grey text */
+    transition: background-color 0.3s ease;
+}
+
+.navbar.dark-mode {
+    background-color: #202328; /* Darker background in dark mode */
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ecf0f1; /* Light grey text */
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li {
+    position: relative;
+}
+
+.navbar .nav-links li a {
+    color: #ecf0f1; /* Light grey text */
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: block;
+}
+
+.navbar .nav-links li a:hover {
+    background-color: #34495e; /* Darker blue-grey on hover */
+}
+
+/* Profile Info */
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ecf0f1; /* Light grey text */
+}
+
+.profile-info .profile-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.profile-info .profile-role {
+    font-size: 12px;
+    color: #bdc3c7; /* Lighter grey for role */
+}
+
+.profile-info.dark-mode .profile-name,
+.profile-info.dark-mode .profile-role {
+    color: #f1f1f1; /* Light text in dark mode */
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    background-color: #e0e4eb; /* Light background */
+    border-radius: 20px;
+    padding: 4px 8px;
+    cursor: pointer;
+    gap: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-toggle.dark-mode {
+    background-color: #333; /* Dark background for toggle in dark mode */
+}
+
+.dark-mode-toggle span {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.dark-mode-toggle span.sun i {
+    color: #ffd700; /* Gold for sun icon */
+}
+
+.dark-mode-toggle span.moon i {
+    color: #4b4b4b; /* Dark grey for moon icon */
+}
+
+.dark-mode-toggle.dark-mode span.sun i {
+    color: #f1f1f1; /* Light sun icon in dark mode */
+}
+
+.dark-mode-toggle.dark-mode span.moon i {
+    color: #ffd700; /* Gold moon icon in dark mode */
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 20px 40px; /* Adjusted padding for fixed navbar */
+}
+
+/* Dashboard Sections */
+.dashboard-sections {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background-color: #ffffff; /* White background for cards */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.card.dark-mode {
+    background-color: #202328; /* Dark background in dark mode */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow in dark mode */
+    border: 2px solid #444; /* Slight border in dark mode */
+}
+
+.card i {
+    font-size: 50px;
+    color: #2980b9; /* Bright blue icon color */
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #2c3e50; /* Deep blue-grey for card titles */
+}
+
+.card p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555; /* Medium grey for card text */
+}
+
+.card a,
+.card .btn {
+    text-decoration: none;
+    background-color: #2980b9; /* Bright blue button */
+    color: #ffffff; /* White text */
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+}
+
+.card a:hover,
+.card .btn:hover {
+    background-color: #1a5276; /* Darker blue on hover */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+    border: 2px solid #fff; /* White border on hover */
+}
+
+.card.dark-mode:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Stronger shadow in dark mode on hover */
+    border: 2px solid #555; /* Slightly brighter border on hover in dark mode */
+}
+
+.card.dark-mode i,
+.card.dark-mode h3,
+.card.dark-mode p {
+    color: #f1f1f1; /* Light text in dark mode */
+}
+
+/* File Upload Input */
+input[type="file"] {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f0f4f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+input[type="file"].dark-mode {
+    background-color: #333;
+    color: #f1f1f1;
+    border: 1px solid #555;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .dashboard-sections {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-sections {
+        grid-template-columns: 1fr;
+    }
+}
