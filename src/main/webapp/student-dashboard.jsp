@@ -62,6 +62,13 @@
             <a href="#">View Courses</a>
         </div>
         <div class="card">
+            <i class='bx bx-comment-dots'></i>
+            <h3>Course Registration</h3>
+            <p>Register Your course.</p>
+            <a href="course_registration.jsp">Register Course</a>
+        </div>
+
+        <div class="card">
             <i class='bx bx-award'></i>
             <h3>My Grades</h3>
             <p>Check your grades for all courses.</p>
@@ -91,6 +98,7 @@
             <p>Give feedback on your courses.</p>
             <a href="feedback.jsp">Provide Feedback</a>
         </div>
+
     </div>
 
     <!-- Profile Modal -->
