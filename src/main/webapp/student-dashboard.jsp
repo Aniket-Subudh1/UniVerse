@@ -59,7 +59,7 @@
             <i class='bx bx-book-open'></i>
             <h3>My Courses</h3>
             <p>View and manage your enrolled courses.</p>
-            <a href="#">View Courses</a>
+            <a href="<%= request.getContextPath() %>/courseList">View Courses</a>
         </div>
         <div class="card">
             <i class='bx bx-comment-dots'></i>
