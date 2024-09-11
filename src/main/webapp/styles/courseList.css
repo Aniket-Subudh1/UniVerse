@@ -1,0 +1,119 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Style */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Header */
+h2 {
+    color: #444;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-toggle span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.dark-mode-toggle .sun {
+    color: #f39c12;
+}
+
+.dark-mode-toggle .moon {
+    color: #2c3e50;
+}
+
+/* Table Style */
+table {
+    width: 100%;
+    max-width: 600px;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+}
+
+th {
+    background-color: #eaeaea;
+    color: #333;
+    font-weight: bold;
+}
+
+td {
+    background-color: #fff;
+    color: #555;
+}
+
+tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+tr:hover td {
+    background-color: #f0f0f0;
+}
+
+/* Back to Dashboard Link */
+a {
+    text-decoration: none;
+    color: #3498db;
+    background-color: #ecf0f1;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    table, th, td {
+        font-size: 14px;
+    }
+
+    .dark-mode-toggle {
+        padding: 10px;
+        border-radius: 10px;
+    }
+}
