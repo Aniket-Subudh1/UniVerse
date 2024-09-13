@@ -73,5 +73,26 @@
         </tbody>
     </table>
 </div>
+<div class="container">
+    <h1>Faculty Assign</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Advance Java</th>
+            <th>Spring Boot</th>
+            <th>Android</th>
+            <th>Angular</th>
+            <th>Job Readiness</th>
+        </tr>
+        <tr>
+        <td>Dr.Rakesh Ray</td>
+        <td>Mr.Bishnupada kamila</td>
+        <td>Dr.Rashmiranjan Nayak</td>
+        <td>Dr.Rakesh Ray</td>
+            <td>Dr.Tapan Kumar Padhi</td>
+        </tr>
+        </thead>
+    </table>
+    </div>
 </body>
 </html>
