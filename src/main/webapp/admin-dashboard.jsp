@@ -76,7 +76,7 @@
             <i class='bx bx-user-pin'></i>
             <h3>Assign Subjects</h3>
             <p>Assign subjects to teachers.</p>
-            <a href="assign-subjects.jsp">Assign Subjects</a>
+            <a href="AssignSubjects.jsp">Assign Subjects</a>
         </div>
         <!-- New Card for Adding Teacher and Student Registration ID -->
         <div class="card">
