@@ -95,11 +95,11 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("admin-dashboard.jsp");
                 }
             } else {
-                response.sendRedirect("index.jsp?error=Invalid email or password");
+                response.sendRedirect("home.jsp?error=Invalid email or password");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("index.jsp?error=Database error");
+            response.sendRedirect("home.jsp?error=Database error");
         }
     }
 

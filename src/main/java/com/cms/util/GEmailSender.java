@@ -17,9 +17,8 @@ public class GEmailSender {
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.host", "smtp.gmail.com");
 
-        // Directly set the email credentials (for testing purposes)
-        String username = "aniketsubudhi00";  // Replace with your email address
-        String password = "trvnixplhgasnbne";    // Replace with your app-specific password
+        String username = "aniketsubudhi00";
+        String password = "trvnixplhgasnbne";
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override

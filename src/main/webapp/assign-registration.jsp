@@ -26,7 +26,7 @@
         </div>
 
         <li>
-            <a href="index.jsp" class="logout-link">
+            <a href="home.jsp" class="logout-link">
                 <i class='bx bx-exit'></i> Logout
             </a>
         </li>

@@ -57,5 +57,5 @@ registrationForm.addEventListener('submit', function(event) {
 closeModalBtn.addEventListener('click', function() {
     successModal.style.display = 'none';
     registrationForm.reset(); // Reset the form fields
-    window.location.href = 'index.jsp'; // Redirect to the index page
+    window.location.href = 'home.jsp'; // Redirect to the index page
 });

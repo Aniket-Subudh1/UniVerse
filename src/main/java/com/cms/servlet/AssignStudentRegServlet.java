@@ -21,7 +21,7 @@ public class AssignStudentRegServlet extends HttpServlet {
         String enrolledCourse = request.getParameter("enrolledCourse");
 
         try (Connection connection = DBConnection.getConnection()) {
-            // Insert student name, registration ID, and enrolled course. Set placeholders for email and password.
+
             String query = "INSERT INTO students (name, registrationId, enrolledCourse, email, password) " +
                     "VALUES (?, ?, ?, 'default@universe.com', 'defaultPassword') " +
                     "ON DUPLICATE KEY UPDATE registrationId=?, enrolledCourse=?";
@@ -30,8 +30,8 @@ public class AssignStudentRegServlet extends HttpServlet {
                 ps.setString(1, studentName);
                 ps.setString(2, studentRegId);
                 ps.setString(3, enrolledCourse);
-                ps.setString(4, studentRegId); // Placeholder for registration ID in case of duplicate
-                ps.setString(5, enrolledCourse); // Placeholder for enrolled course in case of duplicate
+                ps.setString(4, studentRegId);
+                ps.setString(5, enrolledCourse);
 
                 int result = ps.executeUpdate();
                 if (result > 0) {

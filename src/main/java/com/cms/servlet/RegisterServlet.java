@@ -51,7 +51,7 @@ public class RegisterServlet extends HttpServlet {
                 checkQuery = "SELECT * FROM teachers WHERE registrationId = ?";
                 updateQuery = "UPDATE teachers SET name = ?, email = ?, password = ?, dob = ?, photo = ? WHERE registrationId = ?";
             } else {
-                response.sendRedirect("index.jsp?error=Invalid role");
+                response.sendRedirect("home.jsp?error=Invalid role");
                 return;
             }
 
@@ -94,7 +94,7 @@ public class RegisterServlet extends HttpServlet {
                     }
                 } else {
                     System.out.println("Registration ID not found.");
-                    response.sendRedirect("index.jsp?error=Invalid registration ID");
+                    response.sendRedirect("home.jsp?error=Invalid registration ID");
                 }
             }
         } catch (SQLException e) {

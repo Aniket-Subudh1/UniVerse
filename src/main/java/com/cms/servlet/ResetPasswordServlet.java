@@ -44,7 +44,7 @@ public class ResetPasswordServlet extends HttpServlet {
                 updatePs.executeUpdate();
 
                 System.out.println("Password updated successfully for student.");
-                response.sendRedirect("index.jsp?success=Password reset successful");
+                response.sendRedirect("home.jsp?success=Password reset successful");
             } else {
                 // If not found in students, check the teachers table
                 query = "SELECT email FROM teachers WHERE LOWER(email) = LOWER(?)";
@@ -66,7 +66,7 @@ public class ResetPasswordServlet extends HttpServlet {
                     updatePs.executeUpdate();
 
                     System.out.println("Password updated successfully for teacher.");
-                    response.sendRedirect("index.jsp?success=Password reset successful");
+                    response.sendRedirect("home.jsp?success=Password reset successful");
                 }
             }
 
