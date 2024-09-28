@@ -1,0 +1,62 @@
+
+ body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background-color: #eaeaea;
+     margin: 0;
+     padding: 0;
+ }
+.container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    border-left: 6px solid #2c3e50;
+}
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+label {
+    font-size: 15px;
+    margin-bottom: 10px;
+    display: block;
+    color: #34495e;
+}
+textarea, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #2c3e50;
+    background-color: #ecf0f1;
+    outline: none;
+    transition: all 0.3s ease;
+}
+textarea:focus, select:focus {
+    border-color: #3498db;
+    background-color: #fff;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #2980b9;
+}
+
+
+
