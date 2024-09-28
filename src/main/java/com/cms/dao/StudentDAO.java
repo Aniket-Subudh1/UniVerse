@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StudentDAO {
+public class  StudentDAO {
 
     public boolean registerStudent(Student student) {
         String query = "INSERT INTO students (name, email, password, dob, photo) VALUES (?, ?, ?, ?, ?)";
