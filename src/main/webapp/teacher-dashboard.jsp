@@ -94,7 +94,7 @@
             <i class='bx bx-book-content'></i>
             <h3>Assigned Subjects</h3>
             <p>View the subjects assigned to you.</p>
-            <a href="assigned-subjects.jsp">View Assigned Subjects</a>
+            <a href="ViewAssignSub.jsp">View Assigned Subjects</a>
         </div>
     </div>
 
