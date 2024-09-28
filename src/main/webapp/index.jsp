@@ -16,7 +16,7 @@
         <img  class="img" src="styles/img/assets/2.jpeg" alt="#">
         <img  class="img" src="styles/img/assets/3.jpeg" alt="#">
         <img  class="img" src="styles/img/assets/4.jpeg" alt="#">
-        <img  class="img" src="styles/img/assets/5.jpg" alt="#">
+        <img  class="img" src="styles/img/assets/1.png" alt="#">
     </div>
     <div id="top">
         <div id="working">
