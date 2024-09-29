@@ -78,7 +78,7 @@
             <i class='bx bx-calendar-check'></i>
             <h3>My Attendance</h3>
             <p>Track your attendance record.</p>
-            <a href="#">View Attendance</a>
+            <a href="ViewAttendance.jsp">View Attendance</a>
         </div>
         <div class="card">
             <i class='bx bx-wallet'></i>

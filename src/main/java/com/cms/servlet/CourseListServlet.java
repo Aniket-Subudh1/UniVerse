@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -44,6 +46,7 @@ public class CourseListServlet extends HttpServlet {
 
         // Set the course list in the request attribute and forward to JSP
         request.setAttribute("courseList", courseList);
-        request.getRequestDispatcher("course-list.jsp").forward(request, response);
+         RequestDispatcher rd = request.getRequestDispatcher("course-list.jsp");
+        rd.forward(request, response);
     }
 }
