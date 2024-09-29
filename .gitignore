@@ -37,8 +37,7 @@ build/
 ### Mac OS ###
 .DS_Store
 
-# Environment file in resources
-src/main/resources/.env
+# Ignore all .env files globally
+*.env
 
-# To include .env in root
-!.env
+
