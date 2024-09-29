@@ -94,10 +94,10 @@
             <div class="toggle-panel toggle-right">
                 <h1>Hello!</h1>
                 <p>Register with your personal details to use all site features</p>
-                <button class="hidden" id="register">Sign Up</button>
-            </div>
-        </div>
-    </div>
+<button class="hidden" id="register">Sign Up</button>
+</div>
+</div>
+</div>
 </div>
 
 <!-- Modal for Registration Success -->
