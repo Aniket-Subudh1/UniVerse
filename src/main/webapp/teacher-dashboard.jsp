@@ -73,7 +73,7 @@
             <i class='bx bx-calendar'></i>
             <h3>Attendance</h3>
             <p>Track and update attendance records for your classes.</p>
-            <a href="updateAttendance.jsp">Track Attendance</a>
+            <a href="updateAttendance.jsp">Update Attendance</a>
         </div>
         <!-- New Timetable Card -->
         <div class="card">

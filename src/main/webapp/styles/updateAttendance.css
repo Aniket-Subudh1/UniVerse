@@ -1,72 +1,202 @@
-/* General Reset and Body Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* General Styles */
+* {
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 h2 {
     text-align: center;
+    margin-top: 30px;
+    font-size: 2rem;
     color: #333;
 }
 
 /* Form Container */
 form {
-    background-color: #fff;
+    max-width: 600px;
+    margin: 50px auto;
     padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
 }
 
-/* Form Labels */
-label {
-    font-weight: bold;
+form label {
     display: block;
-    margin-bottom: 5px;
-    color: #555;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
 }
 
-/* Form Inputs */
-input[type="text"],
-input[type="date"],
-select {
+form input[type="text"],
+form input[type="date"],
+form input[type="submit"] {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 14px;
-    background-color: #fafafa;
+    font-size: 1rem;
+    transition: border 0.3s ease;
 }
 
-/* Submit Button */
-input[type="submit"] {
-    background-color: #5cb85c;
-    color: white;
-    padding: 10px 15px;
+form input[type="text"]:focus,
+form input[type="date"]:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Submit Button Styling */
+form input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
-    width: 100%;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-input[type="submit"]:hover {
-    background-color: #4cae4c;
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
-/* Message Styling */
-p {
+/* Responsive Design */
+@media (max-width: 768px) {
+    form {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    form input[type="submit"] {
+        font-size: 1rem;
+    }
+}
+
+/* Styling Form Fields */
+form input[type="text"]:invalid {
+    border-color: #dc3545;
+}
+
+form input[type="text"]:valid {
+    border-color: #28a745;
+}
+
+form input[type="submit"]:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Error Message Styling */
+.error {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    display: none;
+}
+
+/* Success Message */
+.success {
+    color: #28a745;
+    font-size: 1rem;
     text-align: center;
-    font-size: 14px;
-    color: #333;
-    margin-top: 15px;
+    margin-top: 20px;
+}
+
+/* Adding a Custom Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Styling the Header */
+header {
+    text-align: center;
+    background-color: #007BFF;
+    padding: 15px 0;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+/* Adding Animations */
+form input[type="submit"]:hover {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Form Container Shadow on Hover */
+form:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Adjusting Form Layout for Larger Screens */
+@media (min-width: 992px) {
+    form {
+        max-width: 700px;
+        padding: 30px;
+    }
+
+    form input[type="submit"] {
+        padding: 15px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #f4f4f9;
+    }
+
+    form {
+        background-color: #1f1f1f;
+        border: 1px solid #333;
+    }
+
+    form input[type="text"],
+    form input[type="date"] {
+        background-color: #333;
+        color: #f4f4f9;
+    }
+
+    form input[type="text"]:focus,
+    form input[type="date"]:focus {
+        border-color: #007BFF;
+    }
+
+    form input[type="submit"] {
+        background-color: #007BFF;
+    }
+
+    form input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
 }
