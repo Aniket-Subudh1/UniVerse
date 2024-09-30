@@ -68,7 +68,7 @@
             <i class='bx bx-list-check'></i>
             <h3>Student Grades</h3>
             <p>View and manage grades for students enrolled in your courses.</p>
-            <a href="student-grades.jsp">View Grades</a>
+            <a href="ViewGrades.jsp">View Grades</a>
         </div>
         <div class="card">
             <i class='bx bx-calendar'></i>
