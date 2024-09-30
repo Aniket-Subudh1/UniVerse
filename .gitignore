@@ -39,5 +39,5 @@ build/
 
 # Ignore all .env files globally
 *.env
-
+src/main/resources/.env
 
