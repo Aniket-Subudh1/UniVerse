@@ -1,10 +1,9 @@
-
- body {
-     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-     background-color: #eaeaea;
-     margin: 0;
-     padding: 0;
- }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eaeaea;
+    margin: 0;
+    padding: 0;
+}
 .container {
     max-width: 600px;
     margin: 60px auto;
@@ -57,6 +56,3 @@ button {
 button:hover {
     background-color: #2980b9;
 }
-
-
-

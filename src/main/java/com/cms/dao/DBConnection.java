@@ -3,7 +3,6 @@ package com.cms.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import io.github.cdimascio.dotenv.Dotenv;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,12 +10,9 @@ public class DBConnection {
 
     private static final Logger logger = LogManager.getLogger(DBConnection.class);
 
-
-    private static final Dotenv dotenv = Dotenv.load();
-
-    private static final String URL = dotenv.get("DB_URL");
-    private static final String USER = dotenv.get("DB_USER");
-    private static final String PASSWORD = dotenv.get("DB_PASSWORD");
+    private static final String URL = "jdbc:mysql://localhost:3306/universe";
+    private static final String USER = "root";
+    private static final String PASSWORD = "0000";
 
     public static Connection getConnection() throws SQLException {
         Connection connection = null;
@@ -28,7 +24,7 @@ public class DBConnection {
             throw new SQLException("Unable to load JDBC Driver", e);
         } catch (SQLException e) {
             logger.error("Failed to create a connection to the database", e);
-            throw e;
+            throw e;  // Re-throw the SQLException for the caller to handle
         }
         return connection;
     }
