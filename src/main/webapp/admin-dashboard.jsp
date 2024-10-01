@@ -70,7 +70,7 @@
             <i class='bx bx-comment-dots'></i>
             <h3>View Feedback</h3>
             <p>Review feedback provided by students.</p>
-            <a href="admin-feedback.jsp">View Feedback</a>
+            <a href="Viewfeedback.jsp">View Feedback</a>
         </div>
         <div class="card">
             <i class='bx bx-user-pin'></i>
