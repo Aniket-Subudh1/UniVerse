@@ -88,7 +88,7 @@
             <i class='bx bx-note'></i>
             <h3>Notes</h3>
             <p>Access and upload teaching notes and materials.</p>
-            <a href="notes.jsp">Manage Notes</a>
+            <a href="uploadnotes.jsp">Manage Notes</a>
         </div>
         <!-- New Assigned Subjects Card -->
         <div class="card">
