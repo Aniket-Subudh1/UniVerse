@@ -72,7 +72,7 @@
             <i class='bx bx-award'></i>
             <h3>My Grades</h3>
             <p>Check your grades for all courses.</p>
-            <a href="#">View Grades</a>
+            <a href="ViewGradesStudent.jsp">View Grades</a>
         </div>
         <div class="card">
             <i class='bx bx-calendar-check'></i>
