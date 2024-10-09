@@ -64,7 +64,7 @@
             <i class='bx bx-award'></i>
             <h3>Manage Grades</h3>
             <p>View and manage student grades.</p>
-            <a href="manage-grades.jsp">Manage Grades</a>
+            <a href="ManageGrade.jsp">Manage Grades</a>
         </div>
         <div class="card">
             <i class='bx bx-comment-dots'></i>
