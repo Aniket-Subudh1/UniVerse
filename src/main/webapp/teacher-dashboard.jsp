@@ -61,8 +61,9 @@
         <div class="card">
             <i class='bx bx-chalkboard'></i>
             <h3>Manage Courses</h3>
+
             <p>Create, update, and delete courses you are teaching.</p>
-            <a href="manage-courses.jsp">Manage Courses</a>
+            <a href="Manage-Course.jsp">Manage Courses</a>
         </div>
         <div class="card">
             <i class='bx bx-list-check'></i>
