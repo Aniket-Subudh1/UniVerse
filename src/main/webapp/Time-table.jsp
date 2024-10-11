@@ -14,11 +14,11 @@
         <thead>
         <tr>
             <th>Day/Time</th>
-            <th>9:00 - 10:00 AM</th>
-            <th>10:00 - 11:00 AM</th>
-            <th>11:00 - 12:00 PM</th>
-            <th>1:00 - 2:00 PM</th>
-            <th>2:00 - 3:00 PM</th>
+            <th>09:30 - 11:30 AM</th>
+            <th>11:30 - 12:30 AM</th>
+            <th>01:30 - 02:30 PM</th>
+            <th>02:30 - 04:30 PM</th>
+            <th>04:30 - 05:30 PM</th>
         </tr>
         </thead>
         <tbody>

@@ -81,7 +81,7 @@
             <i class='bx bx-calendar-event'></i>
             <h3>Timetable</h3>
             <p>View and manage your teaching timetable.</p>
-            <a href="timetable.jsp">View Timetable</a>
+            <a href="Time-table.jsp">View Timetable</a>
         </div>
         <!-- New Notes Card -->
         <div class="card">
