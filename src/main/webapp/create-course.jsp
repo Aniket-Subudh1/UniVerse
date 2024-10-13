@@ -32,7 +32,7 @@
     <!-- Create Course Card -->
     <div class="card">
       <h3>Create a New Course</h3>
-      <form action="createCourse" method="post">
+      <form id="createCourseForm">
         <label for="courseId">Course ID:</label>
         <input type="text" id="courseId" name="courseId" required><br>
 
@@ -76,7 +76,7 @@
   <div id="editModal" class="modal">
     <div class="modal-content">
       <h2>Edit Course</h2>
-      <form action="createCourse" method="post">
+      <form id="editCourseForm">
         <input type="hidden" id="editCourseId" name="courseId">
         <label for="editCourseName">Course Name:</label>
         <input type="text" id="editCourseName" name="courseName" required><br>
@@ -87,6 +87,25 @@
       </form>
     </div>
   </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <h2>Success</h2>
+      <p id="modalMessage">Your course has been successfully created.</p> <!-- Correct ID placement -->
+      <button class="btn" id="closeModalButton">OK</button>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div id="errorModal" class="modal">
+    <div class="modal-content">
+      <h2>Error</h2>
+      <p id="errorMessage">An error occurred. Please try again.</p> <!-- Added error message -->
+      <button class="btn" id="closeErrorButton">OK</button>
+    </div>
+  </div>
+
 </div>
 
 <script src="script/dark-mode.js"></script>

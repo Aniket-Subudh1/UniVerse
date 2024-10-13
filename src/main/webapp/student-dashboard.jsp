@@ -65,7 +65,7 @@
             <i class='bx bx-comment-dots'></i>
             <h3>Course Registration</h3>
             <p>Register Your course.</p>
-            <a href="course_registration.jsp">Register Course</a>
+            <a href="register-course.jsp">Register Course</a>
         </div>
 
         <div class="card">

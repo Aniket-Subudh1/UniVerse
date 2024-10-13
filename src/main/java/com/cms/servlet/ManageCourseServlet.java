@@ -1,6 +1,13 @@
 package com.cms.servlet;
 
 import com.cms.dao.DBConnection;
+import com.google.gson.Gson;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,17 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.Gson;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 @WebServlet("/createCourse")
 public class ManageCourseServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    // Inner class to represent the Course entity
     public class Course {
         private String courseId;
         private String courseName;
@@ -45,12 +46,13 @@ public class ManageCourseServlet extends HttpServlet {
         }
     }
 
+    // Handle GET requests (e.g., loading courses)
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
         if ("load".equals(action)) {
-            // Handle course loading
+            // Load all courses from the database
             response.setContentType("application/json");
             try (Connection connection = DBConnection.getConnection()) {
                 String query = "SELECT * FROM courses";
@@ -73,11 +75,11 @@ public class ManageCourseServlet extends HttpServlet {
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unable to load courses");
             }
         } else {
-            // Default behavior
-            super.doGet(request, response);
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
         }
     }
 
+    // Handle POST requests (e.g., deleting or creating courses)
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -91,14 +93,50 @@ public class ManageCourseServlet extends HttpServlet {
                     ps.setString(1, courseId);
                     ps.executeUpdate();
                 }
-                response.setStatus(HttpServletResponse.SC_OK);
+                response.setContentType("application/json");
+                response.getWriter().write(new Gson().toJson(Map.of("status", "success", "message", "Course deleted successfully")));
             } catch (Exception e) {
                 e.printStackTrace();
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unable to delete course");
+                response.setContentType("application/json");
+                response.getWriter().write(new Gson().toJson(Map.of("status", "error", "message", "Unable to delete course")));
+            }
+        } else if (action == null || "create".equals(action)) {
+            // Handle course creation
+            String courseId = request.getParameter("courseId");
+            String courseName = request.getParameter("courseName");
+            String courseDescription = request.getParameter("courseDescription");
+
+            try (Connection connection = DBConnection.getConnection()) {
+                String checkQuery = "SELECT * FROM courses WHERE courseId = ?";
+                String insertQuery = "INSERT INTO courses (courseId, name, description) VALUES (?, ?, ?)";
+
+                // Check if the course already exists
+                try (PreparedStatement checkPs = connection.prepareStatement(checkQuery)) {
+                    checkPs.setString(1, courseId);
+                    ResultSet rs = checkPs.executeQuery();
+                    if (rs.next()) {
+                        response.setContentType("application/json");
+                        response.getWriter().write(new Gson().toJson(Map.of("status", "exists", "message", "Course already exists")));
+                        return;
+                    }
+                }
+
+                // Insert new course if it doesn't exist
+                try (PreparedStatement ps = connection.prepareStatement(insertQuery)) {
+                    ps.setString(1, courseId);
+                    ps.setString(2, courseName);
+                    ps.setString(3, courseDescription);
+                    ps.executeUpdate();
+                }
+                response.setContentType("application/json");
+                response.getWriter().write(new Gson().toJson(Map.of("status", "success", "message", "Course created successfully")));
+            } catch (Exception e) {
+                e.printStackTrace();
+                response.setContentType("application/json");
+                response.getWriter().write(new Gson().toJson(Map.of("status", "error", "message", "Unable to create course")));
             }
         } else {
-            // Handle course creation or update
-            super.doPost(request, response);
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
         }
     }
 }

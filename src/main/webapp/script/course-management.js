@@ -57,3 +57,60 @@ function filterCourses() {
         row.style.display = courseName.includes(searchValue) ? '' : 'none';
     });
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const createCourseForm = document.getElementById('createCourseForm');
+    const successModal = document.getElementById('successModal');
+    const errorModal = document.getElementById('errorModal');
+    const modalMessage = document.getElementById('modalMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    const closeModalButton = document.getElementById('closeModalButton');
+    const closeErrorButton = document.getElementById('closeErrorButton');
+
+    // Handle form submission for creating a course
+    createCourseForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(createCourseForm);
+        const courseId = formData.get('courseId');
+        const courseName = formData.get('courseName');
+        const courseDescription = formData.get('courseDescription');
+
+        fetch('createCourse', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                courseId: courseId,
+                courseName: courseName,
+                courseDescription: courseDescription
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    modalMessage.innerHTML = data.message;
+                    successModal.style.display = 'flex'; // Show success modal
+                    loadCourses(); // Reload courses after creation
+                } else if (data.status === 'exists') {
+                    errorMessage.innerHTML = data.message;
+                    errorModal.style.display = 'flex'; // Show error modal
+                }
+            })
+            .catch(error => {
+                console.error('Error creating course:', error);
+                errorMessage.innerHTML = 'An error occurred. Please try again.';
+                errorModal.style.display = 'flex'; // Show error modal
+            });
+    });
+
+    // Close modals when the "OK" buttons are clicked
+    closeModalButton.addEventListener('click', function () {
+        successModal.style.display = 'none';
+    });
+
+    closeErrorButton.addEventListener('click', function () {
+        errorModal.style.display = 'none';
+    });
+});
