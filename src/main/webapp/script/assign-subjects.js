@@ -37,18 +37,18 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('assignSubjects?action=loadTeachers')
             .then(response => response.json())
             .then(data => {
-                const teacherSelect = document.getElementById('teacherId');
+                const teacherSelect = document.getElementById('registrationId');
                 teacherSelect.innerHTML = '<option value="">-- Select Teacher --</option>'; // Clear existing options
                 teacherTableBody.innerHTML = ''; // Clear table
 
                 if (data.teachers.length > 0) {
                     data.teachers.forEach(teacher => {
-                        const option = `<option value="${teacher.teacherId}">${teacher.teacherName}</option>`;
+                        const option = `<option value="${teacher.registrationId}">${teacher.teacherName}</option>`;
                         teacherSelect.insertAdjacentHTML('beforeend', option);
 
                         const row = `
                             <tr>
-                                <td>${teacher.teacherId}</td>
+                                <td>${teacher.registrationId}</td>
                                 <td>${teacher.teacherName}</td>
                                 <td><img src="data:image/jpeg;base64,${teacher.photo}" alt="Teacher Photo" width="50" height="50"></td>
                             </tr>

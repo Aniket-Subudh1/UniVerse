@@ -1,59 +1,51 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.cms.model.ViewAssignedSub" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Teacher Dashboard</title>
-
-    <link rel="stylesheet" href="styles/ViewAssignSub.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Assigned Courses</title>
+    <link rel="stylesheet" href="styles/ViewAssignSub.css?v=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+<div class="container">
+    <nav class="navbar">
+        <h2 class="logo">UniVerse</h2>
+        <ul class="nav-links">
+            <li><a href="teacher-dashboard.jsp">Home</a></li>
+            <li><a href="updateAttendance.jsp">Attendance</a></li>
+            <li><a href="timetable.jsp">Timetable</a></li>
+            <li><a href="notes.jsp">Notes</a></li>
 
-<h1>Enter Your Teacher ID to View Assigned Courses</h1>
 
-<form action="teacherDashboard" method="post">
-    <label for="teacherId">Teacher ID:</label>
-    <input type="text" id="teacherId" name="teacherId" required>
-    <button type="submit">View Courses</button>
-</form>
+        </ul>
+    </nav>
+</div>
+    <div class="dashboard">
+        <h2>Your Assigned Subjects</h2>
 
-<h2>Your Assigned Courses:</h2>
+        <br>
+        <button id="loadCoursesButton" class="btn">Load Assigned Subjects</button>
+        <br> <br>
+        <div id="error-message" class="error-message" style="display: none;">No subjects found</div>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>Course ID</th>
-        <th>Course Name</th>
-    </tr>
-    </thead>
-    <tbody>
-    <%
-        List<ViewAssignedSub> courses = (List<ViewAssignedSub>) request.getAttribute("assignedCourses");
-        if (courses != null && !courses.isEmpty()) {
-            for (ViewAssignedSub course : courses) {
-    %>
-    <tr>
-        <td><%= course.getCourseId() %></td>
-        <td><%= course.getCourseName() %></td>
-    </tr>
-    <%
-        }
-    } else if (request.getAttribute("errorMessage") != null) {
-    %>
-    <tr>
-        <td colspan="2"><%= request.getAttribute("errorMessage") %></td>
-    </tr>
-    <%
-    } else {
-    %>
-    <tr>
-        <td colspan="2">Please enter a valid Teacher ID to view courses.</td>
-    </tr>
-    <%
-        }
-    %>
-    </tbody>
-</table>
+        <!-- Table to display assigned courses -->
+        <table id="coursesTable">
+            <thead>
+            <tr>
+                <th>Subject ID</th>
+                <th>Subject Name</th>
+            </tr>
+            </thead>
+            <tbody id="coursesTableBody">
+            <tr><td colspan="2">Press "Load Assigned Subjects" to see your subjects.</td></tr>
+            </tbody>
+        </table>
+    </div>
 
+
+<script src="script/dark-mode.js"></script> <!-- Universal dark mode script -->
+<script src="script/ViewAssignSub.js"></script> <!-- Page-specific script -->
 </body>
 </html>

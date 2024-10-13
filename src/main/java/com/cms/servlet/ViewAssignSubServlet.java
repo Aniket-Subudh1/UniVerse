@@ -1,68 +1,92 @@
-
 package com.cms.servlet;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.cms.dao.DBConnection;
-import com.cms.model.ViewAssignedSub;
+import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @WebServlet("/teacherDashboard")
 public class ViewAssignSubServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String teacherId = request.getParameter("teacherId"); // Get teacherId from request
+    public class AssignedCourse {
+        private String courseId;
+        private String courseName;
 
-        if (teacherId != null && !teacherId.isEmpty()) {
-            List<ViewAssignedSub> assignedCourses = getCoursesByTeacherId(teacherId);
-
-            if (!assignedCourses.isEmpty()) {
-                request.setAttribute("assignedCourses", assignedCourses);
-            } else {
-                request.setAttribute("errorMessage", "No courses found for the entered Teacher ID.");
-            }
-        } else {
-            request.setAttribute("errorMessage", "Please enter a valid Teacher ID.");
+        public AssignedCourse(String courseId, String courseName) {
+            this.courseId = courseId;
+            this.courseName = courseName;
         }
 
-        request.getRequestDispatcher("ViewAssignSub.jsp").forward(request, response);
+        public String getCourseId() {
+            return courseId;
+        }
+
+        public String getCourseName() {
+            return courseName;
+        }
     }
 
-    // Fetch the courses assigned to the teacher by teacherId
-    private List<ViewAssignedSub> getCoursesByTeacherId(String teacherId) {
-        List<ViewAssignedSub> courses = new ArrayList<>();
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
 
-        try(Connection connection = DBConnection.getConnection()) {
+        if ("fetchAssignedCourses".equals(action)) {
+            // Get registrationId from session
+            HttpSession session = request.getSession(false);
+            String registrationId = (String) session.getAttribute("registrationId");
 
+            if (registrationId != null) {
+                List<AssignedCourse> assignedCourses = getCoursesByRegistrationId(registrationId);
 
-            String sql = "SELECT course_id, course_name FROM assigncourses WHERE teacherId = ?";
+                Map<String, Object> jsonResponse = new HashMap<>();
+                jsonResponse.put("courses", assignedCourses);
+
+                // Return JSON response
+                response.setContentType("application/json");
+                response.getWriter().write(new Gson().toJson(jsonResponse));
+            } else {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized access");
+            }
+        } else {
+            // Default behavior if action is missing
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
+        }
+    }
+
+    private List<AssignedCourse> getCoursesByRegistrationId(String registrationId) {
+        List<AssignedCourse> courses = new ArrayList<>();
+        try (Connection connection = DBConnection.getConnection()) {
+            String sql = "SELECT c.courseId, c.name AS courseName " +
+                    "FROM assigncourses ac " +
+                    "JOIN courses c ON ac.courseId = c.courseId " +
+                    "WHERE ac.registrationId = ?";  // Updated to use registrationId
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, teacherId);
-
+            statement.setString(1, registrationId);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                ViewAssignedSub course = new ViewAssignedSub();
-                course.setCourseId(resultSet.getString("course_id"));
-                course.setCourseName(resultSet.getString("course_name"));
-                courses.add(course);
+                String courseId = resultSet.getString("courseId");
+                String courseName = resultSet.getString("courseName");
+                courses.add(new AssignedCourse(courseId, courseName));
             }
 
             resultSet.close();
             statement.close();
-            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

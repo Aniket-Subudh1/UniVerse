@@ -26,13 +26,10 @@
             <form action="assignSubjects" method="post">
                 <label for="courseId">Select Course:</label>
                 <select id="courseId" name="courseId" required></select>
-                <button id="loadCoursesButton" type="button" class="btn">Load Courses</button>
-                <br>
-                <br>
-                <label for="teacherId">Select Teacher:</label>
-                <select id="teacherId" name="teacherId" required></select>
-                <button id="loadTeachersButton" type="button" class="btn">Load Teachers</button> <!-- Load Teachers Button -->
-
+                <br><br>
+                <label for="registrationId">Select Teacher (by Registration ID):</label>
+                <select id="registrationId" name="registrationId" required></select>
+                <br><br>
                 <button type="submit" class="btn">Assign Teacher</button>
             </form>
         </div>
@@ -60,7 +57,7 @@
             <table id="teacherTable">
                 <thead>
                 <tr>
-                    <th>Teacher ID</th>
+                    <th>Registration ID</th>
                     <th>Teacher Name</th>
                     <th>Photo</th>
                 </tr>

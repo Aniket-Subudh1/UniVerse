@@ -23,8 +23,8 @@ public class AssignSubjectsServlet extends HttpServlet {
 
     private static class Course {
         String courseId;
-        String courseName;  // Use camelCase
-        String courseDescription;  // Use camelCase
+        String courseName;
+        String courseDescription;
 
         public Course(String courseId, String courseName, String courseDescription) {
             this.courseId = courseId;
@@ -34,28 +34,29 @@ public class AssignSubjectsServlet extends HttpServlet {
     }
 
     private static class Teacher {
-        int teacherId;
-        String teacherName;  // Use camelCase
-        String photo;  // Use camelCase
+        String registrationId;
+        String teacherName;
+        String photo;
 
-        public Teacher(int teacherId, String teacherName, String photo) {
-            this.teacherId = teacherId;
+        public Teacher(String registrationId, String teacherName, String photo) {
+            this.registrationId = registrationId;
             this.teacherName = teacherName;
             this.photo = photo;
         }
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get parameters from the form
         String courseId = request.getParameter("courseId");
-        String teacherId = request.getParameter("teacherId");
+        String registrationId = request.getParameter("registrationId");
 
         try (Connection connection = DBConnection.getConnection()) {
             // Insert the assigned teacher to the course
-            String insertQuery = "INSERT INTO assigncourses (courseId, teacherId) VALUES (?, ?)";
+            String insertQuery = "INSERT INTO assigncourses (courseId, registrationId) VALUES (?, ?)";
             try (PreparedStatement ps = connection.prepareStatement(insertQuery)) {
                 ps.setString(1, courseId);
-                ps.setInt(2, Integer.parseInt(teacherId));
+                ps.setString(2,registrationId);
                 ps.executeUpdate();
             }
 
@@ -67,7 +68,6 @@ public class AssignSubjectsServlet extends HttpServlet {
             response.sendRedirect("assign-subjects.jsp?error=Database error");
         }
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -88,8 +88,8 @@ public class AssignSubjectsServlet extends HttpServlet {
                  ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     String courseId = rs.getString("courseId");
-                    String courseName = rs.getString("name");  // Map to courseName
-                    String courseDescription = rs.getString("description");  // Map to courseDescription
+                    String courseName = rs.getString("name");
+                    String courseDescription = rs.getString("description");
                     courses.add(new Course(courseId, courseName, courseDescription));
                 }
             }
@@ -113,11 +113,11 @@ public class AssignSubjectsServlet extends HttpServlet {
             try (PreparedStatement ps = connection.prepareStatement(query);
                  ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    int teacherId = rs.getInt("teacherId");
-                    String teacherName = rs.getString("name");  // Map to teacherName
+                    String registrationId = rs.getString("registrationId");
+                    String teacherName = rs.getString("name");
                     byte[] photoBytes = rs.getBytes("photo");
                     String photo = (photoBytes != null) ? java.util.Base64.getEncoder().encodeToString(photoBytes) : "";
-                    teachers.add(new Teacher(teacherId, teacherName, photo));
+                    teachers.add(new Teacher(registrationId, teacherName, photo));
                 }
             }
         } catch (Exception e) {
