@@ -38,6 +38,8 @@ build/
 .DS_Store
 
 # Ignore all .env files globally
-.env
+*.env
+
+# Specifically ignore the .env file in src/main/resources
 src/main/resources/.env
 

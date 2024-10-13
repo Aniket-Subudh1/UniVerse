@@ -14,14 +14,14 @@ document.addEventListener('DOMContentLoaded', function () {
             if (profileInfo) profileInfo.classList.add('dark-mode');
             if (toggleButton) toggleButton.classList.add('dark-mode');
             cards.forEach(card => card.classList.add('dark-mode'));
-            modals.forEach(modal => modal.classList.add('dark-mode')); // Apply dark mode to modals
+            modals.forEach(modal => modal.classList.add('dark-mode'));
         } else {
             body.classList.remove('dark-mode');
             navbar.classList.remove('dark-mode');
             if (profileInfo) profileInfo.classList.remove('dark-mode');
             if (toggleButton) toggleButton.classList.remove('dark-mode');
             cards.forEach(card => card.classList.remove('dark-mode'));
-            modals.forEach(modal => modal.classList.remove('dark-mode')); // Remove dark mode from modals
+            modals.forEach(modal => modal.classList.remove('dark-mode'));
         }
     }
 
@@ -40,18 +40,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Load dark mode state from localStorage
     const darkModeEnabled = localStorage.getItem('dark-mode') === 'enabled';
-    applyDarkMode(darkModeEnabled);
+    applyDarkMode(darkModeEnabled); // Ensure dark mode state is consistent on page load
 
     // Event listener for toggle button click
     if (toggleButton) {
         toggleButton.addEventListener('click', toggleDarkMode);
     }
 });
-
-function showProfileModal() {
-    document.getElementById('profileModal').style.display = 'flex';
-}
-
-function closeProfileModal() {
-    document.getElementById('profileModal').style.display = 'none';
-}

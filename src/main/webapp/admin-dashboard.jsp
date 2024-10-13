@@ -58,7 +58,7 @@
             <i class='bx bx-book'></i>
             <h3>Manage Courses</h3>
             <p>Create, update, and delete courses.</p>
-            <a href="manage-courses.jsp">Manage Courses</a>
+            <a href="create-course.jsp">Manage Courses</a>
         </div>
         <div class="card">
             <i class='bx bx-award'></i>
