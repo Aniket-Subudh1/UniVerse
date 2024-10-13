@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.time.LocalDate;
 
 public class Teacher {
-    private int id;
+    private int teacherId;
     private String name;
     private String email;
     private String password;
@@ -12,12 +12,12 @@ public class Teacher {
     private InputStream photo;
 
     // Getters and setters
-    public int getId() {
-        return id;
+    public int getteacherId() {
+        return teacherId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int teacherId) {
+        this.teacherId = teacherId;
     }
 
     public String getName() {
