@@ -29,7 +29,7 @@
   </nav>
 
   <div class="dashboard-sections">
-    <!-- Create Course Card -->
+    <!-- Admin Create Course Section -->
     <div class="card">
       <h3>Create a New Course</h3>
       <form id="createCourseForm">
@@ -46,14 +46,12 @@
       </form>
     </div>
 
-    <!-- Manage Courses Card -->
+    <!-- Approved Courses Section -->
     <div class="card">
-      <h3>Manage Courses</h3>
-      <!-- Search Bar -->
+      <h3>Approved Courses</h3>
       <input type="text" id="searchCourse" placeholder="Search course by name..." onkeyup="filterCourses()">
       <button class="btn" onclick="loadCourses()">Load Courses</button>
 
-      <!-- Display Courses in a Table -->
       <table id="courseTable">
         <thead>
         <tr>
@@ -70,9 +68,33 @@
         </tbody>
       </table>
     </div>
-  </div>
 
-  <!-- Modal for Editing Course -->
+    <!-- Pending Courses for Approval Section -->
+    <!-- Pending Courses for Approval Section -->
+    <div class="card">
+      <h3>Pending Course Approvals</h3>
+      <!-- Button to load pending courses -->
+      <button class="btn" onclick="loadPendingCourses()">Load Pending Courses</button>
+
+      <table id="pendingCourseTable">
+        <thead>
+        <tr>
+          <th>Course ID</th>
+          <th>Course Name</th>
+          <th>Course Description</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="pendingCoursesContainer">
+        <tr>
+          <td colspan="4">No pending courses</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
   <div id="editModal" class="modal">
     <div class="modal-content">
       <h2>Edit Course</h2>
@@ -82,7 +104,6 @@
         <input type="text" id="editCourseName" name="courseName" required><br>
         <label for="editCourseDescription">Course Description:</label>
         <textarea id="editCourseDescription" name="courseDescription" required></textarea><br>
-        <input type="hidden" name="action" value="update">
         <button type="submit" class="btn">Update Course</button>
       </form>
     </div>
@@ -92,7 +113,7 @@
   <div id="successModal" class="modal">
     <div class="modal-content">
       <h2>Success</h2>
-      <p id="modalMessage">Your course has been successfully created.</p> <!-- Correct ID placement -->
+      <p id="modalMessage">Operation completed successfully.</p>
       <button class="btn" id="closeModalButton">OK</button>
     </div>
   </div>
@@ -101,14 +122,13 @@
   <div id="errorModal" class="modal">
     <div class="modal-content">
       <h2>Error</h2>
-      <p id="errorMessage">An error occurred. Please try again.</p> <!-- Added error message -->
+      <p id="errorMessage">An error occurred. Please try again.</p>
       <button class="btn" id="closeErrorButton">OK</button>
     </div>
   </div>
-
 </div>
 
 <script src="script/dark-mode.js"></script>
-<script src="script/course-management.js"></script>
+<script src="script/course-management.js"></script> <!-- Separate JS file for course logic -->
 </body>
 </html>

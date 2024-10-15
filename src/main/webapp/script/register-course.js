@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     const coursesContainer = document.getElementById('coursesContainer');
-    const messageDiv = document.getElementById('message');
+    const modalMessage = document.getElementById('modalMessage');
+    const successModal = document.getElementById('successModal');
+    const closeModalButton = document.getElementById('closeModalButton');
 
-    // Assuming studentRegistrationId is coming from a hidden field or a session-based value
-    const studentRegistrationId = '<%= session.getAttribute("registrationId") %>'; // JSP or fetch it accordingly
+
+    const studentRegistrationId = '<%= session.getAttribute("registrationId") %>';
 
     // Fetch available courses and display them as cards
     function loadCourses() {
@@ -15,12 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (data.length > 0) {
                     data.forEach(course => {
                         const card = document.createElement('div');
-                        card.className = 'card'; // Assign 'card' class
+                        card.className = 'course-card'; // Assign 'card' class
 
                         card.innerHTML = `
-                            <h3>${course.courseName}</h3>
-                            <p>${course.courseDescription}</p>
-                            <button class="register-btn" data-course-id="${course.courseId}" data-registration-id="${studentRegistrationId}">Register</button>
+                           <h3>${course.courseName}</h3>
+                            <h4>${course.courseId}</h4>
+                            <button  class="register-btn" data-course-id="${course.courseId}" data-registration-id="${studentRegistrationId}">  Register </button>
                         `;
 
                         coursesContainer.appendChild(card);
@@ -55,18 +57,25 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    messageDiv.innerHTML = `<p class="success">Successfully registered for course ${courseId}</p>`;
+                    modalMessage.innerHTML = `Successfully registered for course ${courseId}`;
                 } else if (data.status === 'duplicate') {
-                    messageDiv.innerHTML = `<p class="error">You are already registered for course ${courseId}</p>`;
+                    modalMessage.innerHTML = `You are already registered for course ${courseId}`;
                 } else {
-                    messageDiv.innerHTML = `<p class="error">Failed to register for course ${courseId}</p>`;
+                    modalMessage.innerHTML = `Failed to register for course ${courseId}`;
                 }
+                successModal.style.display = 'flex'; // Show modal
             })
             .catch(error => {
                 console.error('Error registering for course:', error);
-                messageDiv.innerHTML = '<p class="error">Error registering for course</p>';
+                modalMessage.innerHTML = 'Error registering for course';
+                successModal.style.display = 'flex'; // Show modal
             });
     }
+
+    // Close modal
+    closeModalButton.addEventListener('click', function () {
+        successModal.style.display = 'none'; // Hide modal on button click
+    });
 
     // Load available courses on page load
     loadCourses();

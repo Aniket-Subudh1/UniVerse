@@ -114,3 +114,55 @@ document.addEventListener('DOMContentLoaded', function () {
         errorModal.style.display = 'none';
     });
 });
+// Load pending courses for approval
+function loadPendingCourses() {
+    fetch('createCourse?action=loadPending')
+        .then(response => response.json())
+        .then(data => {
+            const pendingCoursesContainer = document.getElementById('pendingCoursesContainer');
+            pendingCoursesContainer.innerHTML = ''; // Clear existing content
+
+            if (data.pendingCourses.length === 0) {
+                pendingCoursesContainer.innerHTML = '<p> No pending courses for approval</p>';
+            } else {
+                data.pendingCourses.forEach(course => {
+                    const row = `
+                        <tr>
+                          <td>${course.courseId}</td>
+                          <td>${course.courseName}</td>
+                          <td>${course.courseDescription}</td>
+                          <td>
+                            <button class="btn approve" onclick="approveCourse('${course.courseId}')">Approve</button>
+                            <button class="btn reject" onclick="rejectCourse('${course.courseId}')">Reject</button>
+                          </td>
+                        </tr>
+                    `;
+                    pendingCoursesContainer.insertAdjacentHTML('beforeend', row);
+                });
+            }
+        })
+        .catch(error => console.error('Error loading pending courses:', error));
+}
+// Approve a pending course
+function approveCourse(courseId) {
+    if (confirm('Are you sure you want to approve this course?')) {
+        fetch(`createCourse?action=approve&courseId=${courseId}`, {
+            method: 'POST'
+        }).then(() => {
+            alert('Course approved successfully');
+            loadPendingCourses(); // Reload the pending courses list
+        }).catch(error => console.error('Error approving course:', error));
+    }
+}
+
+// Reject a pending course
+function rejectCourse(courseId) {
+    if (confirm('Are you sure you want to reject this course?')) {
+        fetch(`createCourse?action=reject&courseId=${courseId}`, {
+            method: 'POST'
+        }).then(() => {
+            alert('Course rejected successfully');
+            loadPendingCourses(); // Reload the pending courses list
+        }).catch(error => console.error('Error rejecting course:', error));
+    }
+}

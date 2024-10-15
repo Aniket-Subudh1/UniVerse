@@ -1,0 +1,178 @@
+/* Page Layout */
+body {
+    background-color: #f9f9f9;
+    color: #2a2d3e;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: "Poppins", sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+.btn-load{
+    background-color: #101f6e;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li a {
+    color: #333;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .nav-links li a:hover {
+    background-color: #e0e4eb;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-info .profile-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.profile-info .profile-role {
+    font-size: 12px;
+    color: #888;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 24px;
+    color: #101f6e;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Courses Table Container */
+.courses-table-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Courses Table Styling */
+.courses-table {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+.courses-table thead {
+    background-color: #101f6e;
+    color: #fff;
+    text-align: center;
+}
+
+.courses-table th,
+.courses-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.courses-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.courses-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.courses-table tbody td {
+    border-bottom: 1px solid #ddd;
+}
+
+/* No Courses Message */
+.no-courses {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    margin: 20px 0;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #181a1e;
+    color: #f1f1f1;
+}
+
+body.dark-mode .navbar {
+    background-color: #202328;
+}
+
+body.dark-mode .navbar .logo,
+body.dark-mode .navbar .nav-links li a {
+    color: #f1f1f1;
+}
+
+body.dark-mode .navbar .nav-links li a:hover {
+    background-color: #333;
+}
+
+body.dark-mode .page-title {
+    color: #f1f1f1;
+}
+
+body.dark-mode .courses-table {
+    background-color: #202328;
+    color: #f1f1f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .courses-table thead {
+    background-color: #333;
+}
+
+body.dark-mode .courses-table tbody tr:hover {
+    background-color: #333;
+}

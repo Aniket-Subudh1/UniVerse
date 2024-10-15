@@ -9,8 +9,14 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #f9f9f9;
     color: #333;
+    min-height: 100vh;
 }
-
+body.dark-mode {
+    font-family: 'Poppins', sans-serif;
+    background-color: #202328;
+    color: white;
+    min-height: 100vh;
+}
 /* Container */
 .container {
     max-width: 1200px;
@@ -23,18 +29,30 @@ body {
     background-color: #fff;
     padding: 15px 20px;
     display: flex;
+    border-radius: 8px;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Dark mode for the Navbar */
+.navbar.dark-mode {
+    background-color: #202328;
+}
+
+/* Logo in light and dark mode */
 .navbar .logo {
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: #333; /* Light mode - dark text */
 }
 
+.navbar.dark-mode .logo {
+    color: #ffffff; /* Dark mode - white text */
+}
+
+/* Navbar Links */
 .navbar .nav-links li {
     display: inline-block;
     margin-left: 20px;
@@ -42,20 +60,21 @@ body {
 
 .navbar .nav-links a {
     text-decoration: none;
-    color: #333;
+    color: #333; /* Light mode text color */
     padding: 8px 15px;
     border-radius: 5px;
 }
 
-.logout-link i {
-    margin-right: 5px;
+/* Dark mode navbar links */
+.navbar.dark-mode .nav-links a {
+    color: #ffffff; /* Dark mode text color */
 }
 
 /* Dashboard Sections */
 .dashboard-sections {
-    display: grid;
-    grid-template-columns: 2fr 1fr; /* Make course container bigger and message smaller */
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Full width */
     padding: 20px;
 }
 
@@ -66,98 +85,133 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.card h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
-}
-
-.card p {
-    font-size: 16px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Full width */
     margin-bottom: 20px;
-    color: #555;
 }
 
-.card .register-btn {
-    background-color: #5b6ee3;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Card Dark Mode */
+.card.dark-mode {
+    background-color: #202328;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    color: #f1f1f1;
 }
 
-.card .register-btn:hover {
-    background-color: #101f6e;
-}
-
-/* Message styles */
-.message {
-    padding: 10px;
-    margin-top: 20px;
-    background-color: #f0f4f8;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.message p.success {
-    color: green;
-}
-
-.message p.error {
-    color: red;
-}
-
-/* Container for cards */
+/* Container for course cards in a grid layout */
 .courses-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* More space for course cards */
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between the cards */
     padding: 20px;
-    max-height: 600px;
-    overflow-y: auto; /* Add scrolling if content exceeds the container size */
 }
 
-/* Each card style */
-.card {
+/* Each course card style */
+.course-card {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    min-width: 250px;
+    max-width: 300px;
+    flex: 1;
 }
 
-.card:hover {
+/* Hover effect for course cards */
+.course-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+    background-color: #f0f0f0;
 }
 
-.card h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
+
+.course-card.dark-mode {
+    background-color: #202328;
+    color: #f1f1f1;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow in dark mode */
 }
 
-.card p {
-    font-size: 16px;
-    margin-bottom: 20px;
-    color: #555;
-}
-
-.card .register-btn {
-    background-color: #5b6ee3;
+/* Register button inside course cards */
+.course-card .register-btn {
+    background-color: #2980b9;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
 }
 
-.card .register-btn:hover {
-    background-color: #101f6e;
+/* Hover effect for register button */
+.course-card .register-btn:hover {
+    background-color: #1a5276;
+}
+
+/* Register button dark mode */
+.course-card.dark-mode .register-btn {
+    background-color: #ffd700; /* Yellow in dark mode */
+    color: #333;
+}
+
+/* Register button hover effect in dark mode */
+.course-card.dark-mode .register-btn:hover {
+    background-color: #ffcc33; /* Slightly lighter yellow */
+    color: #222;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal content styles */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal content dark mode */
+.modal-content.dark-mode {
+    background-color: #202328;
+    color: #f1f1f1; /* Text color in dark mode */
+}
+
+/* Modal button */
+.modal-content .btn {
+    background-color: #2980b9;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Modal button dark mode */
+.modal-content.dark-mode .btn {
+    background-color: #ffd700;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .dashboard-sections {
+        flex-direction: column;
+    }
 }

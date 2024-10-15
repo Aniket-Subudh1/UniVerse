@@ -74,8 +74,52 @@ public class ManageCourseServlet extends HttpServlet {
                 e.printStackTrace();
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unable to load courses");
             }
-        } else {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
+        } else if ("loadPending".equals(action)) {
+            response.setContentType("application/json");
+            try (Connection connection = DBConnection.getConnection()) {
+                String query = "SELECT * FROM pending_courses";
+                List<Course> pendingCourses = new ArrayList<>();
+                try (PreparedStatement ps = connection.prepareStatement(query);
+                     ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        String courseId = rs.getString("courseId");
+                        String courseName = rs.getString("name");
+                        String courseDescription = rs.getString("description");
+                        pendingCourses.add(new Course(courseId, courseName, courseDescription));
+                    }
+                }
+                Gson gson = new Gson();
+                String jsonPendingCourses = gson.toJson(Map.of("pendingCourses", pendingCourses));
+                response.getWriter().write(jsonPendingCourses);
+            } catch (Exception e) {
+                e.printStackTrace();
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unable to load pending courses");
+            }
+        }
+    }
+
+        // Method to load pending courses
+    private void loadPendingCourses(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json");
+        try (Connection connection = DBConnection.getConnection()) {
+            String query = "SELECT * FROM pending_courses";
+            List<Course> pendingCourses = new ArrayList<>();
+            try (PreparedStatement ps = connection.prepareStatement(query);
+                 ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    String courseId = rs.getString("courseId");
+                    String courseName = rs.getString("name");
+                    String courseDescription = rs.getString("description");
+                    pendingCourses.add(new Course(courseId, courseName, courseDescription));
+                }
+            }
+
+            Gson gson = new Gson();
+            String jsonPendingCourses = gson.toJson(Map.of("pendingCourses", pendingCourses));
+            response.getWriter().write(jsonPendingCourses);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unable to load pending courses");
         }
     }
 
@@ -86,57 +130,118 @@ public class ManageCourseServlet extends HttpServlet {
 
         if ("delete".equals(action)) {
             // Handle course deletion
-            String courseId = request.getParameter("courseId");
-            try (Connection connection = DBConnection.getConnection()) {
-                String deleteQuery = "DELETE FROM courses WHERE courseId = ?";
-                try (PreparedStatement ps = connection.prepareStatement(deleteQuery)) {
-                    ps.setString(1, courseId);
-                    ps.executeUpdate();
-                }
-                response.setContentType("application/json");
-                response.getWriter().write(new Gson().toJson(Map.of("status", "success", "message", "Course deleted successfully")));
-            } catch (Exception e) {
-                e.printStackTrace();
-                response.setContentType("application/json");
-                response.getWriter().write(new Gson().toJson(Map.of("status", "error", "message", "Unable to delete course")));
-            }
+            deleteCourse(request, response);
         } else if (action == null || "create".equals(action)) {
             // Handle course creation
-            String courseId = request.getParameter("courseId");
-            String courseName = request.getParameter("courseName");
-            String courseDescription = request.getParameter("courseDescription");
-
-            try (Connection connection = DBConnection.getConnection()) {
-                String checkQuery = "SELECT * FROM courses WHERE courseId = ?";
-                String insertQuery = "INSERT INTO courses (courseId, name, description) VALUES (?, ?, ?)";
-
-                // Check if the course already exists
-                try (PreparedStatement checkPs = connection.prepareStatement(checkQuery)) {
-                    checkPs.setString(1, courseId);
-                    ResultSet rs = checkPs.executeQuery();
-                    if (rs.next()) {
-                        response.setContentType("application/json");
-                        response.getWriter().write(new Gson().toJson(Map.of("status", "exists", "message", "Course already exists")));
-                        return;
-                    }
-                }
-
-                // Insert new course if it doesn't exist
-                try (PreparedStatement ps = connection.prepareStatement(insertQuery)) {
-                    ps.setString(1, courseId);
-                    ps.setString(2, courseName);
-                    ps.setString(3, courseDescription);
-                    ps.executeUpdate();
-                }
-                response.setContentType("application/json");
-                response.getWriter().write(new Gson().toJson(Map.of("status", "success", "message", "Course created successfully")));
-            } catch (Exception e) {
-                e.printStackTrace();
-                response.setContentType("application/json");
-                response.getWriter().write(new Gson().toJson(Map.of("status", "error", "message", "Unable to create course")));
-            }
+            createCourse(request, response);
+        } else if ("approve".equals(action)) {
+            // Handle course approval
+            approveCourse(request, response);
+        } else if ("reject".equals(action)) {
+            // Handle course rejection
+            rejectCourse(request, response);
         } else {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
+        }
+    }
+
+    // Method to delete a course
+    private void deleteCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String courseId = request.getParameter("courseId");
+        try (Connection connection = DBConnection.getConnection()) {
+            String deleteQuery = "DELETE FROM courses WHERE courseId = ?";
+            try (PreparedStatement ps = connection.prepareStatement(deleteQuery)) {
+                ps.setString(1, courseId);
+                ps.executeUpdate();
+            }
+            response.setContentType("application/json");
+            response.getWriter().write(new Gson().toJson(Map.of("status", "success", "message", "Course deleted successfully")));
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setContentType("application/json");
+            response.getWriter().write(new Gson().toJson(Map.of("status", "error", "message", "Unable to delete course")));
+        }
+    }
+
+    // Method to create a course
+    private void createCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String courseId = request.getParameter("courseId");
+        String courseName = request.getParameter("courseName");
+        String courseDescription = request.getParameter("courseDescription");
+
+        try (Connection connection = DBConnection.getConnection()) {
+            String checkQuery = "SELECT * FROM courses WHERE courseId = ?";
+            String insertQuery = "INSERT INTO courses (courseId, name, description) VALUES (?, ?, ?)";
+
+            // Check if the course already exists
+            try (PreparedStatement checkPs = connection.prepareStatement(checkQuery)) {
+                checkPs.setString(1, courseId);
+                ResultSet rs = checkPs.executeQuery();
+                if (rs.next()) {
+                    response.setContentType("application/json");
+                    response.getWriter().write(new Gson().toJson(Map.of("status", "exists", "message", "Course already exists")));
+                    return;
+                }
+            }
+
+            // Insert new course if it doesn't exist
+            try (PreparedStatement ps = connection.prepareStatement(insertQuery)) {
+                ps.setString(1, courseId);
+                ps.setString(2, courseName);
+                ps.setString(3, courseDescription);
+                ps.executeUpdate();
+            }
+            response.setContentType("application/json");
+            response.getWriter().write(new Gson().toJson(Map.of("status", "success", "message", "Course created successfully")));
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setContentType("application/json");
+            response.getWriter().write(new Gson().toJson(Map.of("status", "error", "message", "Unable to create course")));
+        }
+    }
+
+    // Method to approve a pending course (move from pending_courses to courses)
+    private void approveCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String courseId = request.getParameter("courseId");
+
+        try (Connection connection = DBConnection.getConnection()) {
+            String insertQuery = "INSERT INTO courses (courseId, name, description) "
+                    + "SELECT courseId, name, description FROM pending_courses WHERE courseId = ?";
+            String deleteQuery = "DELETE FROM pending_courses WHERE courseId = ?";
+
+            try (PreparedStatement insertPs = connection.prepareStatement(insertQuery);
+                 PreparedStatement deletePs = connection.prepareStatement(deleteQuery)) {
+                insertPs.setString(1, courseId);
+                deletePs.setString(1, courseId);
+
+                insertPs.executeUpdate();
+                deletePs.executeUpdate();
+            }
+            response.setContentType("application/json");
+            response.getWriter().write(new Gson().toJson(Map.of("status", "success", "message", "Course approved and added to courses")));
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setContentType("application/json");
+            response.getWriter().write(new Gson().toJson(Map.of("status", "error", "message", "Unable to approve course")));
+        }
+    }
+
+    // Method to reject a pending course (delete from pending_courses)
+    private void rejectCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String courseId = request.getParameter("courseId");
+
+        try (Connection connection = DBConnection.getConnection()) {
+            String deleteQuery = "DELETE FROM pending_courses WHERE courseId = ?";
+            try (PreparedStatement ps = connection.prepareStatement(deleteQuery)) {
+                ps.setString(1, courseId);
+                ps.executeUpdate();
+            }
+            response.setContentType("application/json");
+            response.getWriter().write(new Gson().toJson(Map.of("status", "success", "message", "Course rejected and removed from pending courses")));
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setContentType("application/json");
+            response.getWriter().write(new Gson().toJson(Map.of("status", "error", "message", "Unable to reject course")));
         }
     }
 }

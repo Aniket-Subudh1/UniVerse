@@ -39,7 +39,7 @@ body.dark-mode {
     align-items: center;
     margin-bottom: 20px;
     transition: background-color 0.3s ease;
-    position: relative; /* Ensures it's not affected by content changes below */
+
 }
 
 .navbar.dark-mode {
