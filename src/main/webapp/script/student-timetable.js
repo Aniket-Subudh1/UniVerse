@@ -1,23 +1,34 @@
-// Dark Mode Toggle
-function toggleDarkMode() {
-    const body = document.body;
-    const navbar = document.querySelector('.navbar');
-    const cards = document.querySelectorAll('.card');
-    const fileInput = document.querySelector('input[type="file"]');
-    const toggle = document.getElementById('dark-mode-toggle');
+document.addEventListener('DOMContentLoaded', function () {
+    const timetableContainer = document.getElementById('timetableContainer');
 
-    body.classList.toggle('dark-mode');
-    navbar.classList.toggle('dark-mode');
-    cards.forEach(card => {
-        card.classList.toggle('dark-mode');
-    });
+    // Fetch and display the student's timetable
+    function loadStudentTimetable() {
+        fetch('viewStudentTimetable')
+            .then(response => response.json())
+            .then(data => {
+                timetableContainer.innerHTML = '';
 
-    if (fileInput) {
-        fileInput.classList.toggle('dark-mode');
+                if (data.timetable && data.timetable.length > 0) {
+                    data.timetable.forEach(item => {
+                        const timetableRow = `
+                            <div class="timetable-entry">
+                                <h3>${item.courseName}</h3>
+                                <p><strong>Day:</strong> ${item.dayOfWeek}</p>
+                                <p><strong>Time:</strong> ${item.timeStart} - ${item.timeEnd}</p>
+                            </div>
+                        `;
+                        timetableContainer.insertAdjacentHTML('beforeend', timetableRow);
+                    });
+                } else {
+                    timetableContainer.innerHTML = '<p>No timetable entries found for your enrolled courses.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading timetable:', error);
+                timetableContainer.innerHTML = '<p>Error loading timetable. Please try again later.</p>';
+            });
     }
 
-    toggle.classList.toggle('dark-mode');
-}
-
-// Event Listener for Dark Mode Toggle
-document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
+    // Load the student's timetable on page load
+    loadStudentTimetable();
+});

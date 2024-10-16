@@ -90,7 +90,7 @@
             <i class='bx bx-time'></i>
             <h3>Timetable</h3>
             <p>View your class schedule.</p>
-            <a href="Time-table.jsp">View Timetable</a>
+            <a href="view-student-timetable.jsp">View Timetable</a>
         </div>
         <div class="card">
             <i class='bx bx-comment-dots'></i>

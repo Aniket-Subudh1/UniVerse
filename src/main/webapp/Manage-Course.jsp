@@ -11,21 +11,14 @@
 <body>
 <div class="container">
     <nav class="navbar">
-        <h2 class="logo">UniVerse Teacher</h2>
+        <h2 class="logo">UniVerse</h2>
         <ul class="nav-links">
             <li><a href="teacher-dashboard.jsp">Home</a></li>
-            <li><a href="manage-courses.jsp">Courses</a></li>
+            <li><a href="Manage-Course.jsp">Courses</a></li>
             <li><a href="grades.jsp">Grades</a></li>
             <li><a href="attendance.jsp">Attendance</a></li>
         </ul>
-        <div class="profile-info">
-            <p class="profile-name"><%= session.getAttribute("name") %></p>
-            <p class="profile-role"><%= session.getAttribute("role") %></p>
-        </div>
-        <div class="dark-mode-toggle" id="dark-mode-toggle">
-            <span class="sun"><i class='bx bx-sun'></i></span>
-            <span class="moon"><i class='bx bx-moon'></i></span>
-        </div>
+
     </nav>
 
     <div class="dashboard-sections">
@@ -67,7 +60,7 @@
 
 </div>
 
-<!-- External JavaScript to handle course submission -->
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const submitCourseForm = document.getElementById('submitCourseForm');
@@ -125,6 +118,6 @@
         });
     });
 </script>
-
+<script src="script/dark-mode.js"></script>
 </body>
 </html>

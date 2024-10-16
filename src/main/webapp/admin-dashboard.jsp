@@ -46,7 +46,7 @@
             <i class='bx bx-time'></i>
             <h3>Manage Timetable</h3>
             <p>View and manage the teaching timetable.</p>
-            <a href="manage-timetable.jsp">Manage Timetable</a>
+            <a href="manage-routine.jsp">Manage Timetable</a>
         </div>
         <div class="card">
             <i class='bx bx-wallet'></i>
