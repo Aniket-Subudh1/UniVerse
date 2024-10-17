@@ -147,3 +147,51 @@ body.dark-mode {
         grid-template-columns: 1fr;
     }
 }
+/* Day Section */
+.day-section {
+    margin-bottom: 40px;
+}
+
+.day-section h2 {
+    font-size: 24px;
+    color: #101f6e;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Day Timetable Entries */
+.day-timetable {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Timetable Entry */
+.timetable-entry {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    border: 2px solid #e0e0e0;
+}
+
+.timetable-entry h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #101f6e;
+}
+
+.timetable-entry p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .day-timetable {
+        grid-template-columns: 1fr;
+    }
+}

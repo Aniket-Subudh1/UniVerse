@@ -20,20 +20,17 @@
             <li><a href="view-attendance.jsp">Attendance</a></li>
             <li><a href="view-student-timetable.jsp">Timetable</a></li>
         </ul>
-
-
     </nav>
 </div>
-    <div class="dashboard-sections">
-        <h2>Your Timetable</h2>
-        <div id="timetableContainer">
-
-            <p>Loading your timetable...</p>
-        </div>
+<div class="dashboard-sections">
+    <h2>Your Timetable</h2>
+    <div id="timetableContainer">
+        <p>Loading your timetable...</p> <!-- This will be replaced by JavaScript -->
     </div>
 </div>
 
-<script src="script/dark-mode.js"></script>
-<script src="script/student-timetable.js"></script> <!-- Load the JS file -->
+<!-- JS Files -->
+<script src="script/dark-mode.js"></script> <!-- Dark Mode Script -->
+<script src="script/student-timetable.js"></script> <!-- Fetch Timetable Data -->
 </body>
 </html>

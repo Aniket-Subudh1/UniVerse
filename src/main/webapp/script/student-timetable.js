@@ -4,21 +4,45 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fetch and display the student's timetable
     function loadStudentTimetable() {
         fetch('viewStudentTimetable')
-            .then(response => response.json())
+            .then(response => {
+                console.log('Fetch Response:', response); // Log the response object
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
-                timetableContainer.innerHTML = '';
+                console.log('Data received from server:', data); // Log the data
+                timetableContainer.innerHTML = ''; // Clear previous data
 
-                if (data.timetable && data.timetable.length > 0) {
+                // Check if timetable data exists
+                if (data && data.timetable && data.timetable.length > 0) {
+                    // Group timetable entries by day
+                    const timetableByDay = {};
                     data.timetable.forEach(item => {
-                        const timetableRow = `
-                            <div class="timetable-entry">
-                                <h3>${item.courseName}</h3>
-                                <p><strong>Day:</strong> ${item.dayOfWeek}</p>
-                                <p><strong>Time:</strong> ${item.timeStart} - ${item.timeEnd}</p>
+                        if (!timetableByDay[item.dayOfWeek]) {
+                            timetableByDay[item.dayOfWeek] = [];
+                        }
+                        timetableByDay[item.dayOfWeek].push(item);
+                    });
+
+                    // Iterate through each day and display the timetable
+                    for (const [day, entries] of Object.entries(timetableByDay)) {
+                        const dayRow = `
+                            <div class="day-section">
+                                <h2>${day}</h2>
+                                <div class="day-timetable">
+                                    ${entries.map(item => `
+                                        <div class="timetable-entry">
+                                            <h3>${item.courseName}</h3>
+                                            <p><strong>Time:</strong> ${item.timeStart} - ${item.timeEnd}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
                             </div>
                         `;
-                        timetableContainer.insertAdjacentHTML('beforeend', timetableRow);
-                    });
+                        timetableContainer.insertAdjacentHTML('beforeend', dayRow);
+                    }
                 } else {
                     timetableContainer.innerHTML = '<p>No timetable entries found for your enrolled courses.</p>';
                 }

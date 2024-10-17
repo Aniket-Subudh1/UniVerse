@@ -23,8 +23,8 @@ public class ViewStudentTimetableServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    // Class to represent a timetable entry
-    public class TimetableEntry {
+    // Static inner class to represent a timetable entry
+    public static class TimetableEntry {
         private String courseName;
         private String dayOfWeek;
         private String timeStart;
@@ -57,41 +57,107 @@ public class ViewStudentTimetableServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // Get the student's registrationId from the session
+        // Get studentId and enrolledCourse from session
         HttpSession session = request.getSession(false);
-        String registrationId = (String) session.getAttribute("registrationId");
+        if (session == null) {
+            System.out.println("Session is null. Unauthorized access.");
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized access");
+            return;
+        }
+        String studentId = (String) session.getAttribute("registrationId");
+        String enrolledCourse = (String) session.getAttribute("enrolledCourse");
 
-        if (registrationId != null) {
-            // Use the registrationId directly as studentId in student_course_tracking
-            List<TimetableEntry> timetableEntries = getTimetableByRegistrationId(registrationId);
+        // Log the session values
+        System.out.println("Student ID (Registration ID): " + studentId);
+        System.out.println("Enrolled Course: " + enrolledCourse);
+
+        if (studentId != null && enrolledCourse != null) {
+            // Fetch timetable entries for the student
+            List<TimetableEntry> timetableEntries = getTimetableByStudentIdAndCourse(studentId, enrolledCourse);
 
             Map<String, Object> jsonResponse = new HashMap<>();
             jsonResponse.put("timetable", timetableEntries);
 
+            // Log the JSON response
+            System.out.println("Timetable Entries: " + timetableEntries);
+
             // Return JSON response
             response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
             response.getWriter().write(new Gson().toJson(jsonResponse));
         } else {
+            System.out.println("Unauthorized access. Missing session attributes.");
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized access");
         }
     }
 
-    // Method to fetch the timetable for the student's registered courses
-    private List<TimetableEntry> getTimetableByRegistrationId(String registrationId) {
+    private List<TimetableEntry> getTimetableByStudentIdAndCourse(String studentId, String enrolledCourse) {
         List<TimetableEntry> timetableEntries = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
-            // SQL query to get the timetable by matching registrationId with studentId in student_course_tracking
-            String sql = "SELECT c.name AS courseName, t.dayOfWeek, t.timeStart, t.timeEnd " +
-                    "FROM students s " +
-                    "JOIN student_course_tracking sct ON s.registrationId = sct.studentId " +
-                    "JOIN courses c ON sct.courseId = c.courseId " +
-                    "JOIN timetable t ON t.courseId = c.courseId " +
-                    "WHERE s.registrationId = ?";
 
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, registrationId);  // Use the registrationId as studentId in student_course_tracking
+            // Fetch courseId associated with studentId from student_course_tracking table
+            String courseTrackingSql = "SELECT courseId FROM student_course_tracking WHERE studentId = ?";
+            PreparedStatement courseTrackingStatement = connection.prepareStatement(courseTrackingSql);
+            courseTrackingStatement.setString(1, studentId);
+
+            // Log the query being executed
+            System.out.println("Executing course tracking query: " + courseTrackingStatement.toString());
+
+            ResultSet courseTrackingResult = courseTrackingStatement.executeQuery();
+
+            List<String> courseIds = new ArrayList<>();
+            while (courseTrackingResult.next()) {
+                courseIds.add(courseTrackingResult.getString("courseId"));
+            }
+            courseTrackingResult.close();
+            courseTrackingStatement.close();
+
+            // Log the found course IDs
+            System.out.println("Found course IDs: " + courseIds);
+
+            if (courseIds.isEmpty()) {
+                System.out.println("No courses found for student: " + studentId);
+                return timetableEntries; // No courses found
+            }
+
+            // Build the SQL query to fetch timetable entries
+            StringBuilder sql = new StringBuilder(
+                    "SELECT c.name AS courseName, t.dayOfWeek, t.timeStart, t.timeEnd " +
+                            "FROM timetable t " +
+                            "JOIN courses c ON t.courseId = c.courseId " +
+                            "WHERE t.enrolledCourse = ? AND t.courseId IN ("
+            );
+
+            // Dynamically append courseId placeholders
+            for (int i = 0; i < courseIds.size(); i++) {
+                sql.append("?");
+                if (i < courseIds.size() - 1) {
+                    sql.append(", ");
+                }
+            }
+            sql.append(")");
+
+            PreparedStatement statement = connection.prepareStatement(sql.toString());
+
+            // Set the enrolledCourse parameter
+            statement.setString(1, enrolledCourse);
+
+            // Set courseIds in the IN clause
+            for (int i = 0; i < courseIds.size(); i++) {
+                statement.setString(i + 2, courseIds.get(i)); // Start from index 2 because index 1 is for enrolledCourse
+            }
+
+            // For debugging: Build the full SQL query with parameters substituted
+            String debugSql = sql.toString();
+            debugSql = debugSql.replaceFirst("\\?", "'" + enrolledCourse + "'");
+            for (String courseId : courseIds) {
+                debugSql = debugSql.replaceFirst("\\?", "'" + courseId + "'");
+            }
+            // Log the final query being executed
+            System.out.println("Executing timetable query: " + debugSql);
+
             ResultSet resultSet = statement.executeQuery();
-            System.out.println(resultSet);
+
             while (resultSet.next()) {
                 String courseName = resultSet.getString("courseName");
                 String dayOfWeek = resultSet.getString("dayOfWeek");
@@ -99,11 +165,16 @@ public class ViewStudentTimetableServlet extends HttpServlet {
                 String timeEnd = resultSet.getString("timeEnd");
 
                 timetableEntries.add(new TimetableEntry(courseName, dayOfWeek, timeStart, timeEnd));
+
+                // Log each added timetable entry
+                System.out.println("Added timetable entry: " + courseName + " " + dayOfWeek + " " + timeStart + "-" + timeEnd);
             }
 
             resultSet.close();
             statement.close();
+
         } catch (Exception e) {
+            System.err.println("An error occurred while fetching the timetable:");
             e.printStackTrace();
         }
 
