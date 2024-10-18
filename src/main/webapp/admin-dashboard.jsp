@@ -40,7 +40,7 @@
             <i class='bx bx-calendar'></i>
             <h3>Manage Attendance</h3>
             <p>Track and update attendance records for students.</p>
-            <a href="manage-attendance.jsp">Manage Attendance</a>
+            <a href="admin-attendance.jsp">Manage Attendance</a>
         </div>
         <div class="card">
             <i class='bx bx-time'></i>

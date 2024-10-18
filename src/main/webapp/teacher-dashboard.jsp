@@ -1,4 +1,3 @@
-.
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Base64" %>
 <!DOCTYPE html>
@@ -17,7 +16,7 @@
         <h2 class="logo">UniVerse</h2>
         <ul class="nav-links">
             <li><a href="teacher-dashboard.jsp">Home</a></li>
-            <li><a href="updateAttendance.jsp">Attendance</a></li>
+            <li><a href="teacher-attendance.jsp">Attendance</a></li>
             <li><a href="view-teacher-timetable.jsp">Timetable</a></li>
             <li><a href="notes.jsp">Notes</a></li>
 
@@ -75,7 +74,7 @@
             <i class='bx bx-calendar'></i>
             <h3>Attendance</h3>
             <p>Track and update attendance records for your classes.</p>
-            <a href="updateAttendance.jsp">Update Attendance</a>
+            <a href="teacher-attendance.jsp">Update Attendance</a>
         </div>
         <!-- New Timetable Card -->
         <div class="card">
@@ -114,7 +113,7 @@
     </div>
 </div>
 
-<script src="script/dark-mode.js"></script> <!-- Universal dark mode script -->
-<script src="script/teacher-dashboard.js"></script> <!-- Page-specific script -->
+<script src="script/dark-mode.js"></script>
+<script src="script/teacher-dashboard.js"></script>
 </body>
 </html>
