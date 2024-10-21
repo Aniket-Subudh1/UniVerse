@@ -9,7 +9,9 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles/student-dashboard.css?v=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
+
 <body>
 <div class="container">
     <nav class="navbar">
@@ -86,6 +88,13 @@
             <p>Check your fee details and payment status.</p>
             <a href="fee-structure.jsp">View Fee Status</a>
         </div>
+
+        <div class="card">
+            <i class='bx bx-comment-dots'></i>
+            <h3>Payment fee</h3>
+            <p>Pay your fee.</p>
+            <a href="paymentForm.jsp">Pay Fees</a>
+        </div>
         <div class="card">
             <i class='bx bx-time'></i>
             <h3>Timetable</h3>
@@ -128,5 +137,7 @@
 
 <script src="script/dark-mode.js"></script> <!-- Universal dark mode script -->
 <script src="script/student-dashboard.js"></script> <!-- Page-specific script -->
+
+
 </body>
 </html>
