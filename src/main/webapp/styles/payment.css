@@ -1,0 +1,78 @@
+/* styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Gradient background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #F37254; /* Razorpay theme color */
+    font-size: 24px;
+}
+
+.razorpay-button {
+    background-color: #F37254; /* Razorpay button color */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.razorpay-button:hover {
+    background-color: #d65a4a; /* Darker shade on hover */
+    transform: scale(1.05);
+}
+
+.hidden-input {
+    display: none; /* Hides the hidden input element */
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+@media (max-width: 450px) {
+    .container {
+        width: 95%; /* Adjusts width for smaller screens */
+    }
+
+    h1 {
+        font-size: 20px; /* Adjusts heading size for smaller screens */
+    }
+
+    .razorpay-button {
+        font-size: 16px; /* Adjusts button size for smaller screens */
+        padding: 10px 15px;
+    }
+}
