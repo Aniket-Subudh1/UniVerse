@@ -1,78 +1,108 @@
-/* styles.css */
-
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Gradient background */
+/* Reset some basic styles */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#F37254 ;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     color: #333;
+    transition: all 0.3s ease-in-out;
 }
 
+/* Container to center the content */
 .container {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px 20px;
+    max-width: 450px;
+    width: 100%;
     text-align: center;
-    width: 90%;
-    max-width: 400px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease-out;
+    transition: box-shadow 0.3s;
 }
 
 .container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.2);
 }
 
+/* Keyframe animation for a smooth fade-in effect */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Heading style */
 h1 {
+    font-size: 2rem;
+    color: #333;
     margin-bottom: 20px;
-    color: #F37254; /* Razorpay theme color */
-    font-size: 24px;
+    letter-spacing: 1px;
+    transition: color 0.3s;
 }
 
-.razorpay-button {
-    background-color: #F37254; /* Razorpay button color */
-    color: white;
-    padding: 12px 20px;
-    border: none;
+/* Form and Razorpay button styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Razorpay button */
+.razorpay-payment-button {
+    background-color: #F37254;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 12px 25px;
     border-radius: 5px;
+    border: none;
     cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s, transform 0.3s;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.razorpay-button:hover {
-    background-color: #d65a4a; /* Darker shade on hover */
-    transform: scale(1.05);
-}
-
-.hidden-input {
-    display: none; /* Hides the hidden input element */
-}
-
-.footer {
+    transition: background-color 0.3s ease;
     margin-top: 20px;
-    font-size: 14px;
-    color: #555;
+    font-weight: bold;
 }
 
-@media (max-width: 450px) {
+.razorpay-payment-button:hover {
+    background-color: #d86046;
+}
+
+/* Hidden input */
+input[type="hidden"] {
+    display: none;
+}
+
+/* Add some padding and margins */
+.container p {
+    font-size: 1.1rem;
+    margin-top: 20px;
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
     .container {
-        width: 95%; /* Adjusts width for smaller screens */
+        padding: 20px;
+        max-width: 90%;
     }
 
     h1 {
-        font-size: 20px; /* Adjusts heading size for smaller screens */
+        font-size: 1.5rem;
     }
 
-    .razorpay-button {
-        font-size: 16px; /* Adjusts button size for smaller screens */
-        padding: 10px 15px;
+    .razorpay-payment-button {
+        width: 100%;
+        padding: 15px;
     }
 }
