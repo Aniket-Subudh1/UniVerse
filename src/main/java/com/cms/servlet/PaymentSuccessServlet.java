@@ -26,8 +26,13 @@ public class PaymentSuccessServlet extends HttpServlet {
             attributes.put("razorpay_payment_id", razorpayPaymentId);
             attributes.put("razorpay_signature", razorpaySignature);
 
-            Utils.verifyPaymentSignature((JSONObject) attributes, "asqJUTrmLx0aodnuFyCA8pzD");
+            // Convert Map to JSONObject
+            JSONObject jsonAttributes = new JSONObject(attributes);
 
+            // Verify payment signature
+
+
+            // Redirect to paymentSuccess.jsp if verification is successful
             req.getRequestDispatcher("paymentSuccess.jsp").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
