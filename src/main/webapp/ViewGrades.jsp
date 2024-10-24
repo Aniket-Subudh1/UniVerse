@@ -4,11 +4,25 @@
 <html>
 <head>
     <title>Assign Grades</title>
-
     <link rel="stylesheet" href="styles/ViewGrades.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
+<!-- Navbar Section -->
+<div class="container">
+    <nav class="navbar">
+        <h2 class="logo">UniVerse</h2>
+        <ul class="nav-links">
+            <li><a href="teacher-dashboard.jsp">Home</a></li>
+            <li><a href="Manage-Course.jsp">Courses</a></li>
+            <li><a href="ViewGrades.jsp">Grades</a></li>
+            <li><a href="attendance.jsp">Attendance</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Main Content Section -->
 <h1>Enter Details to Assign Grades</h1>
 
 <form action="assignGrades" method="post">
@@ -63,6 +77,7 @@
     %>
     </tbody>
 </table>
+<script src="script/dark-mode.js"></script>
 
 </body>
 </html>

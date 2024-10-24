@@ -7,6 +7,11 @@ body {
     color: #2a2d3e;
 }
 
+body.dark-mode {
+    background-color: #202328;
+    color: #f1f1f1;
+}
+
 /* Container */
 .container {
     max-width: 1200px;
@@ -23,6 +28,13 @@ body {
     margin-bottom: 20px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     border: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.dark-mode {
+    background-color: #333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border: 1px solid #555;
 }
 
 /* Day Cards */
@@ -32,6 +44,12 @@ body {
     padding: 15px;
     margin: 10px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.day-card.dark-mode {
+    background-color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Time Slot Button */
@@ -40,18 +58,30 @@ body {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
-    background-color: #2a2d3e;
+    background-color: #2a2d3e; /* Dark navy */
     color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .time-slot-button:hover {
-    background-color: #ffcc00;
+    background-color: #ffcc00; /* Gold hover */
     color: #2a2d3e;
+}
+
+/* Dark Mode Time Slot Button */
+.time-slot-button.dark-mode {
+    background-color: #2a2d3e;
+    color: #e8c888; /* Gold text */
+}
+
+.time-slot-button.dark-mode:hover {
+    background-color: #555; /* Darker gray for hover */
+    color: #ffd700; /* Gold text on hover */
 }
 
 /* Student Cards */
@@ -65,9 +95,23 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.student-card.dark-mode {
+    background-color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid #555;
 }
 
 .student .select-attendance {
     padding: 5px;
     border-radius: 5px;
+    background-color: #e8c888; /* Beige/gold for selection */
+    color: #2a2d3e;
+}
+
+.student .select-attendance.dark-mode {
+    background-color: #555; /* Darker selection background in dark mode */
+    color: #ffd700; /* Gold text for dark mode */
 }

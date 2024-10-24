@@ -1,16 +1,88 @@
-/* General styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+/* Reset and base styles */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    color: #2a2d3e;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: #181a1e;
+    color: #f1f1f1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-h1, h2 {
-    color: #4CAF50;
+/* Navbar styles */
+.navbar {
+    background-color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
 }
 
+.navbar.dark-mode {
+    background-color: #202328; /* Darker navbar background in dark mode */
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.navbar.dark-mode .logo {
+    color: #f1f1f1; /* Lighter logo text in dark mode */
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li a {
+    color: #333;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    display: block;
+}
+
+.navbar .nav-links li a:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow on hover */
+    opacity: 0.8; /* Reduced opacity on hover */
+}
+
+.navbar.dark-mode .nav-links li a {
+    color: #f1f1f1; /* Light text in dark mode */
+}
+
+.navbar.dark-mode .nav-links li a:hover {
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Shadow for dark mode */
+    opacity: 0.8; /* Reduced opacity in dark mode on hover */
+}
+
+/* Form Section */
 form {
     margin-bottom: 20px;
     padding: 20px;
@@ -18,20 +90,34 @@ form {
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 450px;
+    max-width: 600px;
     margin: auto;
     transition: all 0.3s ease;
+    text-align: center; /* Centered the form content */
+}
+
+form.dark-mode {
+    background-color: #202328; /* Dark form background */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Darker shadow */
 }
 
 form:hover {
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+}
+
+form.dark-mode:hover {
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
 }
 
 label {
     font-weight: bold;
     margin-bottom: 8px;
     display: block;
-    color: #333;
+    color: #555;
+}
+
+form.dark-mode label {
+    color: #f1f1f1; /* Light text for labels in dark mode */
 }
 
 input[type="text"] {
@@ -39,19 +125,31 @@ input[type="text"] {
     padding: 12px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    color: #333;
     border-radius: 6px;
-    box-sizing: border-box;
     transition: border 0.3s ease;
 }
 
 input[type="text"]:focus {
-    border-color: #4CAF50;
+    border-color: #ffd700; /* Gold border on focus */
     outline: none;
 }
 
+input.dark-mode[type="text"] {
+    background-color: #444; /* Dark input background in dark mode */
+    color: #f1f1f1;
+    border: 1px solid #555;
+}
+
+input.dark-mode[type="text"]:focus {
+    border-color: #ffd700; /* Gold border on focus */
+}
+
+/* Button Styles */
 button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #2a2d3e; /* Dark navy for buttons */
+    color: #e8c888; /* Warm beige/gold for button text */
     padding: 12px;
     border: none;
     border-radius: 6px;
@@ -62,19 +160,35 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #ffd700; /* Gold on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+button.dark-mode {
+    background-color: #555; /* Darker background in dark mode */
+    color: #ffd700; /* Gold text in dark mode */
+}
+
+button.dark-mode:hover {
+    background-color: #2a2d3e; /* Darker background on hover in dark mode */
+    color: #fff; /* White text on hover */
     transform: translateY(-2px);
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 30px;
+button:active {
+    background-color: #e8c888; /* Button click effect */
+    color: #2a2d3e;
+}
+
+button.dark-mode:active {
+    background-color: #e8c888; /* Button click effect in dark mode */
+    color: #2a2d3e;
 }
 
 /* Table styles */
 table {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px; /* Adjusted table position upward */
     padding: 20px;
     border-collapse: collapse;
     background-color: #fff;
@@ -83,9 +197,14 @@ table {
     overflow: hidden;
 }
 
+table.dark-mode {
+    background-color: #2a2d3e; /* Updated table background in dark mode */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
 thead {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #2a2d3e; /* Dark navy for table headers */
+    color: #e8c888; /* Gold text for headers */
 }
 
 thead th {
@@ -97,17 +216,34 @@ thead th {
 tbody td {
     padding: 15px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ccc;
     font-size: 14px;
+    color: #333;
+}
+
+tbody.dark-mode td {
+    border-bottom: 1px solid #444; /* Darker border for rows in dark mode */
+    color: #f1f1f1; /* Light text in dark mode */
 }
 
 tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
+tbody.dark-mode tr:nth-child(even) {
+    background-color: #292c34; /* Darker alternating row color in dark mode */
+}
+
+/* Updated Row Hover Styles */
 tbody tr:hover {
-    background-color: #f1f1f1;
+    background-color: #ffd700; /* Gold background on hover */
+    color: #fff; /* White text on hover */
     transition: background-color 0.3s ease;
+}
+
+tbody.dark-mode tr:hover {
+    background-color: #555; /* Darker hover background in dark mode */
+    color: #ffd700; /* Gold text on hover in dark mode */
 }
 
 /* Responsive Design */

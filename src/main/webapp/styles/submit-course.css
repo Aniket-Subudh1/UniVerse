@@ -128,9 +128,10 @@ body.dark-mode {
     resize: none;
 }
 
+/* Updated Button Styles */
 .card button.btn {
-    background-color: #101f6e;
-    color: #fff;
+    background-color: #2a2d3e; /* Dark navy for buttons */
+    color: #e8c888; /* Warm beige/gold for button text */
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -139,7 +140,14 @@ body.dark-mode {
 }
 
 .card button.btn:hover {
-    background-color: #5b6ee3;
+    background-color: #ffd700; /* Gold on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+/* Dark Mode Button Hover */
+.card.dark-mode button.btn:hover {
+    background-color: #555; /* Darker background in dark mode */
+    color: #ffd700; /* Gold text in dark mode hover */
 }
 
 /* Modals */
@@ -173,14 +181,22 @@ body.dark-mode {
     margin-bottom: 20px;
 }
 
+/* Updated Modal Button Styles */
 .modal-content button.btn {
-    background-color: #101f6e;
-    color: #fff;
+    background-color: #2a2d3e; /* Dark navy for buttons */
+    color: #e8c888; /* Warm beige/gold for button text */
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
 }
 
 .modal-content button.btn:hover {
-    background-color: #5b6ee3;
+    background-color: #ffd700; /* Gold on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+/* Dark Mode Modal Button Hover */
+.modal-content.dark-mode button.btn:hover {
+    background-color: #555; /* Darker background in dark mode */
+    color: #ffd700; /* Gold text in dark mode hover */
 }

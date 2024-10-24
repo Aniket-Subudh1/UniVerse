@@ -28,7 +28,7 @@
                 </div>
                 <div id="nright">
                     <a href="home.jsp">LOGIN</a>
-                    <a href="#">SIGNUP</a>
+                    <a href="home.jsp">SIGNUP</a>
                 </div>
             </div>
             <div id="hero">

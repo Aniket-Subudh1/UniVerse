@@ -15,7 +15,7 @@
         <ul class="nav-links">
             <li><a href="teacher-dashboard.jsp">Home</a></li>
             <li><a href="Manage-Course.jsp">Courses</a></li>
-            <li><a href="grades.jsp">Grades</a></li>
+            <li><a href="ViewGrades.jsp">Grades</a></li>
             <li><a href="attendance.jsp">Attendance</a></li>
         </ul>
 
