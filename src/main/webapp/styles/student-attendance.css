@@ -1,10 +1,9 @@
-/* Base Styles */
+/* Page Layout */
 body {
-    font-family: Arial, sans-serif;
     background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
+    color: #2a2d3e;
+    font-family: "Poppins", sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -13,10 +12,50 @@ body {
     padding: 20px;
 }
 
+/* Navbar */
+.navbar {
+    background-color: #ffffff; /* Light mode background color */
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2a2d3e;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px; /* Spacing between links */
+    margin-left: auto; /* Aligns the links to the right */
+}
+
+.navbar .nav-links li a {
+    color: #2a2d3e;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .nav-links li a:hover {
+    background-color: #e0e4eb;
+    color: #2a2d3e;
+}
+
+/* Page Title */
 h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #2a2d3e;
+    color: #101f6e;
 }
 
 /* Attendance Cards */
@@ -61,4 +100,46 @@ h1 {
     text-align: center;
     font-style: italic;
     color: #666;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #181a1e;
+    color: #f1f1f1;
+}
+
+body.dark-mode h1 {
+    color: #f1f1f1;
+}
+
+body.dark-mode .navbar {
+    background-color: #202328; /* Dark mode background color */
+}
+
+body.dark-mode .navbar .logo,
+body.dark-mode .navbar .nav-links li a {
+    color: #f1f1f1;
+}
+
+body.dark-mode .navbar .nav-links li a:hover {
+    background-color: #333;
+}
+
+body.dark-mode .attendance-card {
+    background-color: #202328;
+    color: #f1f1f1;
+    border: 1px solid #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .attendance-card h3 {
+    color: #f1f1f1;
+}
+
+body.dark-mode .present {
+    color: #28a745; /* Green for Present */
+}
+
+body.dark-mode .absent {
+    color: #dc3545; /* Red for Absent */
 }

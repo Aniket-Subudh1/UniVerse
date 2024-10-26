@@ -9,6 +9,17 @@
 </head>
 <body>
 <div class="container">
+  <!-- Navbar copied from view-courses.jsp -->
+  <nav class="navbar">
+    <h2 class="logo">UniVerse</h2>
+    <ul class="nav-links">
+      <li><a href="student-dashboard.jsp">Home</a></li>
+      <li><a href="view-courses.jsp">Courses</a></li>
+      <li><a href="view-grades.jsp">Grades</a></li>
+      <li><a href="view-attendance.jsp">Attendance</a></li>
+    </ul>
+  </nav>
+
   <h1>Attendance Records</h1>
 
   <!-- Date Range Selection -->
@@ -27,5 +38,7 @@
     <p>Loading your attendance records...</p>
   </div>
 </div>
+
+<script src="script/dark-mode.js"></script>
 </body>
 </html>

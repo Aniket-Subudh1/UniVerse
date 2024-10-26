@@ -10,13 +10,14 @@ body {
     background-color: #f9f9f9;
     color: #333;
     min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 body.dark-mode {
-    font-family: 'Poppins', sans-serif;
     background-color: #202328;
     color: white;
-    min-height: 100vh;
 }
+
 /* Container */
 .container {
     max-width: 1200px;
@@ -29,45 +30,56 @@ body.dark-mode {
     background-color: #fff;
     padding: 15px 20px;
     display: flex;
-    border-radius: 8px;
     justify-content: space-between;
     align-items: center;
+    border-radius: 8px;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
 }
 
-/* Dark mode for the Navbar */
-.navbar.dark-mode {
+body.dark-mode .navbar {
     background-color: #202328;
 }
 
-/* Logo in light and dark mode */
 .navbar .logo {
     font-size: 24px;
     font-weight: bold;
-    color: #333; /* Light mode - dark text */
+    color: #333; /* Light mode logo color */
+    text-transform: uppercase;
 }
 
-.navbar.dark-mode .logo {
-    color: #ffffff; /* Dark mode - white text */
+body.dark-mode .navbar .logo {
+    color: #ffffff; /* Dark mode logo color */
 }
 
-/* Navbar Links */
-.navbar .nav-links li {
-    display: inline-block;
-    margin-left: 20px;
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Spacing between links */
+    margin-left: auto;
 }
 
-.navbar .nav-links a {
+.navbar .nav-links li a {
+    color: #333; /* Light mode link color */
     text-decoration: none;
-    color: #333; /* Light mode text color */
     padding: 8px 15px;
     border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Dark mode navbar links */
-.navbar.dark-mode .nav-links a {
-    color: #ffffff; /* Dark mode text color */
+.navbar .nav-links li a:hover {
+    background-color: rgba(224, 228, 235, 1); /* Light hover background color */
+    color: #000;
+}
+
+body.dark-mode .nav-links li a {
+    color: #f1f1f1; /* Dark mode link color */
+}
+
+body.dark-mode .nav-links li a:hover {
+    background-color: #333; /* Dark hover background color */
+    color: #f1f1f1;
 }
 
 /* Dashboard Sections */
@@ -90,8 +102,7 @@ body.dark-mode {
     margin-bottom: 20px;
 }
 
-/* Card Dark Mode */
-.card.dark-mode {
+body.dark-mode .card {
     background-color: #202328;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     color: #f1f1f1;
@@ -101,7 +112,7 @@ body.dark-mode {
 .courses-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 20px; /* Space between the cards */
+    gap: 20px;
     padding: 20px;
 }
 
@@ -115,21 +126,18 @@ body.dark-mode {
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     min-width: 250px;
     max-width: 300px;
-    flex: 1;
 }
 
-/* Hover effect for course cards */
 .course-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     background-color: #f0f0f0;
 }
 
-
-.course-card.dark-mode {
+body.dark-mode .course-card {
     background-color: #202328;
     color: #f1f1f1;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow in dark mode */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* Register button inside course cards */
@@ -146,21 +154,17 @@ body.dark-mode {
     font-weight: bold;
 }
 
-/* Hover effect for register button */
 .course-card .register-btn:hover {
     background-color: #1a5276;
 }
 
-/* Register button dark mode */
-.course-card.dark-mode .register-btn {
-    background-color: #ffd700; /* Yellow in dark mode */
+body.dark-mode .course-card .register-btn {
+    background-color: #ffd700;
     color: #333;
 }
 
-/* Register button hover effect in dark mode */
-.course-card.dark-mode .register-btn:hover {
-    background-color: #ffcc33; /* Slightly lighter yellow */
-    color: #222;
+body.dark-mode .course-card .register-btn:hover {
+    background-color: #ffcc33;
 }
 
 /* Modal styles */
@@ -177,7 +181,7 @@ body.dark-mode {
     align-items: center;
 }
 
-/* Modal content styles */
+/* Modal content */
 .modal-content {
     background-color: #fff;
     padding: 20px;
@@ -188,13 +192,11 @@ body.dark-mode {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Modal content dark mode */
-.modal-content.dark-mode {
+body.dark-mode .modal-content {
     background-color: #202328;
-    color: #f1f1f1; /* Text color in dark mode */
+    color: #f1f1f1;
 }
 
-/* Modal button */
 .modal-content .btn {
     background-color: #2980b9;
     color: #ffffff;
@@ -203,8 +205,7 @@ body.dark-mode {
     cursor: pointer;
 }
 
-/* Modal button dark mode */
-.modal-content.dark-mode .btn {
+body.dark-mode .modal-content .btn {
     background-color: #ffd700;
     color: #333;
 }
