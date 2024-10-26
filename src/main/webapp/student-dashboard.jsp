@@ -80,21 +80,16 @@
             <i class='bx bx-calendar-check'></i>
             <h3>My Attendance</h3>
             <p>Track your attendance record.</p>
-            <a href="ViewAttendance.jsp">View Attendance</a>
+            <a href="student-attendance.jsp">View Attendance</a>
         </div>
         <div class="card">
             <i class='bx bx-wallet'></i>
             <h3>Fee Payment & Status</h3>
             <p>Check your fee details and payment status.</p>
-            <a href="fee-structure.jsp">View Fee Status</a>
+            <a href="paymentForm.jsp">View Fee Status</a>
         </div>
 
-        <div class="card">
-            <i class='bx bx-comment-dots'></i>
-            <h3>Payment fee</h3>
-            <p>Pay your fee.</p>
-            <a href="paymentForm.jsp">Pay Fees</a>
-        </div>
+
         <div class="card">
             <i class='bx bx-time'></i>
             <h3>Timetable</h3>
@@ -137,7 +132,5 @@
 
 <script src="script/dark-mode.js"></script> <!-- Universal dark mode script -->
 <script src="script/student-dashboard.js"></script> <!-- Page-specific script -->
-
-
 </body>
 </html>
