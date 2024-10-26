@@ -11,22 +11,24 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #f9f9f9;
-    color: #2a2d3e;
+    color: #2a2d3e; /* Dark navy for text */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Dark Mode Styles */
 body.dark-mode {
-    background-color: #181a1e;
-    color: #f1f1f1;
+    background-color: #1b1b1b; /* Slightly lighter than before for better contrast */
+    color: #f5f5f5;
 }
 
+/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* Navbar styles */
+/* Navbar */
 .navbar {
     background-color: #fff;
     padding: 15px 20px;
@@ -40,17 +42,18 @@ body.dark-mode {
 }
 
 .navbar.dark-mode {
-    background-color: #202328; /* Darker navbar background in dark mode */
+    background-color: #2a2a2a;
 }
 
 .navbar .logo {
     font-size: 24px;
     font-weight: bold;
     color: #333;
+    transition: color 0.3s ease;
 }
 
 .navbar.dark-mode .logo {
-    color: #f1f1f1; /* Lighter logo text in dark mode */
+    color: #ffffff; /* High contrast white text for logo */
 }
 
 .navbar .nav-links {
@@ -64,208 +67,131 @@ body.dark-mode {
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 5px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     display: block;
-}
-
-.navbar .nav-links li a:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow on hover */
-    opacity: 0.8; /* Reduced opacity on hover */
 }
 
 .navbar.dark-mode .nav-links li a {
-    color: #f1f1f1; /* Light text in dark mode */
+    color: #e0e0e0; /* Light gray for links in dark mode */
 }
 
 .navbar.dark-mode .nav-links li a:hover {
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Shadow for dark mode */
-    opacity: 0.8; /* Reduced opacity in dark mode on hover */
+    background-color: #444;
+}
+
+/* Heading */
+.container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #101f6e;
+    text-align: center;
+}
+
+/* Dark mode heading color change */
+.container.dark-mode h1,
+.container.dark-mode h2 {
+    color: #f5f5f5; /* White text for headings in dark mode */
+}
+
+.container h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
 }
 
 /* Form Section */
-form {
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+.form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.form-section label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #2a2d3e;
+}
+
+/* Dark mode label color change */
+.form-section.dark-mode label {
+    color: #f5f5f5; /* White text for labels in dark mode */
+}
+
+.form-section input[type="text"] {
     width: 100%;
-    max-width: 600px;
-    margin: auto;
-    transition: all 0.3s ease;
-    text-align: center; /* Centered the form content */
+    max-width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease;
 }
 
-form.dark-mode {
-    background-color: #202328; /* Dark form background */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Darker shadow */
-}
-
-form:hover {
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
-}
-
-form.dark-mode:hover {
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 8px;
-    display: block;
-    color: #555;
-}
-
-form.dark-mode label {
-    color: #f1f1f1; /* Light text for labels in dark mode */
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    color: #333;
-    border-radius: 6px;
-    transition: border 0.3s ease;
-}
-
-input[type="text"]:focus {
-    border-color: #ffd700; /* Gold border on focus */
+.form-section input[type="text"]:focus {
+    border-color: #101f6e;
     outline: none;
 }
 
-input.dark-mode[type="text"] {
-    background-color: #444; /* Dark input background in dark mode */
-    color: #f1f1f1;
-    border: 1px solid #555;
-}
-
-input.dark-mode[type="text"]:focus {
-    border-color: #ffd700; /* Gold border on focus */
-}
-
-/* Button Styles */
-button {
-    background-color: #2a2d3e; /* Dark navy for buttons */
-    color: #e8c888; /* Warm beige/gold for button text */
-    padding: 12px;
+/* Submit Button */
+.submit-button {
+    background-color: #101f6e;
+    color: #fff;
+    padding: 10px 20px;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-button:hover {
-    background-color: #ffd700; /* Gold on hover */
-    color: #ffffff; /* White text on hover */
-}
-
-button.dark-mode {
-    background-color: #555; /* Darker background in dark mode */
-    color: #ffd700; /* Gold text in dark mode */
-}
-
-button.dark-mode:hover {
-    background-color: #2a2d3e; /* Darker background on hover in dark mode */
-    color: #fff; /* White text on hover */
-    transform: translateY(-2px);
-}
-
-button:active {
-    background-color: #e8c888; /* Button click effect */
-    color: #2a2d3e;
-}
-
-button.dark-mode:active {
-    background-color: #e8c888; /* Button click effect in dark mode */
-    color: #2a2d3e;
-}
-
-/* Table styles */
-table {
-    width: 100%;
-    margin-top: 10px; /* Adjusted table position upward */
-    padding: 20px;
-    border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-table.dark-mode {
-    background-color: #2a2d3e; /* Updated table background in dark mode */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-thead {
-    background-color: #2a2d3e; /* Dark navy for table headers */
-    color: #e8c888; /* Gold text for headers */
-}
-
-thead th {
-    padding: 15px;
-    text-align: left;
-    font-size: 16px;
-}
-
-tbody td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ccc;
-    font-size: 14px;
-    color: #333;
-}
-
-tbody.dark-mode td {
-    border-bottom: 1px solid #444; /* Darker border for rows in dark mode */
-    color: #f1f1f1; /* Light text in dark mode */
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-tbody.dark-mode tr:nth-child(even) {
-    background-color: #292c34; /* Darker alternating row color in dark mode */
-}
-
-/* Updated Row Hover Styles */
-tbody tr:hover {
-    background-color: #ffd700; /* Gold background on hover */
-    color: #fff; /* White text on hover */
     transition: background-color 0.3s ease;
 }
 
-tbody.dark-mode tr:hover {
-    background-color: #555; /* Darker hover background in dark mode */
-    color: #ffd700; /* Gold text on hover in dark mode */
+.submit-button:hover {
+    background-color: #5b6ee3;
+}
+
+.submit-button.dark-mode:hover {
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+/* Grades Table */
+.grades-table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grades-table thead {
+    background-color: #101f6e;
+    color: #ffffff;
+}
+
+.grades-table th,
+.grades-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Dark mode for grades table text */
+.grades-table.dark-mode th,
+.grades-table.dark-mode td {
+    color: #f5f5f5; /* White text in dark mode */
+    border-bottom: 1px solid #444;
+}
+
+.grades-table.dark-mode thead {
+    background-color: #444; /* Darker background for thead in dark mode */
+}
+
+.grades-table tbody tr:hover {
+    background-color: #333;
 }
 
 /* Responsive Design */
-@media (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
-
-    form {
-        padding: 15px;
-        max-width: 100%;
-    }
-
-    table {
-        font-size: 14px;
-    }
-
-    thead th, tbody td {
-        padding: 10px;
-    }
-
-    button {
-        font-size: 14px;
-    }
-}
