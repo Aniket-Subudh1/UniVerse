@@ -19,7 +19,7 @@
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
             <li><a href="#">Courses</a></li>
-            <li><a href="#">Grades</a></li>
+            <li><a href="grades.jsp">Grades</a></li>
             <li><a href="#">Attendance</a></li>
             <!-- Dark Mode Toggle -->
             <li>
@@ -74,7 +74,7 @@
             <i class='bx bx-award'></i>
             <h3>My Grades</h3>
             <p>Check your grades for all courses.</p>
-            <a href="ViewGradesStudent.jsp">View Grades</a>
+            <a href="grades.jsp">View Grades</a>
         </div>
         <div class="card">
             <i class='bx bx-calendar-check'></i>

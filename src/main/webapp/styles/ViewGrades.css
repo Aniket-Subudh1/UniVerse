@@ -1,4 +1,4 @@
-/* Reset and base styles */
+/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -15,9 +15,9 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Dark Mode Styles */
+/* Dark Mode */
 body.dark-mode {
-    background-color: #1b1b1b; /* Slightly lighter than before for better contrast */
+    background-color: #1b1b1b;
     color: #f5f5f5;
 }
 
@@ -53,7 +53,7 @@ body.dark-mode {
 }
 
 .navbar.dark-mode .logo {
-    color: #ffffff; /* High contrast white text for logo */
+    color: #ffffff;
 }
 
 .navbar .nav-links {
@@ -72,7 +72,7 @@ body.dark-mode {
 }
 
 .navbar.dark-mode .nav-links li a {
-    color: #e0e0e0; /* Light gray for links in dark mode */
+    color: #e0e0e0;
 }
 
 .navbar.dark-mode .nav-links li a:hover {
@@ -87,10 +87,9 @@ body.dark-mode {
     text-align: center;
 }
 
-/* Dark mode heading color change */
 .container.dark-mode h1,
 .container.dark-mode h2 {
-    color: #f5f5f5; /* White text for headings in dark mode */
+    color: #f5f5f5;
 }
 
 .container h2 {
@@ -114,9 +113,8 @@ body.dark-mode {
     color: #2a2d3e;
 }
 
-/* Dark mode label color change */
 .form-section.dark-mode label {
-    color: #f5f5f5; /* White text for labels in dark mode */
+    color: #f5f5f5;
 }
 
 .form-section input[type="text"] {
@@ -133,6 +131,23 @@ body.dark-mode {
 .form-section input[type="text"]:focus {
     border-color: #101f6e;
     outline: none;
+}
+
+/* Select Dropdown */
+select {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #444;
+    color: #ffffff;
+    width: 200px;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    outline: none;
+    border-color: #ffa500;
 }
 
 /* Submit Button */
@@ -179,15 +194,14 @@ body.dark-mode {
     color: #333;
 }
 
-/* Dark mode for grades table text */
 .grades-table.dark-mode th,
 .grades-table.dark-mode td {
-    color: #f5f5f5; /* White text in dark mode */
+    color: #f5f5f5;
     border-bottom: 1px solid #444;
 }
 
 .grades-table.dark-mode thead {
-    background-color: #444; /* Darker background for thead in dark mode */
+    background-color: #444;
 }
 
 .grades-table tbody tr:hover {
@@ -195,3 +209,13 @@ body.dark-mode {
 }
 
 /* Responsive Design */
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .grades-table {
+        width: 100%;
+    }
+}
