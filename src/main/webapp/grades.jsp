@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="styles/ViewGrades.css?v=1.0">
     <script>
         function fetchGrades() {
-            var studentId = document.getElementById("studentId").value;
-            if (studentId) {
-                window.location.href = "grades?studentId=" + studentId;
+            var courseId = document.getElementById("courseId").value;
+            if (courseId) {
+                window.location.href = "grades?courseId=" + courseId; // Adjusted to send courseId
             }
         }
     </script>
@@ -30,31 +30,38 @@
             <li><a href="grades.jsp">Grades</a></li>
             <li><a href="#">Attendance</a></li>
             <!-- Logout with Icon -->
-
         </ul>
     </nav>
 </div>
+
 <h1>View Grades</h1>
 
-<label for="studentId">Select Student ID:</label>
-<select id="studentId" onchange="fetchGrades()">
-    <option value="">-- Select Student ID --</option>
-    <%
-        try (Connection conn = DBConnection.getConnection()) {
-            String sql = "SELECT DISTINCT studentId FROM grades";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                String id = rs.getString("studentId");
-    %>
-    <option value="<%= id %>"><%= id %></option>
-    <%
+<form>
+    <label for="courseId">Select Course ID:</label>
+    <select id="courseId" name="courseId" onchange="fetchGrades()">
+        <option value="">-- Select Course ID --</option>
+        <%
+            // Fetch the registrationId from session
+            String registrationId = (String) request.getSession().getAttribute("registrationId");
+            if (registrationId != null) {
+                try (Connection conn = DBConnection.getConnection()) {
+                    String sql = "SELECT DISTINCT courseId FROM grades WHERE studentId = ?";
+                    PreparedStatement stmt = conn.prepareStatement(sql);
+                    stmt.setString(1, registrationId);
+                    ResultSet rs = stmt.executeQuery();
+                    while (rs.next()) {
+                        String courseId = rs.getString("courseId");
+        %>
+        <option value="<%= courseId %>"><%= courseId %></option>
+        <%
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    %>
-</select>
+        %>
+    </select>
+</form>
 
 <h2>Grades</h2>
 <table border="1">
@@ -77,7 +84,13 @@
         <td><%= grade.getCreatedAt() %></td>
     </tr>
     <%
-            }
+        }
+    } else {
+    %>
+    <tr>
+        <td colspan="3">No grades found for this Course ID.</td>
+    </tr>
+    <%
         }
     %>
     </tbody>
