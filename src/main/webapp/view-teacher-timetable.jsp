@@ -15,9 +15,9 @@
         <h2 class="logo">UniVerse</h2>
         <ul class="nav-links">
             <li><a href="teacher-dashboard.jsp">Home</a></li>
-            <li><a href="updateAttendance.jsp">Attendance</a></li>
-            <li><a href="timetable.jsp">Timetable</a></li>
-            <li><a href="notes.jsp">Notes</a></li> </ul>
+            <li><a href="Manage-Course.jsp">Courses</a></li>
+            <li><a href="add_grade.jsp">Grades</a></li>
+            <li><a href="teacher-attendance.jsp">Attendance</a></li> </ul>
     </nav>
 
 </div>

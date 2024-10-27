@@ -19,7 +19,7 @@
     <ul class="nav-links">
       <li><a href="teacher-dashboard.jsp">Home</a></li>
       <li><a href="Manage-Course.jsp">Courses</a></li>
-      <li><a href="ViewGrades.jsp">Grades</a></li>
+      <li><a href="add_grade.jsp">Grades</a></li>
       <li><a href="teacher-attendance.jsp">Attendance</a></li>
     </ul>
   </nav>
