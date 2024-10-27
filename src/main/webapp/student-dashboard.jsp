@@ -17,10 +17,10 @@
     <nav class="navbar">
         <h2 class="logo">UniVerse</h2>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Courses</a></li>
+            <li><a href="student-dashboard.jsp">Home</a></li>
+            <li><a href="view-courses.jsp">Courses</a></li>
             <li><a href="grades.jsp">Grades</a></li>
-            <li><a href="#">Attendance</a></li>
+            <li><a href="student-attendance.jsp">Attendance</a></li>
             <!-- Dark Mode Toggle -->
             <li>
                 <div class="dark-mode-toggle" id="dark-mode-toggle">

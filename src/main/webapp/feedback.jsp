@@ -21,5 +21,7 @@
 
     <input type="submit" value="Submit">
 </form>
+
+<script src="script/dark-mode.js"></script>
 </body>
 </html>

@@ -76,5 +76,8 @@
 
     <input type="submit" value="Add Grade">
 </form>
+
+<script src="script/dark-mode.js"></script>
+
 </body>
 </html>
