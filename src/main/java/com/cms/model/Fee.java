@@ -2,10 +2,19 @@ package com.cms.model;
 // Fee.java
 public class Fee {
     private int studentId;
+    private int feeId;
     private String registrationId;
     private double academicFee;
     private double hostelFee;
     private double examFee;
+
+    public int getFeeId() {
+        return feeId;
+    }
+
+    public void setFeeId(int feeId) {
+        this.feeId = feeId;
+    }
 
     // Getters and Setters
     public int getStudentId() {
