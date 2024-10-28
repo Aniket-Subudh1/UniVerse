@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Upload Notes</title>
-  <link rel="stylesheet" href="styles/uploadNotes.css">
+  <link rel="stylesheet" href="styles/managenote.css">
 </head>
 <body>
 <div class="container">
@@ -28,7 +28,7 @@
 </div>
 
 <!-- Modal for Success Message -->
-<div id="successModal" class="modal">
+<div id="successModal" class="modal" style="display:none;">
   <div class="modal-content">
     <p>Notes uploaded successfully!</p>
     <button id="closeModalBtn">OK</button>
