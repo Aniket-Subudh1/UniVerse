@@ -60,12 +60,7 @@
             <p>Create, update, and delete courses.</p>
             <a href="create-course.jsp">Manage Courses</a>
         </div>
-        <div class="card">
-            <i class='bx bx-award'></i>
-            <h3>Manage Grades</h3>
-            <p>View and manage student grades.</p>
-            <a href="ManageGrade.jsppull">Manage Grades</a>
-        </div>
+
         <div class="card">
             <i class='bx bx-comment-dots'></i>
             <h3>View Feedback</h3>

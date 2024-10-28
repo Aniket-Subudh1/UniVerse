@@ -97,6 +97,12 @@
             <a href="view-student-timetable.jsp">View Timetable</a>
         </div>
         <div class="card">
+            <i class='bx bx-book-open'></i>
+            <h3>View Notes</h3>
+            <p>View Uploaded Notes by Teacher.</p>
+            <a href="#">View Notes</a>
+        </div>
+        <div class="card">
             <i class='bx bx-comment-dots'></i>
             <h3>Student Feedback</h3>
             <p>Give feedback on your courses.</p>
