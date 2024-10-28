@@ -1,16 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: bibhu
-  Date: 28-10-2024
-  Time: 22:54
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Available Course Notes</title>
+  <link rel="stylesheet" href="styles/notes.css">
+</head>
+<body>
+<div class="container">
+  <h2>Available Course Notes</h2>
+  <div id="notesContainer" class="notes-container">
+    <p>Loading notes...</p>
+  </div>
+</div>
+<script src="script/view-notes.js"></script>
+</body>
 </html>
