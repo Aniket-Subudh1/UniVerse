@@ -9,6 +9,18 @@
 </head>
 <body>
 <div class="container">
+
+  <nav class="navbar">
+    <h2 class="logo">UniVerse</h2>
+    <ul class="nav-links">
+      <li><a href="admin-dashboard.jsp">Home</a></li>
+      <li><a href="admin-attendance.jsp">Attendance</a></li>
+      <li><a href="manage-routine.jsp">Timetable</a></li>
+      <li><a href="create-course.jsp">Courses</a></li>
+    </ul>
+  </nav>
+
+
   <h1>Manage Attendance</h1>
   <form id="markAttendanceForm">
     <div class="form-group">
@@ -46,5 +58,8 @@
     </div>
   </form>
 </div>
+
+<script src="script/dark-mode.js"></script>
+
 </body>
 </html>

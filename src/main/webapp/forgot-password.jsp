@@ -31,5 +31,6 @@
         </form>
     </div>
 </div>
+<script src="script/dark-mode.js"></script>
 </body>
 </html>

@@ -11,21 +11,13 @@
 <body>
 <div class="container">
     <nav class="navbar">
-        <h2 class="logo">UniVerse Admin</h2>
+        <h2 class="logo">UniVerse</h2>
         <ul class="nav-links">
             <li><a href="admin-dashboard.jsp">Home</a></li>
-            <li><a href="manage-timetable.jsp">Timetable</a></li>
-            <li><a href="manage-courses.jsp">Courses</a></li>
-            <li><a href="manage-grades.jsp">Grades</a></li>
+            <li><a href="admin-attendance.jsp">Attendance</a></li>
+            <li><a href="manage-routine.jsp">Timetable</a></li>
+            <li><a href="create-course.jsp">Courses</a></li>
         </ul>
-        <div class="profile-info">
-            <p class="profile-name"><%= session.getAttribute("name") %></p>
-            <p class="profile-role"><%= session.getAttribute("role") %></p>
-        </div>
-        <div class="dark-mode-toggle" id="dark-mode-toggle">
-            <span class="sun"><i class='bx bx-sun'></i></span>
-            <span class="moon"><i class='bx bx-moon'></i></span>
-        </div>
     </nav>
 
     <div class="dashboard-sections">

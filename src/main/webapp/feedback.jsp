@@ -10,6 +10,17 @@
 <body>
 
 <div class="container">
+
+    <nav class="navbar">
+        <h2 class="logo">UniVerse</h2>
+        <ul class="nav-links">
+            <li><a href="student-dashboard.jsp">Home</a></li>
+            <li><a href="view-courses.jsp">Courses</a></li>
+            <li><a href="grades.jsp">Grades</a></li>
+            <li><a href="student-attendance.jsp">Attendance</a></li>
+        </ul>
+    </nav>
+
     <h2>Submit Feedback</h2>
 
     <form id="feedbackForm">
@@ -31,5 +42,6 @@
 </div>
 
 <script src="script/feedback.js"></script> <!-- Link to the external JS file -->
+<script src="script/dark-mode.js"></script>
 </body>
 </html>

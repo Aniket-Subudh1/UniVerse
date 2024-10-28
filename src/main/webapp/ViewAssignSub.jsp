@@ -17,9 +17,6 @@
             <li><a href="Manage-Course.jsp">Courses</a></li>
             <li><a href="add_grade.jsp">Grades</a></li>
             <li><a href="teacher-attendance.jsp">Attendance</a></li> </ul>
-
-
-        </ul>
     </nav>
 </div>
     <div class="dashboard">

@@ -63,6 +63,7 @@
 </div>
 
 <script src="script/editProfile.js"></script> <!-- External JavaScript file -->
+<script src="script/dark-mode.js"></script>
 </body>
 
 </html>

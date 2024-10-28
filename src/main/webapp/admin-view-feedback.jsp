@@ -8,6 +8,17 @@
 </head>
 <body>
 <div class="container">
+
+  <nav class="navbar">
+    <h2 class="logo">UniVerse</h2>
+    <ul class="nav-links">
+      <li><a href="admin-dashboard.jsp">Home</a></li>
+      <li><a href="admin-attendance.jsp">Attendance</a></li>
+      <li><a href="manage-routine.jsp">Timetable</a></li>
+      <li><a href="create-course.jsp">Courses</a></li>
+    </ul>
+  </nav>
+
   <h1>View Teacher Feedback</h1>
   <label for="teacherDropdown">Select a Teacher:</label>
   <select id="teacherDropdown">
@@ -21,5 +32,6 @@
 </div>
 
 <script src="script/admin-view-feedback.js"></script>
+<script src="script/dark-mode.js"></script>
 </body>
 </html>

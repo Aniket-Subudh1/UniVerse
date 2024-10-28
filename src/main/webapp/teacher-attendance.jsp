@@ -13,7 +13,6 @@
 <body>
 <div class="container">
 
-  <!-- Navbar copied from the "Submit Course for Approval" page -->
   <nav class="navbar">
     <h2 class="logo">UniVerse</h2>
     <ul class="nav-links">

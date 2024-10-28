@@ -9,27 +9,18 @@
     <link rel="stylesheet" href="styles/viewFees.css">
 </head>
 <body>
-
-<div class="container1">
-    <nav class="navbar">
-        <h2 class="logo">UniVerse Admin</h2>
-        <ul class="nav-links">
-            <li><a href="admin-dashboard.jsp">Home</a></li>
-            <li><a href="manage-timetable.jsp">Timetable</a></li>
-            <li><a href="manage-courses.jsp">Courses</a></li>
-            <li><a href="manage-grades.jsp">Grades</a></li>
-        </ul>
-        <div class="profile-info">
-            <p class="profile-name"><%= session.getAttribute("name") %></p>
-            <p class="profile-role"><%= session.getAttribute("role") %></p>
-        </div>
-        <div class="dark-mode-toggle" id="dark-mode-toggle">
-            <span class="sun"><i class='bx bx-sun'></i></span>
-            <span class="moon"><i class='bx bx-moon'></i></span>
-        </div>
-    </nav>
-</div>
 <div class="container">
+
+    <nav class="navbar">
+        <h2 class="logo">UniVerse</h2>
+        <ul class="nav-links">
+            <li><a href="student-dashboard.jsp">Home</a></li>
+            <li><a href="view-courses.jsp">Courses</a></li>
+            <li><a href="grades.jsp">Grades</a></li>
+            <li><a href="student-attendance.jsp">Attendance</a></li>
+        </ul>
+    </nav>
+
     <h2>Your Fees</h2>
 
     <!-- Form to select fee type -->
@@ -67,5 +58,6 @@
         }
     %>
 </div>
+<script src="script/dark-mode.js"></script>
 </body>
 </html>

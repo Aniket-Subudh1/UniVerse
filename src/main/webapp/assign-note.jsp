@@ -7,6 +7,17 @@
 </head>
 <body>
 <div class="container">
+
+  <nav class="navbar">
+    <h2 class="logo">UniVerse</h2>
+    <ul class="nav-links">
+      <li><a href="teacher-dashboard.jsp">Home</a></li>
+      <li><a href="Manage-Course.jsp">Courses</a></li>
+      <li><a href="add_grade.jsp">Grades</a></li>
+      <li><a href="teacher-attendance.jsp">Attendance</a></li>
+    </ul>
+  </nav>
+
   <h2>Upload Notes</h2>
   <form id="uploadForm" action="uploadNotes" method="post" enctype="multipart/form-data">
     <div class="form-group">
@@ -36,5 +47,7 @@
 </div>
 
 <script src="script/uploadNotes.js"></script>
+<script src="script/dark-mode.js"></script>
+
 </body>
 </html>
