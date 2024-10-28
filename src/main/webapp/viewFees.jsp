@@ -6,9 +6,7 @@
 <html>
 <head>
     <title>View Fees</title>
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="styles/viewFees.css">
 </head>
 <body>
 

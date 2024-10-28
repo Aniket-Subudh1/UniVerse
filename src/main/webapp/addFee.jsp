@@ -6,9 +6,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="styles/addFee.css">
     <title>Add Fees</title>
 </head>
 <body>
+<div class="container">
+    <nav class="navbar">
+        <h2 class="logo">UniVerse Admin</h2>
+        <ul class="nav-links">
+            <li><a href="admin-dashboard.jsp">Home</a></li>
+            <li><a href="manage-timetable.jsp">Timetable</a></li>
+            <li><a href="manage-courses.jsp">Courses</a></li>
+            <li><a href="manage-grades.jsp">Grades</a></li>
+        </ul>
+        <div class="profile-info">
+            <p class="profile-name"><%= session.getAttribute("name") %></p>
+            <p class="profile-role"><%= session.getAttribute("role") %></p>
+        </div>
+        <div class="dark-mode-toggle" id="dark-mode-toggle">
+            <span class="sun"><i class='bx bx-sun'></i></span>
+            <span class="moon"><i class='bx bx-moon'></i></span>
+        </div>
+    </nav>
+</div>
 <h2>Add Student Fees</h2>
 <form action="AddFeeServlet" method="post">
     <label for="registrationId">Registration ID:</label>
