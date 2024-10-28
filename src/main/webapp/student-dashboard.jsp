@@ -100,7 +100,7 @@
             <i class='bx bx-book-open'></i>
             <h3>View Notes</h3>
             <p>View Uploaded Notes by Teacher.</p>
-            <a href="#">View Notes</a>
+            <a href="view-notes.jsp">View Notes</a>
         </div>
         <div class="card">
             <i class='bx bx-comment-dots'></i>
