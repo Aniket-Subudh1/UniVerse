@@ -1,27 +1,35 @@
-<!-- feedback.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Feedback</title>
-    <link rel="stylesheet" href="styles/feedback.css">
+    <link rel="stylesheet" href="styles/feedback.css"> <!-- Include your CSS file here -->
 </head>
 <body>
-<h2>Submit Feedback</h2>
-<form action="SubmitFeedbackServlet" method="post">
-    <label for="teacherId">Teacher ID:</label>
-    <input type="text" id="teacherId" name="teacherId" required><br><br>
 
-    <label for="studentName">Your Name:</label>
-    <input type="text" id="studentName" name="studentName" required><br><br>
+<div class="container">
+    <h2>Submit Feedback</h2>
 
-    <label for="feedback">Feedback:</label><br>
-    <textarea id="feedback" name="feedback" rows="5" cols="30" required></textarea><br><br>
+    <form id="feedbackForm">
+        <label for="courseTeacherSelect">Course and Teacher:</label>
+        <select id="courseTeacherSelect" name="courseTeacherSelect" required>
+            <!-- Options will be populated via JavaScript -->
+        </select>
 
-    <input type="submit" value="Submit">
-</form>
+        <label for="rating">Rating (1-5):</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" required>
 
-<script src="script/dark-mode.js"></script>
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" placeholder="Optional"></textarea>
+
+        <button type="submit">Submit Feedback</button>
+    </form>
+
+    <p id="feedbackMessage"></p> <!-- To display success or error messages -->
+</div>
+
+<script src="script/feedback.js"></script> <!-- Link to the external JS file -->
 </body>
 </html>
