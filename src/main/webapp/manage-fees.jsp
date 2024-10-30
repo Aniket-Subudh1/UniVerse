@@ -22,8 +22,20 @@
             margin: 5px 0;
         }
     </style>
+    <link rel="stylesheet" href="styles/managefees.css">
 </head>
 <body>
+<div class="container">
+
+    <nav class="navbar">
+        <h2 class="logo">UniVerse</h2>
+        <ul class="nav-links">
+            <li><a href="admin-dashboard.jsp">Home</a></li>
+            <li><a href="admin-attendance.jsp">Attendance</a></li>
+            <li><a href="manage-routine.jsp">Timetable</a></li>
+            <li><a href="create-course.jsp">Courses</a></li>
+        </ul>
+    </nav>
 <h2>Fee Management</h2>
 
 <!-- Single Student Fee Update Section -->
@@ -72,5 +84,6 @@
 
 <!-- Include the JavaScript file -->
 <script src="script/manageFees.js"></script>
+    </div>
 </body>
 </html>

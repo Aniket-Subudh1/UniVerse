@@ -1,4 +1,4 @@
-/* Reset and base styles */
+/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +13,6 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Dark Mode Styles */
 body.dark-mode {
     background-color: #181a1e;
     color: #f1f1f1;
@@ -75,95 +74,73 @@ body.dark-mode {
     background-color: #444;
 }
 
-/* Page Container */
+/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 120px 20px 40px;
 }
 
-/* Header */
-h1 {
-    font-size: 32px;
-    margin-bottom: 20px;
+/* Page Headers */
+h2, h3, h4 {
     color: #2c3e50;
-    text-align: center;
+    margin-bottom: 10px;
 }
 
-/* Form */
-form {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-form.dark-mode {
-    background-color: #1f1f1f;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 5px;
-    display: block;
-}
-
-form.dark-mode .form-group label {
+body.dark-mode h2, body.dark-mode h3, body.dark-mode h4 {
     color: #f1f1f1;
 }
 
-.form-group select,
-.form-group input[type="date"] {
-    width: 100%;
-    padding: 10px;
+/* Form Labels and Inputs */
+label {
+    display: inline-block;
+    width: 150px;
+    margin-top: 5px;
+    color: #333;
+}
+
+body.dark-mode label {
+    color: #f1f1f1;
+}
+
+input, select {
+    padding: 8px;
+    margin-top: 5px;
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ccc;
     transition: border-color 0.3s ease;
+    background-color: #ffffff;
 }
 
-.form-group select:focus,
-.form-group input[type="date"]:focus {
-    border-color: #2980b9;
-}
-
-form.dark-mode .form-group select,
-form.dark-mode .form-group input[type="date"] {
+body.dark-mode input, body.dark-mode select {
     background-color: #333;
     color: #f1f1f1;
     border-color: #555;
 }
 
-form.dark-mode .form-group select:focus,
-form.dark-mode .form-group input[type="date"]:focus {
+input:focus, select:focus {
     border-color: #2980b9;
 }
 
-/* Timetable and Students Container */
-#timetableContainer,
-#studentsContainer {
-    background-color: #ecf0f1;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
+body.dark-mode input:focus, body.dark-mode select:focus {
+    border-color: #2980b9;
 }
 
-form.dark-mode #timetableContainer,
-form.dark-mode #studentsContainer {
-    background-color: #1f1f1f;
+/* Fee Details Display */
+#feeDetails p {
+    margin: 5px 0;
+    color: #555;
 }
 
-/* Submit Button */
-button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 18px;
+body.dark-mode #feeDetails p {
+    color: #ccc;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
     background-color: #2980b9;
     color: #ffffff;
     border: none;
@@ -172,16 +149,16 @@ button[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
+button:hover {
     background-color: #1a5276;
 }
 
-form.dark-mode button[type="submit"] {
+body.dark-mode button {
     background-color: #333;
     color: #ffd700;
 }
 
-form.dark-mode button[type="submit"]:hover {
+body.dark-mode button:hover {
     background-color: #555;
 }
 
@@ -195,7 +172,7 @@ form.dark-mode button[type="submit"]:hover {
         padding: 100px 10px 20px;
     }
 
-    h1 {
-        font-size: 28px;
+    h2, h3, h4 {
+        font-size: 24px;
     }
 }
