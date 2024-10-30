@@ -1,152 +1,186 @@
-/* General Page Styling */
+/* Base Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+    font-family: "Poppins", sans-serif;
+    background-color: #f9f9f9;
+    color: #2a2d3e;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.container {
-    width: 40%; /* Decreased width */
-    max-width: 600px; /* Adjusted max-width */
-    margin: 40px auto; /* Centering */
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #181a1e;
+    color: #f1f1f1;
+}
+
+/* Navbar Container */
+.navbar-container {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 15px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Header Styling */
-h2 {
-    font-size: 24px;
-    color: #333;
-    text-align: left;
-    border-bottom: 2px solid #333;
-    padding-bottom: 10px;
     margin-bottom: 20px;
-}
-
-/* Button Styling */
-button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 20px;
-}
-
-button:hover {
-    background-color: #555;
-}
-
-/* Table Styling */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ccc;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background-color: #333;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: 0.05em;
-}
-
-td {
-    background-color: #f9f9f9;
-    color: #333;
-}
-
-/* Small Notes Styling */
-small {
-    display: block;
-    font-size: 12px;
-    color: #888;
-}
-
-/* Dropdown Styling */
-select, input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-input[type="submit"] {
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover {
-    background-color: #218838;
+.navbar-container.dark-mode {
+    background-color: #181a1e; /* Dark background for dark mode */
 }
 
-/* Table Message Styling */
-.table-message {
-    color: #555;
-    font-style: italic;
-    text-align: left;
-}
-
-/* Nav Styling */
+/* Navbar */
 .navbar {
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px 20px;
-    margin-bottom: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.navbar a {
-    margin-right: 20px;
-    color: #333;
-    text-decoration: none;
-    font-size: 18px;
+.navbar .logo {
+    font-size: 24px;
     font-weight: bold;
+    color: #2a2d3e;
     transition: color 0.3s ease;
 }
 
-.navbar a:hover {
-    color: #007bff;
+.navbar.dark-mode .logo {
+    color: #f1f1f1; /* White text in dark mode */
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li a {
+    color: #2a2d3e;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .nav-links li a:hover {
+    background-color: #e0e4eb;
+}
+
+.navbar.dark-mode .nav-links li a {
+    color: #f1f1f1; /* White text for links in dark mode */
+}
+
+.navbar.dark-mode .nav-links li a:hover {
+    background-color: #333; /* Darker hover background in dark mode */
+}
+
+/* Content Container */
+.content-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Card Style */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    padding: 25px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.dark-mode {
+    background-color: #202328;
+    border: 1px solid #333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #2a2d3e;
+    transition: color 0.3s ease;
+}
+
+.card.dark-mode h2 {
+    color: #f1f1f1;
+}
+
+.card label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.card.dark-mode label {
+    color: #ccc;
+}
+
+.card input[type="text"],
+.card select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #2a2d3e;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card.dark-mode input[type="text"],
+.card.dark-mode select {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #f1f1f1;
+}
+
+.card input[type="submit"] {
+    background-color: #2a2d3e;
+    color: #ffd700;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card input[type="submit"]:hover {
+    background-color: #ffd700;
+    color: #ffffff;
+}
+
+.card.dark-mode input[type="submit"] {
+    background-color: #333;
+    color: #ffd700;
+}
+
+.card.dark-mode input[type="submit"]:hover {
+    background-color: #555;
+    color: #ffffff;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        width: 90%; /* Adjusted for smaller screens */
+@media (max-width: 900px) {
+    .content-container {
         padding: 15px;
     }
+}
 
-    button, input[type="submit"] {
-        font-size: 14px;
-    }
-
-    th, td {
+@media (max-width: 600px) {
+    .content-container {
         padding: 10px;
     }
 }
