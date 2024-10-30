@@ -86,7 +86,7 @@
             <i class='bx bx-wallet'></i>
             <h3>Fee Payment & Status</h3>
             <p>Check your fee details and payment status.</p>
-            <a href="viewFees.jsp">View Fee Status</a>
+            <a href="studentFeePayment.jsp">View Fee Status</a>
         </div>
 
 

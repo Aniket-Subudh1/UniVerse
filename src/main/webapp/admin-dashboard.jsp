@@ -52,7 +52,7 @@
             <i class='bx bx-wallet'></i>
             <h3>Manage Fees</h3>
             <p>Check and update student fee details and payment status.</p>
-            <a href="addFee.jsp">Manage Fees</a>
+            <a href="manage-fees.jsp">Manage Fees</a>
         </div>
         <div class="card">
             <i class='bx bx-book'></i>
