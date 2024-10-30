@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Admin Attendance Management</title>
-  <link rel="stylesheet" href="styles/admin-attendance.css">
+  <link rel="stylesheet" href="styles/adminattendance.css">
   <script src="script/admin-attendance.js" defer></script>
 </head>
 <body>
