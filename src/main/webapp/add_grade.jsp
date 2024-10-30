@@ -73,7 +73,7 @@
             }
         });
 
-        // Load course IDs based on selected student ID
+
         $("#studentId").change(function () {
             var studentId = $(this).val();
             if (studentId) {
