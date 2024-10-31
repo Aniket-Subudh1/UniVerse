@@ -53,10 +53,13 @@ public class ForgotPasswordServlet extends HttpServlet {
     }
 
     private boolean isEmailExist(Connection connection, String email) throws SQLException {
-        String query = "SELECT email FROM students WHERE LOWER(email) = LOWER(?) UNION SELECT email FROM teachers WHERE LOWER(email) = LOWER(?)";
+        String query = "SELECT email FROM (" +
+                " SELECT email FROM students" +
+                " UNION " +
+                " SELECT email FROM teachers" +
+                ") AS combined_emails WHERE LOWER(email) = LOWER(?)";
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, email);
-            ps.setString(2, email);
             ResultSet rs = ps.executeQuery();
             return rs.next();
         }

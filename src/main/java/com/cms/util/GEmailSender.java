@@ -1,12 +1,13 @@
 package com.cms.util;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class GEmailSender {
-
+    private static final Dotenv dotenv = Dotenv.load();
     public boolean sendEmail(String to, String from, String subject, String text) {
         boolean flag = false;
 
@@ -17,8 +18,8 @@ public class GEmailSender {
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.host", "smtp.gmail.com");
 
-        String username = "aniketsubudhi00";
-        String password = "qcvubnmwtpfcxeev";
+        String username = dotenv.get("SMTP_USERNAME");
+        String password = dotenv.get("SMTP_PASSWORD");
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
