@@ -8,16 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const amountPaidSpan = document.getElementById('amountPaid');
     const balanceSpan = document.getElementById('balance');
     const payButton = document.getElementById('payButton');
+    const customAmountInput = document.getElementById('customAmount');
 
-    let amountDue = 0;
     let razorpayKeyId = '';
 
     // Fetch fee details on page load
     fetchFeeDetails();
 
     payButton.addEventListener('click', () => {
-        if (amountDue <= 0) {
-            showMessage('No balance amount to pay.', 'error');
+        const amountDue = parseFloat(customAmountInput.value);
+
+        if (isNaN(amountDue) || amountDue <= 0) {
+            showMessage('Please enter a valid amount to pay.', 'error');
             return;
         }
 
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 if (data.status === 'success') {
                     const orderId = data.orderData.orderId;
-                    openRazorpayCheckout(orderId);
+                    openRazorpayCheckout(orderId, amountDue);
                 } else {
                     showMessage(data.message, 'error');
                 }
@@ -55,8 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     totalFeesSpan.textContent = feeDetails.totalFees;
                     amountPaidSpan.textContent = feeDetails.amountPaid;
                     balanceSpan.textContent = feeDetails.balance;
-                    amountDue = feeDetails.balance;
-                    razorpayKeyId = data.razorpayKeyId;
 
                     feeDetailsDiv.style.display = 'block';
                     showMessage('', ''); // Clear any previous messages
@@ -71,10 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    function openRazorpayCheckout(orderId) {
+    function openRazorpayCheckout(orderId, amount) {
         const options = {
             "key": razorpayKeyId,
-            "amount": amountDue * 100, // Convert to paise
+            "amount": amount * 100, // Convert to paise
             "currency": "INR",
             "name": "UniVerse",
             "description": "Fee Payment",
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handlePaymentSuccess(paymentResponse) {
-        paymentResponse.amount = amountDue.toString();
+        paymentResponse.amount = parseFloat(customAmountInput.value).toString();
 
         // Send payment details to server for verification and updating database
         fetch('StudentFeePaymentServlet?action=paymentSuccess', {
