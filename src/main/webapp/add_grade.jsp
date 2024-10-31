@@ -1,4 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.cms.dao.DBConnection" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.io.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,12 +11,10 @@
     <title>Add Grade</title>
     <link rel="stylesheet" href="styles/addgrade.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
 <div class="navbar-container">
-    <!-- Navbar -->
     <nav class="navbar">
         <h2 class="logo">UniVerse</h2>
         <ul class="nav-links">
@@ -20,7 +22,6 @@
             <li><a href="Manage-Course.jsp">Courses</a></li>
             <li><a href="add_grade.jsp">Grades</a></li>
             <li><a href="teacher-attendance.jsp">Attendance</a></li>
-
             <li>
                 <div class="dark-mode-toggle" id="dark-mode-toggle">
                     <span class="sun"><i class='bx bx-sun'></i></span>
@@ -32,13 +33,39 @@
 </div>
 
 <div class="content-container">
-    <!-- Add Grade Card -->
     <div class="card">
         <h2>Add Grade</h2>
+
+        <!-- Display success message if applicable -->
+        <%
+            String successMessage = (String) request.getAttribute("successMessage");
+            if (successMessage != null) {
+        %>
+        <div class="success-message">
+            <p><%= successMessage %></p>
+        </div>
+        <%
+            }
+        %>
+
         <form action="GradeManagementServlet" method="post">
             <label for="studentId">Student ID:</label>
             <select id="studentId" name="studentId" required>
-                <option value="">Loading...</option>
+                <option value="">Select Student ID</option>
+                <%
+                    try (Connection conn = DBConnection.getConnection();
+                         PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT studentId FROM student_course_tracking");
+                         ResultSet rs = stmt.executeQuery()) {
+                        while (rs.next()) {
+                            String studentId = rs.getString("studentId");
+                %>
+                <option value="<%= studentId %>"><%= studentId %></option>
+                <%
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                %>
             </select>
 
             <br><br>
@@ -46,6 +73,20 @@
             <label for="courseId">Course ID:</label>
             <select id="courseId" name="courseId" required>
                 <option value="">Select Course ID</option>
+                <%
+                    try (Connection conn = DBConnection.getConnection();
+                         PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT courseId FROM student_course_tracking");
+                         ResultSet rs = stmt.executeQuery()) {
+                        while (rs.next()) {
+                            String courseId = rs.getString("courseId");
+                %>
+                <option value="<%= courseId %>"><%= courseId %></option>
+                <%
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                %>
             </select>
 
             <br><br>
@@ -60,52 +101,6 @@
         </form>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        // Load all available student IDs on page load
-        $.ajax({
-            url: "GradeManagementServlet",
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                var studentDropdown = $("#studentId");
-                studentDropdown.empty().append("<option value=''>Select Student ID</option>");
-                $.each(data, function (index, studentId) {
-                    studentDropdown.append($("<option></option>").attr("value", studentId).text(studentId));
-                });
-            },
-            error: function () {
-                alert("Failed to load student IDs. Please try again.");
-            }
-        });
-
-
-        $("#studentId").change(function () {
-            var studentId = $(this).val();
-            if (studentId) {
-                $.ajax({
-                    url: "GradeManagementServlet",
-                    type: "GET",
-                    data: { studentId: studentId },
-                    dataType: "json",
-                    success: function (data) {
-                        var courseDropdown = $("#courseId");
-                        courseDropdown.empty().append("<option value=''>Select Course ID</option>");
-                        $.each(data, function (index, courseId) {
-                            courseDropdown.append($("<option></option>").attr("value", courseId).text(courseId));
-                        });
-                    },
-                    error: function () {
-                        alert("Failed to fetch courses. Please try again.");
-                    }
-                });
-            } else {
-                $("#courseId").empty().append("<option value=''>Select Course ID</option>");
-            }
-        });
-    });
-</script>
 
 <script src="script/dark-mode.js"></script>
 </body>
