@@ -18,6 +18,12 @@
             <li><a href="admin-attendance.jsp">Attendance</a></li>
             <li><a href="manage-routine.jsp">Timetable</a></li>
             <li><a href="create-course.jsp">Courses</a></li>
+            <li>
+                <div class="dark-mode-toggle" id="dark-mode-toggle">
+                    <span class="sun"><i class='bx bx-sun'></i></span>
+                    <span class="moon"><i class='bx bx-moon'></i></span>
+                </div>
+            </li>
         </ul>
     </nav>
 

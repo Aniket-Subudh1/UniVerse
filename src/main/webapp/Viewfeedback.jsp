@@ -8,6 +8,22 @@
     <link rel="stylesheet" href="styles/Viewfeedback.css">
 </head>
 <body>
+<div class="container">
+    <nav class="navbar">
+        <h2 class="logo">UniVerse</h2>
+        <ul class="nav-links">
+            <li><a href="teacher-dashboard.jsp">Home</a></li>
+            <li><a href="Manage-Course.jsp">Courses</a></li>
+            <li><a href="add_grade.jsp">Grades</a></li>
+            <li><a href="teacher-attendance.jsp">Attendance</a></li> </ul>
+        <li>
+            <div class="dark-mode-toggle" id="dark-mode-toggle">
+                <span class="sun"><i class='bx bx-sun'></i></span>
+                <span class="moon"><i class='bx bx-moon'></i></span>
+            </div>
+        </li>
+    </nav>
+</div>
 <h1>Retrieve Feedback for Teacher</h1>
 <form action="RetrieveFeedbackServlet" method="post">
     <label for="teacherId">Teacher ID:</label>
@@ -39,5 +55,7 @@
 <%
     }
 %>
+
+<script src="script/dark-mode.js"></script>
 </body>
 </html>

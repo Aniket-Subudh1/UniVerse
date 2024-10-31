@@ -18,6 +18,12 @@
             <li><a href="Manage-Course.jsp">Courses</a></li>
             <li><a href="add_grade.jsp">Grades</a></li>
             <li><a href="teacher-attendance.jsp">Attendance</a></li> </ul>
+        <li>
+            <div class="dark-mode-toggle" id="dark-mode-toggle">
+                <span class="sun"><i class='bx bx-sun'></i></span>
+                <span class="moon"><i class='bx bx-moon'></i></span>
+            </div>
+        </li>
     </nav>
 
 </div>

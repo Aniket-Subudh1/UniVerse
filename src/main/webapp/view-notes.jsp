@@ -15,6 +15,12 @@
       <li><a href="view-courses.jsp">Courses</a></li>
       <li><a href="grades.jsp">Grades</a></li>
       <li><a href="student-attendance.jsp">Attendance</a></li>
+      <li>
+        <div class="dark-mode-toggle" id="dark-mode-toggle">
+          <span class="sun"><i class='bx bx-sun'></i></span>
+          <span class="moon"><i class='bx bx-moon'></i></span>
+        </div>
+      </li>
     </ul>
   </nav>
 
@@ -24,5 +30,6 @@
   </div>
 </div>
 <script src="script/view-notes.js"></script>
+<script src="script/dark-mode.js"></script>
 </body>
 </html>
