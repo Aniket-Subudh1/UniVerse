@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Upload Notes</title>
-  <link rel="stylesheet" href="styles/uploadNotes.css">
+  <link rel="stylesheet" href="styles/managenotes.css">
 </head>
 <body>
 <div class="container">

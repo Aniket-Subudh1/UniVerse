@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Available Course Notes</title>
-  <link rel="stylesheet" href="styles/notes.css">
+  <link rel="stylesheet" href="styles/notes1..css">
 </head>
 <body>
 <div class="container">
