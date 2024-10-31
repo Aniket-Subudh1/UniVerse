@@ -5,9 +5,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Student Fee Payment</title>
-    <link rel="stylesheet" href="styles/studentFeePayment.css">
+    <link rel="stylesheet" href="styles/feepayment.css">
 </head>
 <body>
+<div class="container">
+    <!-- Navbar copied from view-courses.jsp -->
+    <nav class="navbar">
+        <h2 class="logo">UniVerse</h2>
+        <ul class="nav-links">
+            <li><a href="student-dashboard.jsp">Home</a></li>
+            <li><a href="view-courses.jsp">Courses</a></li>
+            <li><a href="grades.jsp">Grades</a></li>
+            <li><a href="student-attendance.jsp">Attendance</a></li>
+        </ul>
+    </nav>
+
 <h2>Student Fee Payment</h2>
 
 <div id="messages"></div>
@@ -29,5 +41,6 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <!-- Include your custom JavaScript file -->
 <script src="script/studentFeePayment.js"></script>
+</div>
 </body>
 </html>

@@ -1,0 +1,152 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    color: #2a2d3e;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: #181a1e;
+    color: #f1f1f1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar.dark-mode {
+    background-color: #202328;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.navbar.dark-mode .logo {
+    color: #f1f1f1;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links li a {
+    color: #333;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: block;
+}
+
+.navbar .nav-links li a:hover {
+    background-color: #ffd700;
+    color: #ffffff;
+}
+
+.navbar.dark-mode .nav-links li a {
+    color: #f1f1f1;
+}
+
+.navbar.dark-mode .nav-links li a:hover {
+    background-color: #333;
+}
+
+/* Page Heading */
+h2 {
+    text-align: center;
+    color: #2a2d3e;
+    margin-bottom: 20px;
+}
+
+body.dark-mode h2 {
+    color: #f1f1f1;
+}
+
+/* Fee Details Section */
+#feeDetails {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode #feeDetails {
+    background-color: #202328;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+#feeDetails p {
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 16px;
+}
+
+body.dark-mode #feeDetails p {
+    color: #f1f1f1;
+}
+
+#payButton {
+    background-color: #2a2d3e;
+    color: #e8c888;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#payButton:hover {
+    background-color: #ffd700;
+    color: #ffffff;
+}
+
+body.dark-mode #payButton:hover {
+    background-color: #555;
+    color: #ffd700;
+}
+
+/* Messages Section */
+#messages {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+}
+
+body.dark-mode #messages {
+    color: #f1f1f1;
+}

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>View Teacher Feedback</title>
-  <link rel="stylesheet" href="styles/admin-feedback.css">
+  <link rel="stylesheet" href="styles/adminviewfeedback.css">
 </head>
 <body>
 <div class="container">
